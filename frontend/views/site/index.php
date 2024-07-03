@@ -195,3 +195,7 @@ $this->title = 'Servisena';
     <h1 class="display-5 fw-bold text-body-emphasis">NUESTRO EQUIPO DE TRABAJO</h1>
     <p>Logos SENA</p>
 </div>
+
+<button id="scrollToTopBtn" class="btn btn-dark">
+    ↑ Top
+</button>

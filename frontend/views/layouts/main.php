@@ -94,6 +94,13 @@ AppAsset::register($this);
         .zoom-hover:hover img {
             transform: scale(1.1);
         }
+        #scrollToTopBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            z-index: 99;
+        }
       </style>
     </header>
 </div>
@@ -199,6 +206,28 @@ AppAsset::register($this);
 
 <?php $this->endBody() ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+    // Mostrar el botón cuando el usuario se desplaza hacia abajo 100px desde la parte superior del documento
+    window.onscroll = function() {
+        scrollFunction();
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            document.getElementById("scrollToTopBtn").style.display = "block";
+        } else {
+            document.getElementById("scrollToTopBtn").style.display = "none";
+        }
+    }
+
+    // Cuando el usuario hace clic en el botón, desplázate hacia la parte superior del documento
+    document.getElementById('scrollToTopBtn').addEventListener('click', function(){
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+</script>
 </body>
 </html>
 <?php $this->endPage();
