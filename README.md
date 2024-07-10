@@ -106,7 +106,7 @@ project-root/
 1. Clonar el repositorio:
 
     ```bash
-    git clone https://github.com/tu_usuario/servisena.git
+    git clone https://github.com/miguelcmo/servisena.git
     ```
 
 2. Instalar dependencias con Composer:
