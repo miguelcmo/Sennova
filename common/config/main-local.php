@@ -2,11 +2,19 @@
 
 return [
     'components' => [
+        // This is the original db component
+        // 'db' => [
+        //     'class' => \yii\db\Connection::class,
+        //     'dsn' => 'mysql:host=localhost;dbname=yii2advanced',
+        //     'username' => 'root',
+        //     'password' => '',
+        //     'charset' => 'utf8',
+        // ],
         'db' => [
             'class' => \yii\db\Connection::class,
-            'dsn' => 'mysql:host=localhost;dbname=yii2advanced',
+            'dsn' => 'mysql:host=localhost;dbname=servisena',
             'username' => 'root',
-            'password' => '',
+            'password' => 'RootPass1683*',
             'charset' => 'utf8',
         ],
         'mailer' => [
