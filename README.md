@@ -1,60 +1,101 @@
-<p align="center">
+<!-- <p align="center">
     <a href="https://github.com/yiisoft" target="_blank">
         <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
     </a>
     <h1 align="center">Yii 2 Advanced Project Template</h1>
     <br>
-</p>
+</p> -->
 
-Yii 2 Advanced Project Template is a skeleton [Yii 2](https://www.yiiframework.com/) application best for
-developing complex Web applications with multiple tiers.
+# Proyecto Servisena
 
-The template includes three tiers: front end, back end, and console, each of which
-is a separate Yii application.
+## Descripción
 
-The template is designed to work in a team development environment. It supports
-deploying the application in different environments.
+El proyecto **Servisena** es una plataforma de aplicaciones desarrollada utilizando el Yii Framework Advanced Template. El objetivo de esta plataforma es ofrecer módulos de formación para empresas en el área de servitización, permitiendo una gestión completa de los cursos y el acceso a los mismos por parte de los participantes.
 
-Documentation is at [docs/guide/README.md](docs/guide/README.md).
+## Aplicaciones
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/yiisoft/yii2-app-advanced.svg)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
-[![Total Downloads](https://img.shields.io/packagist/dt/yiisoft/yii2-app-advanced.svg)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
-[![build](https://github.com/yiisoft/yii2-app-advanced/workflows/build/badge.svg)](https://github.com/yiisoft/yii2-app-advanced/actions?query=workflow%3Abuild)
+### 1. Servisena
 
-DIRECTORY STRUCTURE
--------------------
+**Descripción**: Aplicación principal que funciona como una landing page, proporcionando visibilidad al proyecto y permitiendo el acceso a las demás aplicaciones de la plataforma.
 
-```
-common
-    config/              contains shared configurations
-    mail/                contains view files for e-mails
-    models/              contains model classes used in both backend and frontend
-    tests/               contains tests for common classes    
-console
-    config/              contains console configurations
-    controllers/         contains console controllers (commands)
-    migrations/          contains database migrations
-    models/              contains console-specific model classes
-    runtime/             contains files generated during runtime
-backend
-    assets/              contains application assets such as JavaScript and CSS
-    config/              contains backend configurations
-    controllers/         contains Web controller classes
-    models/              contains backend-specific model classes
-    runtime/             contains files generated during runtime
-    tests/               contains tests for backend application    
-    views/               contains view files for the Web application
-    web/                 contains the entry script and Web resources
-frontend
-    assets/              contains application assets such as JavaScript and CSS
-    config/              contains frontend configurations
-    controllers/         contains Web controller classes
-    models/              contains frontend-specific model classes
-    runtime/             contains files generated during runtime
-    tests/               contains tests for frontend application
-    views/               contains view files for the Web application
-    web/                 contains the entry script and Web resources
-    widgets/             contains frontend widgets
-vendor/                  contains dependent 3rd-party packages
-environments/            contains environment-based overrides
-```
+**Características**:
+- Página de inicio atractiva y profesional.
+- Información general sobre el proyecto y sus beneficios.
+- Enlaces de acceso a `serviserFrontend` y `serviserBackend`.
+
+### 2. serviserFrontend
+
+**Descripción**: Aplicación frontend que permite a los usuarios acceder y registrarse en los cursos, ver el contenido de los cursos y otros recursos.
+
+**Características**:
+- Registro y autenticación de usuarios.
+- Navegación y acceso a los cursos disponibles.
+- Visualización de lecciones, recursos y evaluaciones.
+- Participación en foros de discusión y actividades colaborativas.
+
+### 3. serviserBackend
+
+**Descripción**: Aplicación backend para la gestión del LMS, donde se administran los cursos, usuarios, evaluaciones y otros recursos.
+
+**Características**:
+- Gestión de usuarios y roles.
+- Creación y administración de cursos y módulos.
+- Gestión de lecciones y recursos de aprendizaje.
+- Evaluaciones y calificaciones.
+- Monitoreo de la actividad y generación de reportes.
+- Gestión de notificaciones y mensajes.
+
+## Estructura del Proyecto
+
+```plaintext
+project-root/
+│
+├── common/
+│   ├── config/
+│   ├── models/
+│   └── ...
+│
+├── console/
+│   ├── config/
+│   ├── controllers/
+│   └── ...
+│
+├── environments/
+│   └── ...
+│
+├── servisena/
+│   ├── assets/
+│   ├── config/
+│   ├── controllers/
+│   ├── models/
+│   ├── views/
+│   └── ...
+│
+├── serviserFrontend/
+│   ├── assets/
+│   ├── config/
+│   ├── controllers/
+│   ├── models/
+│   ├── views/
+│   └── ...
+│
+├── serviserBackend/
+│   ├── assets/
+│   ├── config/
+│   ├── controllers/
+│   ├── models/
+│   ├── views/
+│   └── ...
+│
+├── vendor/
+│   └── ...
+│
+├── yii
+└── yii_test
+
+Requisitos del Sistema
+
+    PHP 7.4 o superior.
+    Composer.
+    Servidor Web (Apache, Nginx).
+    Base de datos MySQL o PostgreSQL.
