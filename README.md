@@ -92,10 +92,58 @@ project-root/
 │
 ├── yii
 └── yii_test
+```
 
-Requisitos del Sistema
+## Requisitos del Sistema
 
-    PHP 7.4 o superior.
-    Composer.
-    Servidor Web (Apache, Nginx).
-    Base de datos MySQL o PostgreSQL.
+- PHP 7.4 o superior.
+- Composer.
+- Servidor Web (Apache, Nginx).
+- Base de datos MySQL o PostgreSQL.
+
+## Instalación
+
+1. Clonar el repositorio:
+
+    ```bash
+    git clone https://github.com/tu_usuario/servisena.git
+    ```
+
+2. Instalar dependencias con Composer:
+
+    ```bash
+    composer install
+    ```
+
+3. Configurar los archivos de entorno y configuración:
+
+    - Copiar los archivos `.env.example` a `.env` y ajustar las variables necesarias.
+    - Configurar las bases de datos en `common/config/main-local.php`.
+
+4. Ejecutar migraciones para crear las tablas necesarias en la base de datos:
+
+    ```bash
+    php yii migrate
+    ```
+
+5. Configurar el servidor web para que apunte a las carpetas `web` de cada aplicación (`servisena/web`, `serviserFrontend/web`, `serviserBackend/web`).
+
+## Contribuir
+
+Si deseas contribuir al proyecto, por favor sigue estos pasos:
+
+1. Realiza un fork del proyecto.
+2. Crea una nueva rama (`git checkout -b feature/nueva-funcionalidad`).
+3. Realiza tus cambios y haz commit (`git commit -am 'Añadir nueva funcionalidad'`).
+4. Sube los cambios a tu rama (`git push origin feature/nueva-funcionalidad`).
+5. Abre un Pull Request.
+
+## Licencia
+
+Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
+
+---
+
+**Autor:** Miguel Angel
+
+**Contacto:** mcbs@outlook.com
