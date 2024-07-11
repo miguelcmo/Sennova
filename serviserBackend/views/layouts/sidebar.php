@@ -2,7 +2,7 @@
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
         <img src="<?=$assetDir?>/img/logo.png" alt="ServiSer Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">ServiSer</span>
+        <span class="brand-text font-weight-light">ServiSER</span>
     </a>
 
     <!-- Sidebar -->
@@ -76,11 +76,13 @@
                 ],
             ]);
             */
+            
             echo \hail812\adminlte\widgets\Menu::widget([
                 'items' => [
                     [   
                         'label' => 'Dashboard',
                         'icon' => 'tachometer-alt',
+                        'url' => ['site/index'],
                         //'icon' => 'bug',
                         //'iconStyle' => 'far',
                         //'badge' => '<span class="right badge badge-danger">New</span>',
@@ -99,12 +101,12 @@
                             [
                                 'label' => 'Gestión de Cursos',
                                 'iconStyle' => 'far',
-                                //'url' => ['/gii'],
+                                'url' => ['/course'],
                             ],
                             [
                                 'label' => 'Lecciones',
                                 'iconStyle' => 'far',
-                                //'url' => ['/gii'],
+                                'url' => ['/lesson'],
                             ],
                             [
                                 'label' => 'Evaluaciones',
@@ -123,9 +125,9 @@
                                 //'url' => ['/gii'],
                             ],
                             [
-                                'label' => 'Cursos',
+                                'label' => 'Grupos',
                                 'iconStyle' => 'far',
-                                //'url' => ['/gii'],
+                                'url' => ['/group'],
                             ],
                         ],
                     ],
@@ -136,7 +138,7 @@
                             [
                                 'label' => 'Foros de Discución',
                                 'iconStyle' => 'far',
-                                //'url' => ['/gii'],
+                                'url' => ['/discussion-forum'],
                             ],
                             [
                                 'label' => 'Temas de Discución',
@@ -157,7 +159,7 @@
                             [
                                 'label' => 'Gestión de Usuarios',
                                 'iconStyle' => 'far',
-                                //'url' => ['/gii'],
+                                'url' => ['/user-profile'],
                             ],
                             [
                                 'label' => 'Roles y Permisos',
@@ -189,17 +191,17 @@
                             [
                                 'label' => 'Anuncios',
                                 'iconStyle' => 'far',
-                                //'url' => ['/gii'],
+                                'url' => ['/announcement'],
                             ],
                             [
                                 'label' => 'Archivos',
                                 'iconStyle' => 'far',
-                                //'url' => ['/gii'],
+                                'url' => ['/file'],
                             ],
                             [
                                 'label' => 'Feedback',
                                 'iconStyle' => 'far',
-                                //'url' => ['/gii'],
+                                'url' => ['/feedback'],
                             ],
                         ],
                     ],
@@ -274,14 +276,23 @@
                                 'label' => 'Configuraciones',
                                 'iconStyle' => 'far',
                                 //'url' => ['/gii'],
+                                'items' => [
+                                    [
+                                        'label' => 'Otras Configuraciones',
+                                        //'iconStyle' => 'far',
+                                        'icon' => 'dot-circle'
+                                        //'url' => ['/gii'],
+                                    ],
+                                ],
                             ],
                         ],
                     ],
                     ['label' => 'DevEnvTools', 'header' => true],
                     ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
                     ['label' => 'Debug', 'icon' => 'bug', 'url' => ['/debug'], 'target' => '_blank'],
-                ],
+                ]
             ]);
+            
             ?>
         </nav>
         <!-- /.sidebar-menu -->
