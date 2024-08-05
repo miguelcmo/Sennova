@@ -1,6 +1,6 @@
 <?php
 
-namespace serviserFontend\models;
+namespace serviserFrontend\models;
 
 use yii\base\InvalidArgumentException;
 use yii\base\Model;
@@ -47,6 +47,16 @@ class ResetPasswordForm extends Model
         return [
             ['password', 'required'],
             ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'password' => Yii::t('app', 'Contraseña'),
         ];
     }
 

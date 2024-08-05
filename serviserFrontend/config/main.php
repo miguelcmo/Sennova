@@ -8,6 +8,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-serviserFrontend',
+    'name' => 'Serviser',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'serviserFrontend\controllers',

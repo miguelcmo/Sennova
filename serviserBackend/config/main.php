@@ -11,7 +11,11 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'serviserBackend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+        'calendar' => [
+            'class' => 'serviserBackend\modules\calendar\Module',
+        ],
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-serviserBackend',

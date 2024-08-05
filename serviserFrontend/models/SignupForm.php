@@ -60,6 +60,18 @@ class SignupForm extends Model
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'username' => Yii::t('app', 'Nombre de Usuario'),
+            'email' => Yii::t('app', 'Correo Electrónico'),
+            'password' => Yii::t('app', 'Contraseña'),
+        ];
+    }
+
+    /**
      * Sends confirmation email to user
      * @param User $user user model to with email should be send
      * @return bool whether the email was sent
