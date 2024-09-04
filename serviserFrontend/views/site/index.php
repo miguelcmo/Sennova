@@ -1,22 +1,26 @@
 <?php
 
 /** @var yii\web\View $this */
+use yii\helpers\Url;
 
 $this->title = 'Serviser'; ?>
 
 <main>
   <div class="container col-xl-12 px-4 py-5">
     <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-      <div class="col-10 col-sm-12 col-lg-6">
+      <div class="col-lg-6">
         <video
           class="d-block mx-lg-auto img-fluid"
-          width="100%"
-          autoplayed
-          controls
           style="border-radius: 5px"
+          width="100%"
+          autoplay
+          controls
           loading="lazy"
         >
-          <source src="images/video/Video_Serviser.mp4" type="video/mp4" />
+          <source
+            src="https://firebasestorage.googleapis.com/v0/b/labserviser.appspot.com/o/serviser-onboarding.mp4?alt=media&token=25c87181-88ba-4d38-8250-b71d8f79b9bd"
+            type="video/mp4"
+          >
           Your browser does not support the video tag.
         </video>
       </div>

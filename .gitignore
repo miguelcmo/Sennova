@@ -4,6 +4,7 @@ protected/runtime/*
 !protected/runtime/.gitignore
 protected/data/*.db
 themes/classic/views/
+00-upload
 01-frontend_original
 02-backend_original
 03-common_original

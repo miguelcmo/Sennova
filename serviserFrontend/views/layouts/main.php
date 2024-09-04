@@ -213,7 +213,7 @@ AppAsset::register($this);
         </div>
         <div class="col-md-6 mb-3">
             <div class="mb-4 d-flex justify-content-center align-items-center">
-                <img src="images/logo-sena.svg" width="80px" alt="Logo SENA">
+                <img src="images/logo-sena_(256px).png" width="80px" alt="Logo SENA" type="svg-xml">
                 <h5 class="mx-3">Servicio Nacional de Aprendizaje SENA</h5>
             </div>
             <form>
@@ -244,7 +244,7 @@ AppAsset::register($this);
 <!-- Framework End Section  -->
 <?php $this->endBody() ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<script>
+<!-- <script>
     // Mostrar el botón cuando el usuario se desplaza hacia abajo 100px desde la parte superior del documento
     window.onscroll = function() {
         scrollFunction();
@@ -265,7 +265,7 @@ AppAsset::register($this);
             behavior: 'smooth'
         });
     });
-</script>
+</script> -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var navbar = document.querySelector('.navbar-custom');
@@ -277,6 +277,30 @@ AppAsset::register($this);
             }
         });
     });
+</script>
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyAFu6DKTJY1DlRMujPT503lu1WMiJOXeME",
+    authDomain: "labserviser.firebaseapp.com",
+    projectId: "labserviser",
+    storageBucket: "labserviser.appspot.com",
+    messagingSenderId: "919514822350",
+    appId: "1:919514822350:web:201b4d2eb47361247d029f",
+    measurementId: "G-396718P8G9"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
 </script>
 </body>
 </html>
