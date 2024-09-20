@@ -57,14 +57,17 @@ class SectionController extends Controller
      */
     public function actionView($id)
     {
-        $searchModel = new QuestionSearch();
+        $searchModel = new QuestionSearch(['section_id' => $id]);
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         $questionModel = new Question();
 
         if ($this->request->isPost) {
-            if ($questionModel->load($this->request->post()) && $questionModel->save()) {
-                return $this->redirect(['view', 'id' => $id]);
+            if ($questionModel->load($this->request->post())) {
+                $questionModel->section_id = $id;
+                if ($questionModel->save()) {
+                    return $this->redirect(['view', 'id' => $id]);
+                }
             }
         } else {
             $questionModel->loadDefaultValues();

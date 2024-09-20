@@ -23,147 +23,19 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Work+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
+
 <body class="d-flex flex-column">
 <?php $this->beginBody() ?>
 
-<style>
-    .navbar-custom {
-        height: 80px;
-        /* transition: background-color 0.5s ease, opacity 0.5s ease;
-        background-color: rgba(241, 145, 75, 0.2); */
-        box-shadow: 0px 1px 3px #888888;
-    }
-    .navbar-custom.scrolled {
-        background-color: #F1914B;
-        opacity: 1;
-    }
-    .footer {
-        position: relative;
-        width: 100%;
-        background: #f1914b;
-        min-height: 100px;
-        padding: 20px 50px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        height: fit-content;
-    }
-    .footer-menu {
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 10px 0;
-        flex-wrap: wrap;
-    }
-    .wave {
-        position: absolute;
-        top: -36px;
-        left: 0;
-        width: 100%;
-        height: 36px;
-        background: url("images/fondo.png");
-        background-size: 982px 36px;
-    }
-
-    .wave#wave1 {
-        z-index: 1000;
-        opacity: 1;
-        bottom: 0;
-        animation: animateWaves 30s linear infinite;
-    }
-
-    .wave#wave2 {
-        z-index: 999;
-        opacity: 0.5;
-        bottom: 10px;
-        animation: animate 40s linear infinite !important;
-    }
-
-    .wave#wave3 {
-        z-index: 1000;
-        opacity: 0.2;
-        bottom: 15px;
-        animation: animateWaves 16s linear infinite;
-    }
-
-    .wave#wave4 {
-        z-index: 999;
-        opacity: 0.7;
-        bottom: 20px;
-        animation: animate 6s linear infinite;
-    }
-
-    @keyframes animateWaves {
-        0% {
-            background-position-x: 1000px;
-        }
-        100% {
-            background-positon-x: 0px;
-        }
-    }
-
-    @keyframes animate {
-        0% {
-            background-position-x: -1000px;
-        }
-        100% {
-            background-positon-x: 0px;
-        }
-    }
-</style>
-
 <!-- Header Section -->
-<header>
-    <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top navbar-custom">
-        <div class="container d-flex justify-content-between">
-            <a class="navbar-brand" href="<?= Yii::$app->homeUrl ?>">
-                <img src="images/logo(257x43).png" alt="Logo serviser">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarToggler">
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <?= Html::a('Inicio', ['site/index'], ['class' => 'nav-link active'], ['aria-current' => 'page']); ?>
-                    </li>
-                    <li class="nav-item">
-                        <?= Html::a('Nosotros', ['site/about'], ['class' => 'nav-link']); ?>
-                    </li>
-                    <li class="nav-item">
-                    <?= Html::a('Contacto', ['site/contact'], ['class' => 'nav-link']); ?>
-                    </li>
-                    <li class="nav-item">
-                        <?php if (Yii::$app->user->isGuest) {
-                            echo Html::a('Registrarse', ['site/signup'], ['class' => 'nav-link']);
-                        } ?>   
-                    </li>
-                    <li class="nav-item">
-                        <?php 
-                            if (Yii::$app->user->isGuest) {
-                                echo Html::tag('div',Html::a('Iniciar Sesión',['/site/login'],['class' => ['nav-link']]),['class' => ['d-flex']]);
-                            } else {
-                                echo Html::beginForm(['/site/logout'], 'post', ['class' => 'd-flex'])
-                                    . Html::submitButton(
-                                        'Cerrar sesión (' . Yii::$app->user->identity->username . ')',
-                                        ['class' => 'nav-link']
-                                    )
-                                    . Html::endForm();
-                            }
-                        ?>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
+<?= $this->render('header') ?>
 
 <!-- Content Section -->
 <main role="main" class="flex-shrink-0">
-    <div class="container">
+    <div class="container-fluid p-0">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
@@ -173,73 +45,7 @@ AppAsset::register($this);
 </main>
 
 <!-- Footer Section -->
-<footer class="footer">
-    <div class="waves">
-        <div class="wave" id="wave1"></div>
-        <div class="wave" id="wave2"></div>
-        <div class="wave" id="wave3"></div>
-        <div class="wave" id="wave4"></div>
-    </div>
-    <div class="container">
-    <div class="row">
-        <div class="col-6 col-md-2 mb-3 navbar-light">
-            <h5>Sobre Nosotros</h5>
-            <ul class="nav flex-column">
-                <li class="nav-item mb-2"><?= Html::a('Inicio', ['site/index'], ['class' => 'nav-link p-0 text-body-secondary']); ?></li>
-                <li class="nav-item mb-2"><?= Html::a('Nuestra Historia', ['site/about'], ['class' => 'nav-link p-0 text-body-secondary']); ?></li>
-                <li class="nav-item mb-2"><?= Html::a('Nuestro Equipo', ['site/about'], ['class' => 'nav-link p-0 text-body-secondary']); ?></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Valores</a></li>
-                <li class="nav-item mb-2"><?= Html::a('Contacto', ['site/contact'], ['class' => 'nav-link p-0 text-body-secondary']); ?></li>
-            </ul>
-        </div>
-        <div class="col-6 col-md-2 mb-3">
-            <h5>Servicios</h5>
-            <ul class="nav flex-column">
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Servitización</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Consultoría</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Capacitación</a></li>
-                <li class="nav-item mb-2"><a href="#proceso" class="nav-link p-0 text-body-secondary">Preguntas Frecuentes</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Soporte</a></li>
-            </ul>
-        </div>
-        <div class="col-6 col-md-2 mb-3">
-            <h5>Recursos</h5>
-            <ul class="nav flex-column">
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Blog</a></li>
-                <li class="nav-item mb-2"><a href="#testimonio" class="nav-link p-0 text-body-secondary">Casos de Éxito</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">E-books</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Webinars</a></li>
-            </ul>
-        </div>
-        <div class="col-md-6 mb-3">
-            <div class="mb-4 d-flex justify-content-center align-items-center">
-                <img src="images/logo-sena_(256px).png" width="80px" alt="Logo SENA" type="svg-xml">
-                <h5 class="mx-3">Servicio Nacional de Aprendizaje SENA</h5>
-            </div>
-            <form>
-            <h5>Suscríbete a Nuestro Newsletter</h5>
-            <p>Mantente informado con las últimas noticias y actualizaciones directamente en tu bandeja de entrada.</p>
-            <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-                <label for="newsletter1" class="visually-hidden">Correo electrónico</label>
-                <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
-                <button class="btn btn-dark" type="button">Suscribirse</button>
-            </div>
-            </form>
-        </div>
-        <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
-            <p class="align-self-center">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?> - Developed by MACM</p>
-            <ul class="list-unstyled d-flex align-self-center">
-                <li class="nav-item mb-2 ms-3"><a href="#" class="nav-link p-0 text-body-secondary">Términos y Condiciones</a></li>
-                <li class="nav-item mb-2 ms-3"><a href="#" class="nav-link p-0 text-body-secondary">Política de Privacidad</a></li>
-            </ul>
-            <ul class="list-unstyled d-flex">
-                <li class="ms-3"><a class="link-body-emphasis" href="#"><i class="bi bi-twitter-x" style="font-size: 2rem;"></i></a></li>
-                <li class="ms-3"><a class="link-body-emphasis" href="#"><i class="bi bi-instagram" style="font-size: 2rem;"></i></a></li>
-                <li class="ms-3"><a class="link-body-emphasis" href="#"><i class="bi bi-facebook" style="font-size: 2rem;"></i></a></li>
-            </ul>
-        </div>
-    </div>
-</footer>
+<?= $this->render('footer') ?>
 
 <!-- Framework End Section  -->
 <?php $this->endBody() ?>

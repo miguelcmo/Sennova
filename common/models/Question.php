@@ -1,6 +1,7 @@
 <?php
 
 namespace common\models;
+use common\components\TimestampBehavior;
 
 use Yii;
 
@@ -70,6 +71,16 @@ class Question extends \yii\db\ActiveRecord
             'updated_at' => Yii::t('app', 'Updated At'),
             'created_by' => Yii::t('app', 'Created By'),
             'updated_by' => Yii::t('app', 'Updated By'),
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
         ];
     }
 

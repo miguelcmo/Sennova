@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use common\components\TimestampBehavior;
 
 /**
  * This is the model class for table "course".
@@ -10,14 +11,13 @@ use Yii;
  * @property int $id
  * @property string $title
  * @property string|null $description
- * @property int $category_id
- * @property int $instructor_id
- * @property int $created_at
- * @property int $updated_at
+ * @property int|null $created_by
+ * @property int|null $updated_by
+ * @property string|null $created_at
+ * @property string|null $updated_at
  *
  * @property Assignment[] $assignments
  * @property Attendance[] $attendances
- * @property CourseCategory $category
  * @property Certificate[] $certificates
  * @property CourseCompletion[] $courseCompletions
  * @property CourseFeedback[] $courseFeedbacks
@@ -27,7 +27,6 @@ use Yii;
  * @property Enrollment[] $enrollments
  * @property GradeItem[] $gradeItems
  * @property Gradebook[] $gradebooks
- * @property User $instructor
  * @property Quiz[] $quizzes
  */
 class Course extends \yii\db\ActiveRecord
@@ -46,12 +45,11 @@ class Course extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'category_id', 'instructor_id', 'created_at', 'updated_at'], 'required'],
+            [['title'], 'required'],
             [['description'], 'string'],
-            [['category_id', 'instructor_id', 'created_at', 'updated_at'], 'integer'],
+            [['created_by', 'updated_by'], 'integer'],
+            [['created_at', 'updated_at'], 'safe'],
             [['title'], 'string', 'max' => 255],
-            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => CourseCategory::class, 'targetAttribute' => ['category_id' => 'id']],
-            [['instructor_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['instructor_id' => 'id']],
         ];
     }
 
@@ -64,10 +62,20 @@ class Course extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'title' => Yii::t('app', 'Title'),
             'description' => Yii::t('app', 'Description'),
-            'category_id' => Yii::t('app', 'Category ID'),
-            'instructor_id' => Yii::t('app', 'Instructor ID'),
+            'created_by' => Yii::t('app', 'Created By'),
+            'updated_by' => Yii::t('app', 'Updated By'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
         ];
     }
 
@@ -89,16 +97,6 @@ class Course extends \yii\db\ActiveRecord
     public function getAttendances()
     {
         return $this->hasMany(Attendance::class, ['course_id' => 'id']);
-    }
-
-    /**
-     * Gets query for [[Category]].
-     *
-     * @return \yii\db\ActiveQuery|CourseCategoryQuery
-     */
-    public function getCategory()
-    {
-        return $this->hasOne(CourseCategory::class, ['id' => 'category_id']);
     }
 
     /**
@@ -189,16 +187,6 @@ class Course extends \yii\db\ActiveRecord
     public function getGradebooks()
     {
         return $this->hasMany(Gradebook::class, ['course_id' => 'id']);
-    }
-
-    /**
-     * Gets query for [[Instructor]].
-     *
-     * @return \yii\db\ActiveQuery|yii\db\ActiveQuery
-     */
-    public function getInstructor()
-    {
-        return $this->hasOne(User::class, ['id' => 'instructor_id']);
     }
 
     /**

@@ -6,7 +6,79 @@ use yii\helpers\Url;
 $this->title = 'Serviser'; ?>
 
 <main>
-  <div class="container col-xl-12 px-4 py-5">
+  <!-- Slider Hero -->
+  <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+          <!-- Imagen 1 -->
+          <div class="carousel-item active">
+              <!-- <img src="https://via.placeholder.com/1920x900" class="d-block w-100" alt="Slide 1"> -->
+              <img src="images/landing/producto-cafe.jpg" class="d-block w-100" alt="Slide 1">
+              <div class="overlay bg-secondary bg-opacity-25 position-absolute top-0 start-0 w-100 h-100"></div>
+              <div class="carousel-caption d-flex flex-column justify-content-end h-100">
+                  <h1 class="display-4 fw-bold">¿Quieres transofrmar tu negocio?</h1>
+                  <div>
+                      <a href="#" class="btn btn-success btn-lg mx-2">Solicita Asesoría</a>
+                      <a href="#" class="btn btn-outline-light btn-lg mx-2" data-bs-toggle="modal" data-bs-target="#videoModal">Más Información</a>
+                  </div>
+              </div>
+          </div>
+          <!-- Imagen 2 -->
+          <div class="carousel-item">
+              <!-- <img src="https://via.placeholder.com/1920x900/ff7f7f" class="d-block w-100" alt="Slide 2"> -->
+              <img src="images/landing/producto-cuero.jpg" class="d-block w-100" alt="Slide 1">
+              <div class="overlay bg-secondary bg-opacity-25 position-absolute top-0 start-0 w-100 h-100"></div>
+              <div class="carousel-caption d-flex flex-column justify-content-end h-100">
+                  <h1 class="display-4 fw-bold">¿Quieres transofrmar tu negocio?</h1>
+                  <div>
+                      <a href="#" class="btn btn-success btn-lg mx-2">Solicita Asesoría</a>
+                      <a href="#" class="btn btn-outline-light btn-lg mx-2" data-bs-toggle="modal" data-bs-target="#videoModal">Más Información</a>
+                  </div>
+              </div>
+          </div>
+          <!-- Imagen 3 -->
+          <div class="carousel-item">
+              <!-- <img src="https://via.placeholder.com/1920x900/7f7fff" class="d-block w-100" alt="Slide 3"> -->
+              <img src="images/landing/producto-textil.jpg" class="d-block w-100" alt="Slide 1">
+              <div class="overlay bg-dark bg-opacity-25 position-absolute top-0 start-0 w-100 h-100"></div>
+              <div class="carousel-caption d-flex flex-column justify-content-end h-100">
+                  <h1 class="display-4 fw-bold">¿Quieres transofrmar tu negocio?</h1>
+                  <div>
+                      <a href="#" class="btn btn-success btn-lg mx-2">Solicita Asesoría</a>
+                      <a href="#" class="btn btn-outline-light btn-lg mx-2" data-bs-toggle="modal" data-bs-target="#videoModal">Más Información</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- Controles de navegación del Slider -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Siguiente</span>
+      </button>
+  </div>
+
+  <!-- Modal para el Video -->
+  <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl modal-dialog-centered">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title text-center" id="videoModalLabel">Más Información</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <div class="ratio ratio-16x9">
+                      <iframe id="videoFrame" src="" title="Serviser video" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Antigua seccion video servitizacion -->
+  <!-- <div class="container col-xl-12 px-4 py-5">
     <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
       <div class="col-lg-6">
         <video
@@ -43,11 +115,129 @@ $this->title = 'Serviser'; ?>
         </div>
       </div>
     </div>
+  </div> -->
+
+  <!-- Segunda sección diseño aprobado images al lado izq y texto explicativo del proceso de servitizacion -->
+  <div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <div class="col-lg-6">
+        <h1 class="display-6 fw-semibold text-body-emphasis lh-1 mb-3">Conoce la SERVITIZACIÓN: Una estrategia esencial para el crecimiento sostenible en el sector agrícola.</h1>
+        <p class="lead">Explora las múltiples oportunidades que el SENA tiene para ofrecerte y cómo pueden ser la clave para impulsar la innovación y el crecimiento de tu negocio.</p>
+        <p class="lead">A través de nuestros programas y servicios personalizados, te ayudamos a desarrollar nuevas habilidades, optimizar procesos y acceder a tecnología avanzada.</p>
+        <p class="lead fw-semibold">Agenda una cita con nuestros expertos y descubre cómo podemos trabajar juntos para llevar tu empresa al siguiente nivel.</p>
+        <!-- <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Primary</button>
+          <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
+        </div> -->
+      </div>
+      <div class="col-lg-6">
+        <img src="images/landing/proceso-cafe.jpg" class="d-block img-fluid h-100" alt="Proceso cafe" loading="lazy">
+      </div>
+    </div>
   </div>
 
+
+  <!-- Tercera sección del diseño aprobado por el EP roadmap del proceso de servitizacion-->
+  <div id="proceso"></div>
+  <!-- Features section to show the servitization proccess -->
+  <section class="bg-light py-5 py-xl-8" style="width: 100vw; margin-left: calc(-50vw + 50%);">
+  <div class="py-5 py-8" id="proceso">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <h2 class="mb-3 display-4 fw-bold">
+            ¿Cómo Funciona Nuestro Proceso de Servitización?
+          </h2>
+          <p class="h2 text-muted">
+            Sigue estos pasos para transformar tu negocio con el apoyo experto del SENA.
+          </p>
+        </div>
+        <?php /*
+        <div class="col-lg-12 col-md-12 col-12">
+          <!-- row 1 -->
+          <div class="row mt-2" >
+            <!-- col 1 -->
+            <div class="col-md-6 col-12 pe-lg-6 mb-lg-6 mb-4">
+              <i class="bi bi-1-square" style="font-size: 3rem;"></i>
+              <h2 class="fw-bold">Solicita tu cita y conócenos</h2>
+              <p class="fs-5">
+                Después de ver el video, el cliente solicita una cita a través de un formulario en línea para obtener más detalles y comenzar el proceso.
+              </p>
+            </div>
+            <!-- col 2 -->
+            <div class="col-md-6 col-12 pe-lg-6 mb-lg-6 mb-4">
+              <i class="bi bi-2-square" style="font-size: 3rem;"></i>
+              <h2 class="fw-bold">Explicación del Proceso y Servicios</h2>
+              <p class="fs-5">
+                En la cita, un asesor del SENA explica el proceso completo y los servicios a los cuales el empresario o la mipyme tendrá acceso.
+              </p>
+            </div>
+            <!-- col 3 -->
+            <div class="col-md-6 col-12 pe-lg-6 mb-lg-6 mb-4">
+              <i class="bi bi-3-square" style="font-size: 3rem;"></i>
+              <h2 class="fw-bold">Realización de la Caracterización</h2>
+              <p class="fs-5">
+                Se solicita al usuario que complete una caracterización para entender mejor sus necesidades y definir la ruta de apoyo más adecuada.
+              </p>
+            </div>
+            <!-- col 4 -->
+            <div class="col-md-6 col-12 pe-lg-6 mb-lg-6 mb-4">
+              <i class="bi bi-4-square" style="font-size: 3rem;"></i>
+              <h2 class="fw-bold">Definición de la Ruta de Apoyo</h2>
+              <p class="fs-5">
+                Basado en la caracterización, se define una ruta de apoyo que incluye módulos de refuerzo en áreas como mercadeo, ventas, logística y comercio internacional.
+              </p>
+            </div>
+            <!-- col 5 -->
+            <div class="col-md-6 col-12 pe-lg-6 mb-lg-6 mb-4">
+              <i class="bi bi-5-square" style="font-size: 3rem;"></i>
+              <h2 class="fw-bold">Asignación de Tutor Líder y Aprendiz</h2>
+              <p class="fs-5">
+                Se asigna un tutor líder y un aprendiz al cliente para ayudarlo a implementar las actividades propuestas y fortalecer sus operaciones.
+              </p>
+            </div>
+            <!-- col 6 -->
+            <div class="col-md-6 col-12 pe-lg-6 mb-lg-6 mb-4">
+              <i class="bi bi-6-square" style="font-size: 3rem;"></i>
+              <h2 class="fw-bold">Ejecución de Actividades</h2>
+              <p class="fs-5">
+                Con la guía del tutor y el apoyo del aprendiz, el cliente realiza las actividades definidas en la ruta de apoyo para mejorar y crecer su negocio.
+              </p>
+            </div>
+            <!-- col 7 -->
+            <div class="col-md-6 col-12 pe-lg-6 mb-lg-6 mb-4">
+              <i class="bi bi-7-square" style="font-size: 3rem;"></i>
+              <h2 class="fw-bold">Seguimiento y Evaluación</h2>
+              <p class="fs-5">
+                Se lleva a cabo un seguimiento continuo y una evaluación del progreso para asegurar que se están cumpliendo los objetivos establecidos.
+              </p>
+            </div>
+            <!-- end of process list -->
+          </div>
+        </div>
+        */ ?>
+      </div>
+    </div>
+    <div class="container-fluid p-0">
+      <div class="row">
+        <!-- Imagen para pantallas grandes (PC) -->
+        <div class="col d-none d-md-block">
+          <img src="images/landing/roadmap-serviser-xl.png" class="w-100" alt="Roadmap proceso de servitización para PC" loading="lazy" />
+        </div>
+        <!-- Imagen para pantallas pequeñas (móvil) -->
+        <div class="col d-block d-md-none">
+          <img src="images/landing/roadmap-serviser-md.png" class="w-100" alt="Roadmap proceso de servitización para móvil" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+
+  
   <div id="testimonio"></div>
   <!-- Testimonial 3 - Bootstrap Brain Component -->
-  <section class="bg-light py-5 py-xl-8" style="width: 100vw; margin-left: calc(-50vw + 50%);">
+  <section class="py-5 py-xl-8">
     <div class="container">
       <div class="row justify-content-md-center">
         <div class="col-12 col-md-10 col-lg-9 col-xl-8 col-xxl-8">
@@ -285,85 +475,24 @@ $this->title = 'Serviser'; ?>
     </div>
   </section>
 
-  <!-- Features section to show the servitization proccess -->
-  <div class="py-5 py-xl-8" id="proceso">
-    <div class="container">
-      <div class="row">
-        <div class="offset-xl-2 col-xl-10 col-12">
-          <div class="row">
-            <div class="col-lg-9 col-md-12 col-12 mb-8">
-              <h2 class="mb-3 display-4 fw-bold">
-                ¿Cómo Funciona Nuestro Proceso de Servitización?
-              </h2>
-              <p class="h2 text-muted">
-                Sigue estos pasos para transformar tu negocio con el apoyo experto del SENA.
-              </p>
-            </div>
-            <div class="col-lg-12 col-md-12 col-12">
-              <!-- row 1 -->
-              <div class="row mt-2" >
-                <!-- col 1 -->
-                <div class="col-md-6 col-12 pe-lg-6 mb-lg-6 mb-4">
-                  <i class="bi bi-1-square" style="font-size: 3rem;"></i>
-                  <h2 class="fw-bold">Solicita tu cita y conócenos</h2>
-                  <p class="fs-5">
-                    Después de ver el video, el cliente solicita una cita a través de un formulario en línea para obtener más detalles y comenzar el proceso.
-                  </p>
-                </div>
-                <!-- col 2 -->
-                <div class="col-md-6 col-12 pe-lg-6 mb-lg-6 mb-4">
-                  <i class="bi bi-2-square" style="font-size: 3rem;"></i>
-                  <h2 class="fw-bold">Explicación del Proceso y Servicios</h2>
-                  <p class="fs-5">
-                    En la cita, un asesor del SENA explica el proceso completo y los servicios a los cuales el empresario o la mipyme tendrá acceso.
-                  </p>
-                </div>
-                <!-- col 3 -->
-                <div class="col-md-6 col-12 pe-lg-6 mb-lg-6 mb-4">
-                  <i class="bi bi-3-square" style="font-size: 3rem;"></i>
-                  <h2 class="fw-bold">Realización de la Caracterización</h2>
-                  <p class="fs-5">
-                    Se solicita al usuario que complete una caracterización para entender mejor sus necesidades y definir la ruta de apoyo más adecuada.
-                  </p>
-                </div>
-                <!-- col 4 -->
-                <div class="col-md-6 col-12 pe-lg-6 mb-lg-6 mb-4">
-                  <i class="bi bi-4-square" style="font-size: 3rem;"></i>
-                  <h2 class="fw-bold">Definición de la Ruta de Apoyo</h2>
-                  <p class="fs-5">
-                    Basado en la caracterización, se define una ruta de apoyo que incluye módulos de refuerzo en áreas como mercadeo, ventas, logística y comercio internacional.
-                  </p>
-                </div>
-                <!-- col 5 -->
-                <div class="col-md-6 col-12 pe-lg-6 mb-lg-6 mb-4">
-                  <i class="bi bi-5-square" style="font-size: 3rem;"></i>
-                  <h2 class="fw-bold">Asignación de Tutor Líder y Aprendiz</h2>
-                  <p class="fs-5">
-                    Se asigna un tutor líder y un aprendiz al cliente para ayudarlo a implementar las actividades propuestas y fortalecer sus operaciones.
-                  </p>
-                </div>
-                <!-- col 6 -->
-                <div class="col-md-6 col-12 pe-lg-6 mb-lg-6 mb-4">
-                  <i class="bi bi-6-square" style="font-size: 3rem;"></i>
-                  <h2 class="fw-bold">Ejecución de Actividades</h2>
-                  <p class="fs-5">
-                    Con la guía del tutor y el apoyo del aprendiz, el cliente realiza las actividades definidas en la ruta de apoyo para mejorar y crecer su negocio.
-                  </p>
-                </div>
-                <!-- col 7 -->
-                <div class="col-md-6 col-12 pe-lg-6 mb-lg-6 mb-4">
-                  <i class="bi bi-7-square" style="font-size: 3rem;"></i>
-                  <h2 class="fw-bold">Seguimiento y Evaluación</h2>
-                  <p class="fs-5">
-                    Se lleva a cabo un seguimiento continuo y una evaluación del progreso para asegurar que se están cumpliendo los objetivos establecidos.
-                  </p>
-                </div>
-                <!-- end of process list -->
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  
 </main>
+
+<script>
+    // Captura el modal y el iframe del video
+    const videoModal = document.getElementById('videoModal');
+    const videoFrame = document.getElementById('videoFrame');
+    const videoSrc = "https://firebasestorage.googleapis.com/v0/b/labserviser.appspot.com/o/serviser-onboarding.mp4?alt=media&token=25c87181-88ba-4d38-8250-b71d8f79b9bd";
+
+    // Escucha el evento de cerrar el modal
+    videoModal.addEventListener('hidden.bs.modal', function () {
+        // Elimina el src para detener el video
+        videoFrame.src = '';
+    });
+
+    // Escucha el evento de abrir el modal
+    videoModal.addEventListener('shown.bs.modal', function () {
+        // Restaura el src del video solo cuando se abre el modal
+        videoFrame.src = videoSrc;
+    });
+</script>

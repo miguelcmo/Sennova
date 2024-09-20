@@ -10,6 +10,7 @@ return [
     'id' => 'app-serviserBackend',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'serviserBackend\controllers',
+    'timeZone' => 'America/Bogota',
     'bootstrap' => ['log'],
     'modules' => [
         'calendar' => [

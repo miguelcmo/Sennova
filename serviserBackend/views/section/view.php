@@ -74,35 +74,51 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a(Yii::t('app', 'Create Question'), ['question/create'], ['class' => 'btn btn-success', 'data-bs-toggle' => 'modal', 'data-bs-target' => '#questionCreate']) ?>
     </p>
 
-    <!-- Modal -->
-    <div class="modal fade" id="questionCreate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="questionCreateLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
+    <!-- Double Modal -->
+    <div class="modal fade" id="questionCreate" data-bs-backdrop="static" aria-hidden="true" aria-labelledby="questionCreateLabel" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="questionCreateLabel"><?= Yii::t('app', 'Create Question') ?></h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="questionCreateLabel"><?= Yii::t('app', 'Create Question'); ?></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            
+                <?php $form = ActiveForm::begin(); ?>
+                <div class="modal-body">
+                    <?= $form->field($questionModel, 'question_text')->textarea(['rows' => 6]) ?>
+                    <?= $form->field($questionModel, 'question_type')->dropDownList([ 'text' => 'Text', 'multiple_choice' => 'Multiple choice', 'checkbox' => 'Checkbox', 'true_false' => 'True false', 'open' => 'Open', ], ['prompt' => '']) ?>
+                    <?= $form->field($questionModel, 'points')->textInput() ?>
+                    <?= $form->field($questionModel, 'hint')->textarea(['rows' => 6]) ?>
+                    <?= $form->field($questionModel, 'explanation')->textarea(['rows' => 6]) ?>
                 </div>
-                <div class="question-form">
-                    <?php $form = ActiveForm::begin(); ?>  
-                    <div class="modal-body">
-                        <?= $form->field($questionModel, 'section_id')->textInput() ?>
-                        <?= $form->field($questionModel, 'question_text')->textarea(['rows' => 6]) ?>
-                        <?= $form->field($questionModel, 'question_type')->dropDownList([ 'text' => 'Text', 'multiple_choice' => 'Multiple choice', 'checkbox' => 'Checkbox', 'true_false' => 'True false', 'open' => 'Open', ], ['prompt' => '']) ?>
-                        <?= $form->field($questionModel, 'points')->textInput() ?>
-                        <?= $form->field($questionModel, 'hint')->textarea(['rows' => 6]) ?>
-                        <?= $form->field($questionModel, 'explanation')->textarea(['rows' => 6]) ?>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-target="#questionCreate2" data-bs-toggle="modal">Open second modal</button>
+                    <div class="form-group">
+                        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <div class="form-group">
-                            <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
-                        </div>
-                    </div>
-                    <?php ActiveForm::end(); ?>
                 </div>
+                <?php $form = ActiveForm::end(); ?>
+            
             </div>
         </div>
     </div>
+    <div class="modal fade" id="questionCreate2" data-bs-backdrop="static" aria-hidden="true" aria-labelledby="questionCreateLabel2" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="questionCreateLabel2">Modal 2</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Hide this modal and show the first with the button below.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-bs-target="#questionCreate" data-bs-toggle="modal">Back to first</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    
 
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

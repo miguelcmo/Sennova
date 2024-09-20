@@ -4,6 +4,8 @@ namespace serviserBackend\controllers;
 
 use common\models\Course;
 use common\models\CourseSearch;
+use common\models\CourseModule;
+use common\models\CourseModuleSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -41,9 +43,24 @@ class CourseController extends Controller
         $searchModel = new CourseSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
+        $courseModel = new Course();
+
+        if ($this->request->isPost) {
+            if ($courseModel->load($this->request->post()) && $courseModel->save()) {
+                return $this->render('index', [
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+                    'courseModel' => $courseModel,
+                ]);
+            }
+        } else {
+            $courseModel->loadDefaultValues();
+        }
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'courseModel' => $courseModel,
         ]);
     }
 
@@ -55,8 +72,46 @@ class CourseController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $courseModuleModel = new CourseModule();
+        $searchModel = new CourseModuleSearch(['course_id' => $id]);
+        $dataProvider = $searchModel->search($this->request->queryParams);
+
+        if ($this->request->isPost) {
+            $formName = $this->request->post('form-name');
+
+            if ($formName === 'courseUpdate') {
+                if ($model->load($this->request->post()) && $model->save()) {
+                    return $this->render('view', [
+                        'model' => $model,
+                        'courseModuleModel' => $courseModuleModel,
+                        'searchModel' => $searchModel,
+                        'dataProvider' => $dataProvider,
+                    ]);
+                }
+            } elseif ($formName === 'courseModuleCreate') {
+                if ($courseModuleModel->load($this->request->post())) {
+                    $courseModuleModel->course_id = $id;
+                    if ($courseModuleModel->save()) {
+                        return $this->render('view', [
+                            'model' => $model,
+                            'courseModuleModel' => $courseModuleModel,
+                            'searchModel' => $searchModel,
+                            'dataProvider' => $dataProvider,
+                        ]);
+                    }
+                }
+            }
+
+        } else {
+            $courseModuleModel->loadDefaultValues();
+        }
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'courseModuleModel' => $courseModuleModel,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 

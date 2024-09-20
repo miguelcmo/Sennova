@@ -17,8 +17,8 @@ class CourseSearch extends Course
     public function rules()
     {
         return [
-            [['id', 'category_id', 'instructor_id', 'created_at', 'updated_at'], 'integer'],
-            [['title', 'description'], 'safe'],
+            [['id', 'created_by', 'updated_by'], 'integer'],
+            [['title', 'description', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -59,8 +59,8 @@ class CourseSearch extends Course
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'category_id' => $this->category_id,
-            'instructor_id' => $this->instructor_id,
+            'created_by' => $this->created_by,
+            'updated_by' => $this->updated_by,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
