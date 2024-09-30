@@ -4,6 +4,8 @@ namespace serviserBackend\controllers;
 
 use common\models\CourseModule;
 use common\models\CourseModuleSearch;
+use common\models\Lesson;
+use common\models\LessonSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -55,8 +57,13 @@ class CourseModuleController extends Controller
      */
     public function actionView($id)
     {
+        $searchModel = new LessonSearch(['course_module_id' => $id]);
+        $dataProvider = $searchModel->search($this->request->queryParams);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 

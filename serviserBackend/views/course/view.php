@@ -87,7 +87,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="course-module-index">
 
     <!-- <h1><?= Html::encode($this->title) ?></h1> -->
-     <h4><?= Yii::t('app', 'Course Modules') ?></h4>
+    <h4><?= Yii::t('app', 'Course Modules') ?></h4>
 
     <p>
         <?= Html::a(Yii::t('app', 'Create Course Module'), ['#'], ['class' => 'btn btn-success', 'data-bs-toggle' => 'modal', 'data-bs-target' => '#courseModuleCreate']) ?>

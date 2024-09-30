@@ -16,7 +16,7 @@ $this->title = 'Restablecer contraseña';
     <p>Por favor, elige tu nueva contraseña:</p>
 
     <div class="row">
-        <div class="col-lg-5">
+        <div class="col-lg-6">
             <?php $form = ActiveForm::begin(['id' => 'reset-password-form']); ?>
 
                 <?= $form->field($model, 'password')->passwordInput(['autofocus' => true]) ?>

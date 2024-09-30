@@ -17,8 +17,8 @@ use yii\helpers\Html;
                 <h5><b>Sobre Nosotros</b></h5>
                 <ul class="nav flex-column">
                     <li class="nav-item mb-2"><?= Html::a('Inicio', ['site/index'], ['class' => 'nav-link p-0 text-body-secondary']); ?></li>
-                    <li class="nav-item mb-2"><?= Html::a('Más proyectos', ['site/about'], ['class' => 'nav-link p-0 text-body-secondary']); ?></li>
-                    <li class="nav-item mb-2"><?= Html::a('Nuestro Equipo', ['site/ourteam'], ['class' => 'nav-link p-0 text-body-secondary']); ?></li>
+                    <li class="nav-item mb-2"><?= Html::a('Más proyectos', ['site/project'], ['class' => 'nav-link p-0 text-body-secondary']); ?></li>
+                    <li class="nav-item mb-2"><?= Html::a('Nuestro Equipo', ['site/about'], ['class' => 'nav-link p-0 text-body-secondary']); ?></li>
                     <li class="nav-item mb-2"><?= Html::a('Contacto', ['site/contact'], ['class' => 'nav-link p-0 text-body-secondary']); ?></li>
                     <li class="nav-item mb-2"><?= Html::a('Producción científica', ['site/scientific'], ['class' => 'nav-link p-0 text-body-secondary']); ?></li>
                 </ul>
@@ -36,18 +36,26 @@ use yii\helpers\Html;
             <div class="col-12 col-md-2 mb-3">
                 <h5><b>Recursos</b></h5>
                 <ul class="nav flex-column">
-                    <li class="nav-item mb-2"><?= Html::a('Blog', ['site/blog'], ['class' => 'nav-link p-0 text-body-secondary']); ?></li>
+                    <li class="nav-item mb-2"><?= Html::a('Blog', ['#'], ['class' => 'nav-link p-0 text-body-secondary']); ?></li>
                     <li class="nav-item mb-2"><?= Html::a('Casos de éxito', ['#'], ['class' => 'nav-link p-0 text-body-secondary']); ?></li>
                     <li class="nav-item mb-2"><?= Html::a('Webinars', ['#'], ['class' => 'nav-link p-0 text-body-secondary']); ?></li>
                 </ul>
             </div>
             <div class="col-12 col-md-2 mb-3 navbar-light d-flex felx-column justify-content-center">
                 <ul class="list-unstyled">
+                    <!-- Boton para registro solo se muestra si el usuario es guest -->
                     <li class="nav-item">
                         <?php if (Yii::$app->user->isGuest) {
                             echo Html::a('Registrarse', ['site/signup'], ['class' => 'btn btn-dark my-2 w-100']);
                         } ?>   
+                    </li>
+                    <!-- Boton Menu de usuario solo se muestra si el usuario esta logueado -->
+                    <li class="nav-item">
+                        <?php if (!Yii::$app->user->isGuest) {
+                            echo Html::a('Menu usuario', ['#'], ['class' => 'btn btn-secondary my-2 w-100']);
+                        } ?>
                     </li>    
+                    <!-- Boton Iniciar sesion / Cerrar sesion cambia de acuerdo al si el usuario esta logueado o no -->
                     <li class="nav-item">
                         <?php 
                             if (Yii::$app->user->isGuest) {
@@ -56,7 +64,7 @@ use yii\helpers\Html;
                                 echo Html::beginForm(['/site/logout'], 'post', ['class' => 'd-flex'])
                                     . Html::submitButton(
                                         'Cerrar sesión (' . Yii::$app->user->identity->username . ')',
-                                        ['class' => 'nav-link']
+                                        ['class' => 'btn btn-warning w-100']
                                     )
                                     . Html::endForm();
                             }

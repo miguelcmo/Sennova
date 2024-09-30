@@ -8,18 +8,16 @@ use yii\bootstrap5\Html;
 use yii\bootstrap5\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Contacto';
+$this->title = 'Solicita tu asesoría aquí';
 // $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-contact py-5">
+<div class="site-contact container py-5">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-    Si tienes consultas comerciales u otras preguntas, por favor completa el siguiente formulario para contactarnos. Gracias.
-    </p>
+    <p>Solicita una asesoría personalizada y recibe una atención personalizada en poco tiempo.</p>
 
     <div class="row">
-        <div class="col-lg-5">
+        <div class="col-lg-6">
             <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
 
                 <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>

@@ -9,7 +9,7 @@ use yii\helpers\Html;
 
 $this->title = $name;
 ?>
-<div class="site-error py-5" style="min-height: 700px;">
+<div class="site-error container py-5" style="min-height: 550px;">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

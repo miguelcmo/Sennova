@@ -17,8 +17,8 @@ class LessonSearch extends Lesson
     public function rules()
     {
         return [
-            [['id', 'course_module_id', 'sort_order', 'created_at', 'updated_at'], 'integer'],
-            [['title', 'content', 'video_url', 'attachment'], 'safe'],
+            [['id', 'course_id', 'course_module_id', 'order', 'created_by', 'updated_by'], 'integer'],
+            [['title', 'content', 'video_url', 'attachment', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -59,8 +59,11 @@ class LessonSearch extends Lesson
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'course_id' => $this->course_id,
             'course_module_id' => $this->course_module_id,
-            'sort_order' => $this->sort_order,
+            'order' => $this->order,
+            'created_by' => $this->created_by,
+            'updated_by' => $this->updated_by,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);

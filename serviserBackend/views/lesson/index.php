@@ -30,13 +30,16 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
+            'course_id',
             'course_module_id',
             'title',
-            'content:ntext',
-            'video_url:url',
+            'content:html',
+            //'video_url:url',
             //'attachment',
-            //'sort_order',
+            //'order',
+            //'created_by',
+            //'updated_by',
             //'created_at',
             //'updated_at',
             [

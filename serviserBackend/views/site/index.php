@@ -6,25 +6,25 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
     <div class="row">
         <div class="col-md-4 col-sm-6 col-12">
             <?= \hail812\adminlte\widgets\InfoBox::widget([
-                'text' => 'Cursos',
-                'number' => '14',
+                'text' => 'Módulos',
+                'number' => $courses,
                 'icon' => 'fas fa-book',
             ]) ?>
         </div>
         <div class="col-md-4 col-sm-6 col-12">
             <?= \hail812\adminlte\widgets\InfoBox::widget([
-                'text' => 'Participantes',
-                'number' => '410',
-                 'theme' => 'success',
-                'icon' => 'fas fa-users',
+                'text' => 'Temas',
+                'number' => $lessons,
+                'theme' => 'success',
+                'icon' => 'fas fa-comments',
             ]) ?>
         </div>
         <div class="col-md-4 col-sm-6 col-12">
             <?= \hail812\adminlte\widgets\InfoBox::widget([
-                'text' => 'Foros',
+                'text' => 'Participantes',
                 'number' => '136',
                 'theme' => 'gradient-warning',
-                'icon' => 'fas fa-comments',
+                'icon' => 'fas fa-users',
             ]) ?>
         </div>
     </div>

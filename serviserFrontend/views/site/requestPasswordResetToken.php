@@ -10,13 +10,13 @@ use yii\bootstrap5\ActiveForm;
 $this->title = 'Solicitar restablecimiento de contraseña';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-request-password-reset py-5" style="min-height: 700px;">
+<div class="site-request-password-reset container py-5" style="min-height: 550px;">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>Por favor, ingrese su correo electrónico. Se enviará un enlace para restablecer la contraseña a esa dirección.</p>
 
     <div class="row">
-        <div class="col-lg-5">
+        <div class="col-lg-6">
             <?php $form = ActiveForm::begin(['id' => 'request-password-reset-form']); ?>
 
                 <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>

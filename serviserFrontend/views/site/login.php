@@ -10,13 +10,13 @@ use yii\bootstrap5\ActiveForm;
 $this->title = 'Iniciar Sesión';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-login py-5" style="min-height: 700px;">
+<div class="site-login container py-5" style="min-height: 550px;">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>Por favor, complete los siguientes campos para iniciar sesión:</p>
 
     <div class="row">
-        <div class="col-lg-5">
+        <div class="col-lg-6">
             <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
                 <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>

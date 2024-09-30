@@ -3,6 +3,8 @@
 namespace serviserBackend\controllers;
 
 use common\models\LoginForm;
+use common\models\Course;
+use common\models\Lesson;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -61,8 +63,14 @@ class SiteController extends Controller
      * @return string
      */
     public function actionIndex()
-    {
-        return $this->render('index');
+    {   
+        $courses = Course::find()->count();
+        $lessons = Lesson::find()->count();
+
+        return $this->render('index', [
+            'courses' => $courses,
+            'lessons' => $lessons,
+        ]);
     }
 
     /**

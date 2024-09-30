@@ -9,12 +9,14 @@ use Yii;
  *
  * @property int $id
  * @property int $lesson_id
- * @property string $title
+ * @property string|null $title
  * @property string|null $description
  * @property string $file_path
- * @property string $type
- * @property int $created_at
- * @property int $updated_at
+ * @property int|null $type
+ * @property string|null $created_at
+ * @property string|null $updated_at
+ * @property int|null $created_by
+ * @property int|null $updated_by
  *
  * @property Lesson $lesson
  */
@@ -34,11 +36,10 @@ class LessonResource extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['lesson_id', 'title', 'file_path', 'type', 'created_at', 'updated_at'], 'required'],
-            [['lesson_id', 'created_at', 'updated_at'], 'integer'],
-            [['description'], 'string'],
-            [['title', 'file_path'], 'string', 'max' => 255],
-            [['type'], 'string', 'max' => 50],
+            [['lesson_id', 'file_path'], 'required'],
+            [['lesson_id', 'type', 'created_by', 'updated_by'], 'integer'],
+            [['created_at', 'updated_at'], 'safe'],
+            [['title', 'description', 'file_path'], 'string', 'max' => 255],
             [['lesson_id'], 'exist', 'skipOnError' => true, 'targetClass' => Lesson::class, 'targetAttribute' => ['lesson_id' => 'id']],
         ];
     }
@@ -57,6 +58,8 @@ class LessonResource extends \yii\db\ActiveRecord
             'type' => Yii::t('app', 'Type'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
+            'created_by' => Yii::t('app', 'Created By'),
+            'updated_by' => Yii::t('app', 'Updated By'),
         ];
     }
 

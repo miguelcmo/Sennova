@@ -147,6 +147,36 @@ class SiteController extends Controller
     }
 
     /**
+     * Displays KPI page.
+     *
+     * @return mixed
+     */
+    public function actionKpi()
+    {
+        return $this->render('kpi');
+    }
+
+    /**
+     * Displays Scientific page.
+     *
+     * @return mixed
+     */
+    public function actionScientific()
+    {
+        return $this->render('scientific');
+    }
+
+    /**
+     * Displays Project page.
+     *
+     * @return mixed
+     */
+    public function actionProject()
+    {
+        return $this->render('project');
+    }
+
+    /**
      * Signs user up.
      *
      * @return mixed

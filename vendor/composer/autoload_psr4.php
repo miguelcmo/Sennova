@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'yii\\symfonymailer\\' => array($vendorDir . '/yiisoft/yii2-symfonymailer/src'),
+    'yii\\swiftmailer\\' => array($vendorDir . '/yiisoft/yii2-swiftmailer'),
     'yii\\gii\\' => array($vendorDir . '/yiisoft/yii2-gii/src'),
     'yii\\faker\\' => array($vendorDir . '/yiisoft/yii2-faker/src'),
     'yii\\debug\\' => array($vendorDir . '/yiisoft/yii2-debug/src'),
@@ -15,9 +16,13 @@ return array(
     'yii\\bootstrap4\\' => array($vendorDir . '/yiisoft/yii2-bootstrap4/src'),
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
     'servisena\\tests\\' => array($baseDir . '/servisena/tests', $baseDir . '/servisena/tests/_support'),
+    'kartik\\form\\' => array($vendorDir . '/kartik-v/yii2-widget-activeform/src'),
+    'kartik\\editors\\' => array($vendorDir . '/kartik-v/yii2-editors/src'),
+    'kartik\\base\\' => array($vendorDir . '/kartik-v/yii2-krajee-base/src'),
     'hail812\\adminlte\\widgets\\' => array($vendorDir . '/hail812/yii2-adminlte-widgets/src'),
     'hail812\\adminlte3\\' => array($vendorDir . '/hail812/yii2-adminlte3/src'),
     'frontend\\tests\\' => array($baseDir . '/serviserFrontend/tests', $baseDir . '/serviserFrontend/tests/_support'),
+    'dosamigos\\ckeditor\\' => array($vendorDir . '/2amigos/yii2-ckeditor-widget/src'),
     'common\\tests\\' => array($baseDir . '/common/tests', $baseDir . '/common/tests/_support'),
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
     'backend\\tests\\' => array($baseDir . '/serviserBackend/tests', $baseDir . '/serviserBackend/tests/_support'),

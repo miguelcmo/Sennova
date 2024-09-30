@@ -20,17 +20,23 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
+    <?= $form->field($model, 'course_id') ?>
+
     <?= $form->field($model, 'course_module_id') ?>
 
     <?= $form->field($model, 'title') ?>
 
     <?= $form->field($model, 'content') ?>
 
-    <?= $form->field($model, 'video_url') ?>
+    <?php // echo $form->field($model, 'video_url') ?>
 
     <?php // echo $form->field($model, 'attachment') ?>
 
-    <?php // echo $form->field($model, 'sort_order') ?>
+    <?php // echo $form->field($model, 'order') ?>
+
+    <?php // echo $form->field($model, 'created_by') ?>
+
+    <?php // echo $form->field($model, 'updated_by') ?>
 
     <?php // echo $form->field($model, 'created_at') ?>
 

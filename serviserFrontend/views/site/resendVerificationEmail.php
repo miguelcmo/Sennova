@@ -10,13 +10,13 @@ use yii\bootstrap5\ActiveForm;
 $this->title = 'Reenviar correo de verificación';
 // $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-resend-verification-email py-5" style="min-height: 700px;">
+<div class="site-resend-verification-email container py-5" style="min-height: 550px;">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>Por favor, ingrese su correo electrónico. Se enviará un correo de verificación a esa dirección.</p>
 
     <div class="row">
-        <div class="col-lg-5">
+        <div class="col-lg-6">
             <?php $form = ActiveForm::begin(['id' => 'resend-verification-email-form']); ?>
 
             <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>

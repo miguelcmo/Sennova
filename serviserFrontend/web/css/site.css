@@ -104,10 +104,17 @@ a.desc:after {
 
 /* MAC custom CSS */
 
-
+* {
+    /*
+    outline: 1px solid red;
+    margin: 0 !important;
+    padding: 0 !important
+    */
+}
 
 body {
     font-family: 'Work Sans', sans-serif;
+    overflow-x: hidden; /* to avoid the horizontal overflowing */
 }
 
 h1, h2, h3 {
@@ -124,7 +131,7 @@ h1, h2, h3 {
     opacity: 1;
 }
 .main-footer {
-    background-image: url("../images/backgrounds/footer-bg.svg");
+    background-image: url("../images/backgrounds/footer-bg.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
