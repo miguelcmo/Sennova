@@ -4,7 +4,7 @@ protected/runtime/*
 !protected/runtime/.gitignore
 protected/data/*.db
 themes/classic/views/
-00-upload
-01-app-frontend_base-template
-02-app-backend_base_template
-03-common_original-backup
+/00-dist-folder_file-for-upload/
+/01-app-frontend_base-template/
+/02-app-backend_base_template/
+/03-common_original-backup/
