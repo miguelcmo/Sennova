@@ -5,6 +5,6 @@ protected/runtime/*
 protected/data/*.db
 themes/classic/views/
 00-upload
-01-frontend_original
-02-backend_original
-03-common_original
+01-app-frontend_base-template
+02-app-backend_base_template
+03-common_original-backup
