@@ -41,7 +41,7 @@
             "common\\tests\\": ["common/tests/", "common/tests/_support"],
             "backend\\tests\\": ["serviserBackend/tests/", "serviserBackend/tests/_support"],
             "frontend\\tests\\": ["serviserFrontend/tests/", "serviserFrontend/tests/_support"],
-            "servisena\\tests\\": ["servisena/tests/", "servisena/tests/_support"]
+            "appSennovalab\\tests\\": ["appSennovalab/tests/", "appSennovalab/tests/_support"]
         }
     },
     "config": {

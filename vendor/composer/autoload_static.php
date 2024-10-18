@@ -13,8 +13,8 @@ class ComposerStaticInit32159bc7e23632a1a56c047b003240c2
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
-        '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
         '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
+        '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
@@ -39,10 +39,6 @@ class ComposerStaticInit32159bc7e23632a1a56c047b003240c2
             'yii\\bootstrap4\\' => 15,
             'yii\\' => 4,
         ),
-        's' => 
-        array (
-            'servisena\\tests\\' => 16,
-        ),
         'k' => 
         array (
             'kartik\\form\\' => 12,
@@ -58,10 +54,6 @@ class ComposerStaticInit32159bc7e23632a1a56c047b003240c2
         array (
             'frontend\\tests\\' => 15,
         ),
-        'd' => 
-        array (
-            'dosamigos\\ckeditor\\' => 19,
-        ),
         'c' => 
         array (
             'common\\tests\\' => 13,
@@ -70,6 +62,10 @@ class ComposerStaticInit32159bc7e23632a1a56c047b003240c2
         'b' => 
         array (
             'backend\\tests\\' => 14,
+        ),
+        'a' => 
+        array (
+            'appSennovalab\\tests\\' => 20,
         ),
         'S' => 
         array (
@@ -168,11 +164,6 @@ class ComposerStaticInit32159bc7e23632a1a56c047b003240c2
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
         ),
-        'servisena\\tests\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/servisena/tests',
-            1 => __DIR__ . '/../..' . '/servisena/tests/_support',
-        ),
         'kartik\\form\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-activeform/src',
@@ -198,10 +189,6 @@ class ComposerStaticInit32159bc7e23632a1a56c047b003240c2
             0 => __DIR__ . '/../..' . '/serviserFrontend/tests',
             1 => __DIR__ . '/../..' . '/serviserFrontend/tests/_support',
         ),
-        'dosamigos\\ckeditor\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/2amigos/yii2-ckeditor-widget/src',
-        ),
         'common\\tests\\' => 
         array (
             0 => __DIR__ . '/../..' . '/common/tests',
@@ -215,6 +202,11 @@ class ComposerStaticInit32159bc7e23632a1a56c047b003240c2
         array (
             0 => __DIR__ . '/../..' . '/serviserBackend/tests',
             1 => __DIR__ . '/../..' . '/serviserBackend/tests/_support',
+        ),
+        'appSennovalab\\tests\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/appSennovalab/tests',
+            1 => __DIR__ . '/../..' . '/appSennovalab/tests/_support',
         ),
         'Symfony\\Polyfill\\Php72\\' => 
         array (
