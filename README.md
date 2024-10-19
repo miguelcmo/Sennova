@@ -10,45 +10,57 @@
 
 ## Descripción
 
-El proyecto **Servisena** es una plataforma de aplicaciones desarrollada utilizando el Yii Framework Advanced Template. El objetivo de esta plataforma es ofrecer módulos de formación para empresas en el área de servitización, permitiendo una gestión completa de los cursos y el acceso a los mismos por parte de los participantes.
+El proyecto **Sennovalab y LabServiser** es una plataforma de aplicaciones desarrollada utilizando el Yii Framework Advanced Template. El objetivo de esta plataforma es ofrecer módulos de información para empresas en el área de servitización, permitiendo una gestión completa de los modulos y el acceso a los mismos por parte de los participantes.
 
 ## Aplicaciones
 
-### 1. Servisena
+# Proyecto de Servitización - YII2 Advanced Template
 
-**Descripción**: Aplicación principal que funciona como una landing page, proporcionando visibilidad al proyecto y permitiendo el acceso a las demás aplicaciones de la plataforma.
+Este proyecto está desarrollado en Yii2 Advanced Template y consta de tres aplicaciones principales:
 
-**Características**:
-- Página de inicio atractiva y profesional.
-- Información general sobre el proyecto y sus beneficios.
-- Enlaces de acceso a `serviserFrontend` y `serviserBackend`.
+1. **appSennovalab**: Funciona como una landing page para enlazar diferentes proyectos.
+2. **appServiser**: Es la página del proyecto de Servitización que da cara al cliente/usuario final. Es un gestor de contenido para cargar módulos informativos acerca del proceso de servitización.
+3. **appServiserAdmin**: Es la interfaz de administración del proyecto de Servitización, donde se gestionan los contenidos de los módulos y se incluye una herramienta para la creación de diagnósticos a través de formularios.
 
-### 2. serviserFrontend
+## Estructura del Proyecto
 
-**Descripción**: Aplicación frontend que permite a los usuarios acceder y registrarse en los cursos, ver el contenido de los cursos y otros recursos.
-
-**Características**:
-- Registro y autenticación de usuarios.
-- Navegación y acceso a los cursos disponibles.
-- Visualización de lecciones, recursos y evaluaciones.
-- Participación en foros de discusión y actividades colaborativas.
-
-### 3. serviserBackend
-
-**Descripción**: Aplicación backend para la gestión del LMS, donde se administran los cursos, usuarios, evaluaciones y otros recursos.
-
-**Características**:
-- Gestión de usuarios y roles.
-- Creación y administración de cursos y módulos.
-- Gestión de lecciones y recursos de aprendizaje.
-- Evaluaciones y calificaciones.
-- Monitoreo de la actividad y generación de reportes.
-- Gestión de notificaciones y mensajes.
+- **appSennovalab/**: Landing page para redirigir a otros proyectos.
+- **appServiser/**: Página del usuario final de la plataforma.
+- **appServiserAdmin/**: Panel de administración del proyecto de Servitización.
+- **common/**: Archivos compartidos entre las aplicaciones.
+- **console/**: Comandos de consola.
+- **db/**: Archivos relacionados con la base de datos.
+- **environments/**: Configuraciones de diferentes entornos (producción, desarrollo, etc.).
+- **vendor/**: Dependencias instaladas a través de Composer.
 
 ## Estructura del Proyecto
 
 ```plaintext
 project-root/
+│
+├── appSennovalab/
+│   ├── assets/
+│   ├── config/
+│   ├── controllers/
+│   ├── models/
+│   ├── views/
+│   └── ...
+│
+├── appServiser/
+│   ├── assets/
+│   ├── config/
+│   ├── controllers/
+│   ├── models/
+│   ├── views/
+│   └── ...
+│
+├── appServiserAdmin/
+│   ├── assets/
+│   ├── config/
+│   ├── controllers/
+│   ├── models/
+│   ├── views/
+│   └── ...
 │
 ├── common/
 │   ├── config/
@@ -63,28 +75,7 @@ project-root/
 ├── environments/
 │   └── ...
 │
-├── servisena/
-│   ├── assets/
-│   ├── config/
-│   ├── controllers/
-│   ├── models/
-│   ├── views/
-│   └── ...
-│
-├── serviserFrontend/
-│   ├── assets/
-│   ├── config/
-│   ├── controllers/
-│   ├── models/
-│   ├── views/
-│   └── ...
-│
-├── serviserBackend/
-│   ├── assets/
-│   ├── config/
-│   ├── controllers/
-│   ├── models/
-│   ├── views/
+├── vagrant/
 │   └── ...
 │
 ├── vendor/
@@ -99,7 +90,7 @@ project-root/
 - PHP 7.4 o superior.
 - Composer.
 - Servidor Web (Apache, Nginx).
-- Base de datos MySQL o PostgreSQL.
+- Base de datos MySQL, MariaDB o PostgreSQL.
 
 ## Instalación
 
@@ -144,6 +135,6 @@ Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo `LICENS
 
 ---
 
-**Autor:** Miguel Angel
+**Autor:** Miguel Angel Carrillo
 
-**Contacto:** mcbs@outlook.com
+**Contacto:** miguel.carrillo.m@hotmail.com, mcbs@outlook.com
