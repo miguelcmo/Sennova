@@ -17,10 +17,9 @@ use yii\helpers\Html;
                 <h5><b>Sobre Nosotros</b></h5>
                 <ul class="nav flex-column">
                     <li class="nav-item mb-2"><?= Html::a('Inicio', ['site/index'], ['class' => 'nav-link p-0 text-body-secondary']); ?></li>
-                    <li class="nav-item mb-2"><?= Html::a('Nuestra Historia', ['site/story'], ['class' => 'nav-link p-0 text-body-secondary']); ?></li>
-                    <li class="nav-item mb-2"><?= Html::a('Nuestro Equipo', ['site/team'], ['class' => 'nav-link p-0 text-body-secondary']); ?></li>
-                    <li class="nav-item mb-2"><?= Html::a('Valores', ['site/values'], ['class' => 'nav-link p-0 text-body-secondary']); ?></li>
+                    <li class="nav-item mb-2"><?= Html::a('Nosotros', ['site/about'], ['class' => 'nav-link p-0 text-body-secondary']); ?></li>
                     <li class="nav-item mb-2"><?= Html::a('Contacto', ['site/contact'], ['class' => 'nav-link p-0 text-body-secondary']); ?></li>
+                    <li class="nav-item mb-2"><?= Html::a('Proyectos', ['site/portfolio'], ['class' => 'nav-link p-0 text-body-secondary']); ?></li>
                 </ul>
             </div>
             <div class="col-12 col-md-2 mb-3">
@@ -28,7 +27,6 @@ use yii\helpers\Html;
                 <ul class="nav flex-column">
                     <li class="nav-item mb-2"><?= Html::a('Servitización', ['#'], ['class' => 'nav-link p-0 text-body-secondary']); ?></li>
                     <li class="nav-item mb-2"><?= Html::a('Consultoría', ['#'], ['class' => 'nav-link p-0 text-body-secondary']); ?></li>
-                    <li class="nav-item mb-2"><?= Html::a('Capacitación', ['#'], ['class' => 'nav-link p-0 text-body-secondary']); ?></li>
                     <li class="nav-item mb-2"><?= Html::a('Preguntas frecuentes', ['#'], ['class' => 'nav-link p-0 text-body-secondary']); ?></li>
                     <li class="nav-item mb-2"><?= Html::a('Soporte', ['#'], ['class' => 'nav-link p-0 text-body-secondary']); ?></li>
                 </ul>

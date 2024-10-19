@@ -90,12 +90,12 @@ $this->title = 'SennovaLab';
     -->
     <!-- Slider principal -->
     <section>
-        <div id="heroCarousel" class="carousel slide min-vh-md-100" data-bs-ride="carousel">
+        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <!-- Imagen 1 -->
-                <div class="carousel-item active">
+                <div class="carousel-item active" style="background-image: url('images/main-slider/sennovalab-01.jpg'); height: 890px;">
                     <!-- <img src="https://via.placeholder.com/1920x900" class="d-block w-100" alt="Slide 1"> -->
-                    <img src="images/main-slider/sennovalab-01.jpg" class="d-block w-100" alt="Slide 1">
+                    <!-- <img src="images/main-slider/sennovalab-01.jpg" class="img-fluid" alt="Slide 1"> -->
                     <div class="overlay bg-secondary bg-opacity-25 position-absolute top-0 start-0 w-100 h-100"></div>
                     <div class="carousel-caption d-flex flex-column justify-content-center h-100" style="padding-bottom: 70px;">
                         <div class="row justify-content-start">
@@ -105,16 +105,17 @@ $this->title = 'SennovaLab';
                                 <p class="fs-4 text-start">Este hace parte integral del <strong>Sistema de Investigación, Desarrollo Tecnológico e Innovación (SENNOVA)</strong>, el cual es un espacio dinámico para la promoción de la innovación y los procesos de investigación en nuestro centro formativo.</p>
                                 <div class="d-flex align-items-start">
                                     <?php // Html::a('Solicita Asesoría', ['site/contact'], ['class' => 'btn btn-success btn-lg text-white']); ?>
-                                    <a href="#" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#videoModal">Más Información</a>
+                                    <!-- <a href="#" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#videoModal">Más Información</a> -->
+                                    <?= Html::a('Más Información', ['site/contact'], ['class' => 'btn btn-dark btn-lg']) ?>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- Imagen 2 -->
-                <div class="carousel-item">
+                <div class="carousel-item" style="background-image: url('images/main-slider/sennovalab-02.jpg'); height: 890px;">
                     <!-- <img src="https://via.placeholder.com/1920x900/ff7f7f" class="d-block w-100" alt="Slide 2"> -->
-                    <img src="images/main-slider/sennovalab-02.jpg" class="d-block w-100" alt="Slide 1">
+                    <!-- <img src="images/main-slider/sennovalab-02.jpg" class="d-block w-100" alt="Slide 1"> -->
                     <div class="overlay bg-secondary bg-opacity-25 position-absolute top-0 start-0 w-100 h-100"></div>
                     <div class="carousel-caption d-flex flex-column justify-content-center h-100" style="padding-bottom: 70px;">
                         <div class="row justify-content-start">
@@ -124,16 +125,17 @@ $this->title = 'SennovaLab';
                                 <p class="fs-4 text-start">Este hace parte integral del <strong>Sistema de Investigación, Desarrollo Tecnológico e Innovación (SENNOVA)</strong>, el cual es un espacio dinámico para la promoción de la innovación y los procesos de investigación en nuestro centro formativo.</p>
                                 <div class="d-flex align-items-start">
                                     <?php // Html::a('Solicita Asesoría', ['site/contact'], ['class' => 'btn btn-success btn-lg text-white']); ?>
-                                    <a href="#" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#videoModal">Más Información</a>
+                                    <!-- <a href="#" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#videoModal">Más Información</a> -->
+                                    <?= Html::a('Más Información', ['site/contact'], ['class' => 'btn btn-dark btn-lg']) ?>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- Imagen 3 -->
-                <div class="carousel-item">
+                <div class="carousel-item" style="background-image: url('images/main-slider/sennovalab-03.jpg'); height: 890px;">
                     <!-- <img src="https://via.placeholder.com/1920x900/7f7fff" class="d-block w-100" alt="Slide 3"> -->
-                    <img src="images/main-slider/sennovalab-03.jpg" class="d-block w-100" alt="Slide 1">
+                    <!-- <img src="images/main-slider/sennovalab-03.jpg" class="d-block w-100" alt="Slide 1"> -->
                     <div class="overlay bg-dark bg-opacity-25 position-absolute top-0 start-0 w-100 h-100"></div>
                     <div class="carousel-caption d-flex flex-column justify-content-center h-100" style="padding-bottom: 70px;">
                         <div class="row justify-content-start">
@@ -143,7 +145,8 @@ $this->title = 'SennovaLab';
                                 <p class="fs-4 text-start">Este hace parte integral del <strong>Sistema de Investigación, Desarrollo Tecnológico e Innovación (SENNOVA)</strong>, el cual es un espacio dinámico para la promoción de la innovación y los procesos de investigación en nuestro centro formativo.</p>
                                 <div class="d-flex align-items-start">
                                     <?php // Html::a('Solicita Asesoría', ['site/contact'], ['class' => 'btn btn-success btn-lg text-white']); ?>
-                                    <a href="#" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#videoModal">Más Información</a>
+                                    <!-- <a href="#" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#videoModal">Más Información</a> -->
+                                    <?= Html::a('Más Información', ['site/contact'], ['class' => 'btn btn-dark btn-lg']) ?>
                                 </div>
                             </div>
                         </div>
@@ -328,7 +331,7 @@ $this->title = 'SennovaLab';
             <!-- CTA Button  -->
             <div class="row">
                 <div class="col d-flex justify-content-center">
-                    <?= Html::a('Ver todos nuestros proyectos', ['site/projects'], ['class' => 'btn btn-success btn-lg text-light']) ?>
+                    <?= Html::a('Ver todos nuestros proyectos', ['site/portfolio'], ['class' => 'btn btn-success btn-lg text-light']) ?>
                 </div>
             </div>
         </div>
@@ -354,13 +357,40 @@ $this->title = 'SennovaLab';
                         <div class="glide__track" data-glide-el="track">
                             <ul class="glide__slides" id="options-type-select">
                                 <li class="glide__slide">
-                                    <img src="images/project/project-01.jpg" class="img-fluid" alt="Imagen 1">
+                                    <img src="images/gallery/gallery-01.jpeg" class="w-100" alt="Imagen 1" loading="lazy">
                                 </li>
                                 <li class="glide__slide">
-                                    <img src="images/project/project-02.jpg" class="img-fluid" alt="Imagen 2">
+                                    <img src="images/gallery/gallery-02.jpeg" class="w-100" alt="Imagen 1" loading="lazy">
                                 </li>
                                 <li class="glide__slide">
-                                    <img src="images/project/project-03.jpg" class="img-fluid" alt="Imagen 3">
+                                    <img src="images/gallery/gallery-03.jpeg" class="w-100" alt="Imagen 1" loading="lazy">
+                                </li>
+                                <li class="glide__slide">
+                                    <img src="images/gallery/gallery-04.jpeg" class="w-100" alt="Imagen 1" loading="lazy">
+                                </li>
+                                <li class="glide__slide">
+                                    <img src="images/gallery/gallery-05.jpeg" class="w-100" alt="Imagen 1" loading="lazy">
+                                </li>
+                                <li class="glide__slide">
+                                    <img src="images/gallery/gallery-06.jpeg" class="w-100" alt="Imagen 1" loading="lazy">
+                                </li>
+                                <li class="glide__slide">
+                                    <img src="images/gallery/gallery-07.jpeg" class="w-100" alt="Imagen 1" loading="lazy">
+                                </li>
+                                <li class="glide__slide">
+                                    <img src="images/gallery/gallery-08.jpeg" class="w-100" alt="Imagen 1" loading="lazy">
+                                </li>
+                                <li class="glide__slide">
+                                    <img src="images/gallery/gallery-09.jpeg" class="w-100" alt="Imagen 1" loading="lazy">
+                                </li>
+                                <li class="glide__slide">
+                                    <img src="images/gallery/gallery-10.jpeg" class="w-100" alt="Imagen 1" loading="lazy">
+                                </li>
+                                <li class="glide__slide">
+                                    <img src="images/gallery/gallery-11.jpeg" class="w-100" alt="Imagen 1" loading="lazy">
+                                </li>
+                                <li class="glide__slide">
+                                    <img src="images/gallery/gallery-12.jpeg" class="w-100" alt="Imagen 1" loading="lazy">
                                 </li>
                             </ul>
                         </div>

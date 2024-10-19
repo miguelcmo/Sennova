@@ -39,7 +39,7 @@ AppAsset::register($this);
 
 <!-- Content Section -->
 <main role="main" class="flex-shrink-0">
-    <div class="container-fluid px-0" style="padding-bottom: 0px;">
+    <div class="container-fluid px-0" style="">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>

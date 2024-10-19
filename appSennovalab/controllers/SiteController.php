@@ -32,7 +32,7 @@ class SiteController extends Controller
                 'only' => ['logout', 'signup'],
                 'rules' => [
                     [
-                        'actions' => ['signup'],
+                        'actions' => ['signup, about'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
@@ -144,6 +144,16 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    /**
+     * Displays portfolio page.
+     *
+     * @return mixed
+     */
+    public function actionPortfolio()
+    {
+        return $this->render('portfolio');
     }
 
     /**
