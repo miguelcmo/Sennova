@@ -207,7 +207,7 @@ const editorConfig = {
 	},
     simpleUpload: {
         // The URL that the images are uploaded to.
-        uploadUrl: 'http://localhost/sennova/serviserBackend/web/ckeditor/upload.php',
+        uploadUrl: 'http://localhost/sennova/appServiserAdmin/web/ckeditor/upload.php',
 
         // Enable the XMLHttpRequest.withCredentials property.
         withCredentials: true,

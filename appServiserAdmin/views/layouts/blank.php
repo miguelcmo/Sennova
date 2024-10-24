@@ -31,7 +31,7 @@ $publishedRes = Yii::$app->assetManager->publish('@vendor/hail812/yii2-adminlte3
 <div class="login-box">
 
     <div class="login-logo">
-        <a href="../../index2.html"><b>Servi</b>SER</a>
+        <a href="../../index2.html">Admin <b>Servi</b>SER</a>
     </div>
     <!-- Main content -->
     <div class="content">

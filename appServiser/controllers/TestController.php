@@ -9,7 +9,7 @@ class TestController extends \yii\web\Controller
 {
     public function actionCourse($id = null)
     {
-        $model = $this->findModel(2);
+        $model = $this->findModel(15);
 
         return $this->render('course', [
             'model' => $model,

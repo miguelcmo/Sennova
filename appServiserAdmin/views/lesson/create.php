@@ -6,12 +6,13 @@ use yii\helpers\Html;
 /** @var common\models\Lesson $model */
 
 $this->title = Yii::t('app', 'Create Lesson');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Lessons'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Course'), 'url' => ['course/view', 'id' => $courseModule->course_id]];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Course Module'), 'url' => ['course-module/view', 'id' => $courseModule->id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="lesson-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h3><?= Html::encode($this->title) ?></h3>
 
     <?= $this->render('_form', [
         'model' => $model,

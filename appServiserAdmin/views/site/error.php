@@ -19,10 +19,10 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
         </p>
 
         <p>
-            The above error occurred while the Web server was processing your request.
-            Please contact us if you think this is a server error. Thank you.
-            Meanwhile, you may <?= Html::a('return to dashboard', Yii::$app->homeUrl); ?>
-            or try using the search form.
+            El error anterior ocurrió mientras el servidor web procesaba tu solicitud.
+            Por favor, contáctanos si crees que se trata de un error del servidor. Gracias.
+            Mientras tanto, puedes <?= Html::a('volver al panel de control', Yii::$app->homeUrl); ?>
+            o intentar usar el formulario de búsqueda.
         </p>
 
         <form class="search-form" style="margin-right: 190px;">

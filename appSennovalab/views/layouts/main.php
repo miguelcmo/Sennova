@@ -39,11 +39,11 @@ AppAsset::register($this);
 
 <!-- Content Section -->
 <main role="main" class="flex-shrink-0">
-    <div class="container-fluid px-0" style="">
+    <div class="container-fluid px-0">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
-        <?= Alert::widget() ?>
+        <div class="container flash-message"><?= Alert::widget(['options' => ['class' => 'alert m-0 my-2']]) ?></div>
         <?= $content ?>
     </div>
 </main>
@@ -77,6 +77,21 @@ AppAsset::register($this);
         });
     });
 </script> -->
+
+<!-- JavaScript puro para ocultar el mensaje después de 5 segundos -->
+<script>
+    setTimeout(function() {
+        var messages = document.querySelectorAll('.flash-message');
+        messages.forEach(function(message) {
+            message.style.transition = 'opacity 1s';
+            message.style.opacity = '0';
+            setTimeout(function() {
+                message.style.display = 'none';
+            }, 1000); // Espera 1 segundo adicional después de que la opacidad llegue a 0 para quitar el mensaje
+        });
+    }, 5000); // 5000 ms = 5 segundos
+</script>
+
 </body>
 </html>
 <?php $this->endPage();

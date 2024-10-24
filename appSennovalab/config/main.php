@@ -43,6 +43,20 @@ return [
             'rules' => [
             ],
         ],
+        // componente agregado para envio de emails
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'viewPath' => '@app/mail',
+            'useFileTransport' => false, // Establece esto en false para enviar correos de verdad
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp-relay.brevo.com',  // El host del servidor SMTP
+                'username' => '7c7fdb001@smtp-brevo.com',
+                'password' => '60wRxhH3kSPj8Dav',
+                'port' => '587', // El puerto del servidor SMTP
+                'encryption' => 'tls', // Utiliza 'tls' o 'ssl'
+            ],
+        ],
     ],
     'params' => $params,
 ];

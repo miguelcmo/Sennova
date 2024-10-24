@@ -9,6 +9,11 @@ $params = array_merge(
 return [
     'id' => 'app-serviser',
     'name' => 'Serviser',
+    'timeZone' => 'America/Bogota',
+    // set source language to be English
+    'sourceLanguage' => 'en-US',
+    // set target language to be Spanish Colombia
+    'language' => 'es-CO',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'appServiser\controllers',

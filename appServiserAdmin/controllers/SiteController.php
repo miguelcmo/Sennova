@@ -1,6 +1,6 @@
 <?php
 
-namespace serviserBackend\controllers;
+namespace appServiserAdmin\controllers;
 
 use common\models\LoginForm;
 use common\models\Course;

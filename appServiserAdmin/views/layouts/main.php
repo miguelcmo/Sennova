@@ -15,45 +15,49 @@ $assetDir = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/admi
 $publishedRes = Yii::$app->assetManager->publish('@vendor/hail812/yii2-adminlte3/src/web/js');
 $this->registerJsFile($publishedRes[1].'/control_sidebar.js', ['depends' => '\hail812\adminlte3\assets\AdminLteAsset']);
 ?>
+
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
-<head>
-    <meta charset="<?= Yii::$app->charset ?>">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php $this->registerCsrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
-    <?php $this->head() ?>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-</head>
-<body class="hold-transition sidebar-mini text-sm">
-<?php $this->beginBody() ?>
+    <!-- HTML Head  -->
+    <head>
+        <meta charset="<?= Yii::$app->charset ?>">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <?php $this->registerCsrfMetaTags() ?>
+        <title><?= Html::encode($this->title) ?></title>
+        <?php $this->head() ?>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    </head>
 
-<div class="wrapper">
-    <!-- Navbar -->
-    <?= $this->render('navbar', ['assetDir' => $assetDir]) ?>
-    <!-- /.navbar -->
+    <!-- HTML Body  -->
+    <body class="hold-transition sidebar-mini text-sm">
+    <?php $this->beginBody() ?>
 
-    <!-- Main Sidebar Container -->
-    <?= $this->render('sidebar', ['assetDir' => $assetDir]) ?>
+        <div class="wrapper">
+            <!-- Navbar -->
+            <?= $this->render('navbar', ['assetDir' => $assetDir]) ?>
+            <!-- /.navbar -->
 
-    <!-- Content Wrapper. Contains page content -->
-    <?= $this->render('content', ['content' => $content, 'assetDir' => $assetDir]) ?>
-    <!-- /.content-wrapper -->
+            <!-- Main Sidebar Container -->
+            <?= $this->render('sidebar', ['assetDir' => $assetDir]) ?>
 
-    <!-- Control Sidebar -->
-    <?= $this->render('control-sidebar') ?>
-    <!-- /.control-sidebar -->
+            <!-- Content Wrapper. Contains page content -->
+            <?= $this->render('content', ['content' => $content, 'assetDir' => $assetDir]) ?>
+            <!-- /.content-wrapper -->
 
-    <!-- Main Footer -->
-    <?= $this->render('footer') ?>
-</div>
+            <!-- Control Sidebar -->
+            <?= $this->render('control-sidebar') ?>
+            <!-- /.control-sidebar -->
 
-<?php $this->endBody() ?>
+            <!-- Main Footer -->
+            <?= $this->render('footer') ?>
+        </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <?php $this->endBody() ?>
 
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    </body>
 </html>
 <?php $this->endPage() ?>

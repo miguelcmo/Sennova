@@ -9,26 +9,30 @@ $params = array_merge(
 return [
     'id' => 'app-serviserBackend',
     'basePath' => dirname(__DIR__),
-    'controllerNamespace' => 'serviserBackend\controllers',
+    'controllerNamespace' => 'appServiserAdmin\controllers',
     'timeZone' => 'America/Bogota',
+    // set source language to be English
+    'sourceLanguage' => 'en-US',
+    // set target language to be Russian
+    'language' => 'es-CO',
     'bootstrap' => ['log'],
     'modules' => [
         'calendar' => [
-            'class' => 'serviserBackend\modules\calendar\Module',
+            'class' => 'appServiserAdmin\modules\calendar\Module',
         ],
     ],
     'components' => [
         'request' => [
-            'csrfParam' => '_csrf-serviserBackend',
+            'csrfParam' => '_csrf-appServiserAdmin',
         ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
-            'identityCookie' => ['name' => '_identity-serviserBackend', 'httpOnly' => true],
+            'identityCookie' => ['name' => '_identity-appServiserAdmin', 'httpOnly' => true],
         ],
         'session' => [
             // this is the name of the session cookie used for login on the backend
-            'name' => 'advanced-serviserBackend',
+            'name' => 'advanced-appServiserAdmin',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -57,6 +61,20 @@ return [
                 'pathMap' => [
                     '@app/views',
                     '@vendor/hail812/yii2-adminlte3/src/views'
+                ],
+            ],
+        ],
+        // Internationalization
+        'i18n' => [
+            'translations' => [
+                'app*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/messages',
+                    'sourceLanguage' => 'en-US',
+                    'fileMap' => [
+                        'app' => 'app.php',
+                        'app/error' => 'error.php',
+                    ],
                 ],
             ],
         ],

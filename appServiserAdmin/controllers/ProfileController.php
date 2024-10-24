@@ -1,6 +1,6 @@
 <?php
 
-namespace serviserBackend\controllers;
+namespace appServiserAdmin\controllers;
 
 use Yii;
 use common\models\User;

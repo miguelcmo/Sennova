@@ -1,9 +1,12 @@
 <?php
 
-namespace serviserBackend\controllers;
+namespace appServiserAdmin\controllers;
 
+use Yii;
 use common\models\Lesson;
 use common\models\LessonSearch;
+use common\models\CourseModule;
+use common\models\CourseModuleSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -61,17 +64,35 @@ class LessonController extends Controller
     }
 
     /**
+     * Displays a preview of a single Lesson model.
+     * @param int $id ID
+     * @return string
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionPreview($id)
+    {
+        return $this->renderPartial('preview', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
+    /**
      * Creates a new Lesson model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate()
+    public function actionCreate($courseModuleId = null)
     {
         $model = new Lesson();
+        $courseModule = CourseModule::findOne($courseModuleId);
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load($this->request->post())) {
+                $model->course_id = $courseModule->course_id;
+                $model->course_module_id = $courseModule->id;
+                if ($model->save()) {
+                    return $this->redirect(['course-module/view', 'id' => $courseModuleId]);
+                }
             }
         } else {
             $model->loadDefaultValues();
@@ -79,6 +100,7 @@ class LessonController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'courseModule' => $courseModule,
         ]);
     }
 
@@ -94,7 +116,7 @@ class LessonController extends Controller
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['course-module/view', 'id' => $model->course_module_id]);
         }
 
         return $this->render('update', [
@@ -111,9 +133,28 @@ class LessonController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        //$this->findModel($id)->delete();
+        //return $this->redirect(['index']);
+        try {
+            // Intenta eliminar el curso
+            $lesson = Lesson::findOne(['id' => $id]);
+            if ($lesson !== null) { // validate if lesson published status to proceed deletion
+                $lesson->delete();
+                Yii::$app->session->setFlash('success', 'La lección ha sido eliminada exitosamente.');
+                return $this->redirect(['course-module/view', 'id' => $lesson->course_module_id]);
+            } else {
+                Yii::$app->session->setFlash('error', 'La lección no existe.');
+            }
+        } catch (\Exception $e) {
+            // Si hay un error, muestra un mensaje de alerta
+            Yii::$app->session->setFlash('error', 'No se puede eliminar la lección debido a que esta publicada.');
+            Yii::error("Error al eliminar la lección: " . $e->getMessage(), __METHOD__); // Guarda el error en el log para depuración
+            // Redirige a la página correspondiente después de intentar eliminar
+            return $this->redirect(Yii::$app->request->referrer ?: ['course-module/view', 'id' => $lesson->course_module_id]);
+        }
+        
+        // Redirige a la página correspondiente después de intentar eliminar
+        return $this->redirect(Yii::$app->request->referrer ?: ['course-module/view', 'id' => $lesson->course_module_id]);
     }
 
     /**

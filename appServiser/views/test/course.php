@@ -1,6 +1,6 @@
 <?php
+
 /** @var yii\web\View $this */
-use yii\helpers\HtmlPurifier;
 
 $this->registerJsFile('https://cdn.embedly.com/widgets/platform.js', [
     'async' => true,     // Indica que el script debe cargarse de forma asíncrona
@@ -38,38 +38,3 @@ $this->registerJsFile('https://cdn.embedly.com/widgets/platform.js', [
         element.appendChild( anchor );
     } );
 </script>
-
-<!-- <script>
-    // Función para convertir <oembed> en contenido embebido
-    function replaceOEmbed() {
-        // Obtener todas las etiquetas <oembed>
-        const oembeds = document.querySelectorAll('oembed');
-
-        oembeds.forEach(oembed => {
-            const url = oembed.getAttribute('url');
-
-            if (url) {
-                // Construir la URL de la API de YouTube oEmbed
-                const apiUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent(url)}&format=json`;
-
-                // Hacer la solicitud a la API de oEmbed
-                fetch(apiUrl)
-                    .then(response => response.json())
-                    .then(data => {
-                        // Crear un nuevo elemento div y asignar el HTML devuelto
-                        const div = document.createElement('div');
-                        div.innerHTML = data.html;
-
-                        // Reemplazar el <oembed> por el HTML embebido
-                        oembed.replaceWith(div);
-                    })
-                    .catch(error => console.error('Error al obtener oEmbed:', error));
-            }
-        });
-    }
-
-    // Ejecutar la función para convertir oEmbed después de cargar la página
-    document.addEventListener('DOMContentLoaded', replaceOEmbed);
-</script> -->
-
-

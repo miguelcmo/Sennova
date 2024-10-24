@@ -15,8 +15,9 @@ return [
             'dsn' => 'mysql:host=localhost;dbname=servisena',
             'username' => 'root',
             'password' => 'RootPass1683*',
-            'charset' => 'utf8',
+            'charset' => 'utf8mb4',
         ],
+        /*
         'mailer' => [
             'class' => \yii\symfonymailer\Mailer::class,
             'viewPath' => '@common/mail',
@@ -47,5 +48,6 @@ return [
             // Or if you use a 3rd party service, see:
             // https://symfony.com/doc/current/mailer.html#using-a-3rd-party-transport
         ],
+        */
     ],
 ];

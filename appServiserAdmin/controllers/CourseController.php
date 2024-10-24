@@ -1,7 +1,8 @@
 <?php
 
-namespace serviserBackend\controllers;
+namespace appServiserAdmin\controllers;
 
+use Yii;
 use common\models\Course;
 use common\models\CourseSearch;
 use common\models\CourseModule;
@@ -158,6 +159,26 @@ class CourseController extends Controller
     }
 
     /**
+     * Updates an existing Course model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param int $id ID
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionFindforupdate($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            return $this->redirect(['course/index']);
+        }
+
+        return $this->renderPartial('_formmini', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
      * Deletes an existing Course model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
@@ -166,9 +187,27 @@ class CourseController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        try {
+            // Intenta eliminar el curso
+            $course = Course::findOne($id); // Reemplaza con la lógica que uses para encontrar el curso
+            if ($course !== null) {
+                $course->delete();
+                Yii::$app->session->setFlash('success', 'El módulo ha sido eliminado exitosamente.');
+                // Redirige a la página correspondiente después de intentar eliminar
+                return $this->redirect(['index']);
+            } else {
+                Yii::$app->session->setFlash('error', 'El módulo no existe.');
+            }
+        } catch (\Exception $e) {
+            // Si hay un error, muestra un mensaje de alerta
+            Yii::$app->session->setFlash('error', 'No se puede eliminar el módulo debido a que hay elementos asociados a él.');
+            Yii::error("Error al eliminar el módulo: " . $e->getMessage(), __METHOD__); // Guarda el error en el log para depuración
+            // Redirige a la página correspondiente después de intentar eliminar
+            return $this->redirect(Yii::$app->request->referrer ?: ['index']);
+        }
+        
+        // Redirige a la página correspondiente después de intentar eliminar
+        return $this->redirect(Yii::$app->request->referrer ?: ['index']);
     }
 
     /**

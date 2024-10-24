@@ -25,9 +25,9 @@ use yii\web\View;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'course_id')->textInput(['maxlength' => true]) ?>
+    <?php // $form->field($model, 'course_id')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'course_module_id')->textInput(['maxlength' => true]) ?>
+    <?php // $form->field($model, 'course_module_id')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 

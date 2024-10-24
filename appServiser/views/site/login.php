@@ -14,12 +14,13 @@ $this->title = 'Iniciar Sesión';
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>Por favor, complete los siguientes campos para iniciar sesión:</p>
+    <p><i class="bi bi-exclamation-triangle"></i>&nbsp;<i>No olvides que para iniciar sesión debes haber verificado tu correo electrónico. Si aún no lo has hecho, puedes enviar un correo de verificación más abajo.</i></p>
 
     <div class="row">
         <div class="col-lg-6">
             <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+                <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
 
                 <?= $form->field($model, 'password')->passwordInput() ?>
 
