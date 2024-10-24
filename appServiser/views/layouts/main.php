@@ -6,10 +6,9 @@
 use common\widgets\Alert;
 use appServiser\assets\AppAsset;
 use yii\bootstrap5\Breadcrumbs;
-//use yii\bootstrap5\Html;
+use yii\bootstrap5\Html;
 use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
-use yii\helpers\Html;
 
 AppAsset::register($this);
 ?>
@@ -25,9 +24,13 @@ AppAsset::register($this);
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Work+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Work+Sans:wght@400;700&display=swap">
+    <!-- Glide.js CSS -->
+    <!-- Required Core Stylesheet -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css"> -->
+    <!-- Optional Theme Stylesheet -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.theme.min.css"> -->
 </head>
-
 <body class="d-flex flex-column">
 <?php $this->beginBody() ?>
 
@@ -50,7 +53,8 @@ AppAsset::register($this);
 
 <!-- Framework End Section  -->
 <?php $this->endBody() ?>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 <!-- <script>
     // Mostrar el botón cuando el usuario se desplaza hacia abajo 100px desde la parte superior del documento
     window.onscroll = function() {
@@ -73,19 +77,22 @@ AppAsset::register($this);
         });
     });
 </script> -->
+
+<!-- JavaScript puro para ocultar el mensaje después de 5 segundos -->
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var navbar = document.querySelector('.navbar-custom');
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 50) { // Cambia el valor según cuando quieras que ocurra el cambio
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+    setTimeout(function() {
+        var messages = document.querySelectorAll('.flash-message');
+        messages.forEach(function(message) {
+            message.style.transition = 'opacity 1s';
+            message.style.opacity = '0';
+            setTimeout(function() {
+                message.style.display = 'none';
+            }, 1000); // Espera 1 segundo adicional después de que la opacidad llegue a 0 para quitar el mensaje
         });
-    });
+    }, 5000); // 5000 ms = 5 segundos
 </script>
 
+<!-- Firebase module import  -->
 <script type="module">
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
@@ -108,20 +115,6 @@ AppAsset::register($this);
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
-</script>
-
-<!-- JavaScript puro para ocultar el mensaje después de 5 segundos -->
-<script>
-    setTimeout(function() {
-        var messages = document.querySelectorAll('.flash-message');
-        messages.forEach(function(message) {
-            message.style.transition = 'opacity 1s';
-            message.style.opacity = '0';
-            setTimeout(function() {
-                message.style.display = 'none';
-            }, 1000); // Espera 1 segundo adicional después de que la opacidad llegue a 0 para quitar el mensaje
-        });
-    }, 5000); // 5000 ms = 5 segundos
 </script>
 
 </body>

@@ -4,7 +4,7 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 
-$this->title = 'Serviser'; 
+$this->title = 'Serviser';
 ?>
 
 <main>
@@ -20,11 +20,11 @@ $this->title = 'Serviser';
   <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
           <!-- Imagen 1 -->
-          <div class="carousel-item active">
+          <div class="carousel-item active" style="background-image: url('images/landing/producto-cafe.jpg'); height: 890px;">
               <!-- <img src="https://via.placeholder.com/1920x900" class="d-block w-100" alt="Slide 1"> -->
-              <img src="images/landing/producto-cafe.jpg" class="d-block w-100" alt="Slide 1">
+              <!-- <img src="images/landing/producto-cafe.jpg" class="d-block w-100" alt="Slide 1"> -->
               <div class="overlay bg-secondary bg-opacity-25 position-absolute top-0 start-0 w-100 h-100"></div>
-              <div class="carousel-caption d-flex flex-column justify-content-end h-100" style="padding-bottom: 70px;">
+              <div class="carousel-caption d-flex flex-column justify-content-center h-100" style="padding-bottom: 70px;">
                   <h1 class="display-5 fw-bold">¿Buscas transformar y hacer crecer tu empresa?</h1>
                   <p class="fw-bold fs-4">La servitización es la estrategia clave. ¡Conoce aquí cómo hacerlo!</p>
                   <div>
@@ -34,11 +34,11 @@ $this->title = 'Serviser';
               </div>
           </div>
           <!-- Imagen 2 -->
-          <div class="carousel-item">
+          <div class="carousel-item" style="background-image: url('images/landing/producto-cuero.jpg'); height: 890px;">
               <!-- <img src="https://via.placeholder.com/1920x900/ff7f7f" class="d-block w-100" alt="Slide 2"> -->
-              <img src="images/landing/producto-cuero.jpg" class="d-block w-100" alt="Slide 1">
+              <!-- <img src="images/landing/producto-cuero.jpg" class="d-block w-100" alt="Slide 1"> -->
               <div class="overlay bg-secondary bg-opacity-25 position-absolute top-0 start-0 w-100 h-100"></div>
-              <div class="carousel-caption d-flex flex-column justify-content-end h-100" style="padding-bottom: 70px;">
+              <div class="carousel-caption d-flex flex-column justify-content-center h-100" style="padding-bottom: 70px;">
                   <h1 class="display-5 fw-bold">¿Buscas transformar y hacer crecer tu empresa?</h1>
                   <p class="fw-bold fs-4">La servitización es la estrategia clave. ¡Conoce aquí cómo hacerlo!</p>
                   <div>
@@ -48,11 +48,11 @@ $this->title = 'Serviser';
               </div>
           </div>
           <!-- Imagen 3 -->
-          <div class="carousel-item">
+          <div class="carousel-item" style="background-image: url('images/landing/producto-textil.jpg'); height: 890px;">
               <!-- <img src="https://via.placeholder.com/1920x900/7f7fff" class="d-block w-100" alt="Slide 3"> -->
-              <img src="images/landing/producto-textil.jpg" class="d-block w-100" alt="Slide 1">
+              <!-- <img src="images/landing/producto-textil.jpg" class="d-block w-100" alt="Slide 1"> -->
               <div class="overlay bg-dark bg-opacity-25 position-absolute top-0 start-0 w-100 h-100"></div>
-              <div class="carousel-caption d-flex flex-column justify-content-end h-100" style="padding-bottom: 70px;">
+              <div class="carousel-caption d-flex flex-column justify-content-center h-100" style="padding-bottom: 70px;">
                   <h1 class="display-5 fw-bold">¿Buscas transformar y hacer crecer tu empresa?</h1>
                   <p class="fw-bold fs-4">La servitización es la estrategia clave. ¡Conoce aquí cómo hacerlo!</p>
                   <div>

@@ -21,7 +21,7 @@ use yii\helpers\Html;
             <!-- Navbar  -->
             <div class="collapse navbar-collapse" id="navbarToggler">
                 <!-- menu items  -->
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-lg-flex align-items-lg-center">
                     <li class="nav-item">
                         <?= Html::a('Inicio', ['site/index'], ['class' => 'nav-link active'], ['aria-current' => 'page']); ?>
                     </li>
@@ -38,30 +38,30 @@ use yii\helpers\Html;
                         <?= Html::a('Indicadores', ['site/kpi'], ['class' => 'nav-link']); ?>
                     </li>
                     <!-- Boton Menu de usuario solo se muestra si el usuario esta logueado -->
-                    <li class="nav-item">
+                    <li class="nav-item mx-lg-1">
                         <?php if (!Yii::$app->user->isGuest) {
-                            echo Html::a('Menu usuario', ['#'], ['class' => 'btn btn-secondary']);
+                            echo Html::a('Menu usuario', ['#'], ['class' => 'btn btn-secondary w-100 my-1']);
                         } ?>
                     </li>
                     <!-- Boton Iniciar sesion / Cerrar sesion cambia de acuerdo al si el usuario esta logueado o no -->
-                    <li class="nav-item">
+                    <li class="nav-item mx-lg-1">
                         <?php 
                             if (Yii::$app->user->isGuest) {
-                                echo Html::tag('div',Html::a('Iniciar Sesión',['/site/login'],['class' => ['btn btn-outline-dark']]));
+                                echo Html::tag('div',Html::a('Iniciar Sesión',['/site/login'],['class' => ['btn btn-outline-dark w-100 my-1']]));
                             } else {
                                 echo Html::beginForm(['/site/logout'], 'post', ['class' => 'd-flex'])
                                     . Html::submitButton(
                                         'Cerrar sesión (' . Yii::$app->user->identity->username . ')',
-                                        ['class' => 'btn btn-warning mx-2']
+                                        ['class' => 'btn btn-warning w-100 my-1']
                                     )
                                     . Html::endForm();
                             }
                         ?>
                     </li>
                     <!-- Boton para registro solo se muestra si el usuario es guest -->
-                    <li class="nav-item">
+                    <li class="nav-item mx-lg-1">
                         <?php if (Yii::$app->user->isGuest) {
-                            echo Html::a('Registrarse', ['site/signup'], ['class' => 'btn btn-dark mx-2']);
+                            echo Html::a('Registrarse', ['site/signup'], ['class' => 'btn btn-dark w-100 my-1']);
                         } ?>   
                     </li>
                 </ul>

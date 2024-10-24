@@ -5,7 +5,7 @@ namespace appSennovalab\assets;
 use yii\web\AssetBundle;
 
 /**
- * Main frontend application asset bundle.
+ * Main SennovaLab application asset bundle.
  */
 class AppAsset extends AssetBundle
 {
@@ -16,7 +16,7 @@ class AppAsset extends AssetBundle
         'css/site.css',
     ];
     public $js = [
-        'bootstrap/js/bootstrap.bundle.min.js', // Ruta al archivo local de Bootstrap JS
+        //'bootstrap/js/bootstrap.bundle.min.js', // Ruta al archivo local de Bootstrap JS
     ];
     public $depends = [
         'yii\web\YiiAsset',
