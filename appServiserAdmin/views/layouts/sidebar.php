@@ -137,6 +137,22 @@ use yii\helpers\Html;
                             ],
                         ],
                     ],
+                    [
+                        'label' => 'Usuarios',
+                        'icon' => 'users',
+                        'items' => [
+                            [
+                                'label' => 'Gestión de Usuarios',
+                                'iconStyle' => 'far',
+                                'url' => ['/user-profile'],
+                            ],
+                            [
+                                'label' => 'Roles y Permisos',
+                                'iconStyle' => 'far',
+                                //'url' => ['/gii'],
+                            ],
+                        ],
+                    ],
                     /*
                     [
                         'label' => 'Grupos',
@@ -170,22 +186,6 @@ use yii\helpers\Html;
                             ],
                             [
                                 'label' => 'Publicaciones',
-                                'iconStyle' => 'far',
-                                //'url' => ['/gii'],
-                            ],
-                        ],
-                    ],
-                    [
-                        'label' => 'Usuarios',
-                        'icon' => 'user',
-                        'items' => [
-                            [
-                                'label' => 'Gestión de Usuarios',
-                                'iconStyle' => 'far',
-                                'url' => ['/user-profile'],
-                            ],
-                            [
-                                'label' => 'Roles y Permisos',
                                 'iconStyle' => 'far',
                                 //'url' => ['/gii'],
                             ],
