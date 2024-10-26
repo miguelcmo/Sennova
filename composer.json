@@ -21,7 +21,8 @@
         "hail812/yii2-adminlte3": "~1.1",
         "yiisoft/yii2-swiftmailer": "^2.0",
         "kartik-v/yii2-editors": "dev-master",
-        "kartik-v/yii2-widget-activeform": "dev-master"
+        "kartik-v/yii2-widget-activeform": "dev-master",
+        "ipinfo/ipinfo": "^3.1"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

@@ -72,6 +72,16 @@ class Lesson extends \yii\db\ActiveRecord
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
+    }
+
+    /**
      * Gets query for [[Course]].
      *
      * @return \yii\db\ActiveQuery|CourseQuery

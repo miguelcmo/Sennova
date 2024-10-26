@@ -84,11 +84,15 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
+        // Layout does not apply
         $this->layout = 'blank';
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+        if ($model->load(Yii::$app->request->post()) && $model->adminlogin()) {
+            Yii::$app->activityLogger->log('login', 'Usuario inició sesión');
             return $this->goBack();
+        } else {
+            Yii::$app->activityLogger->log('login', 'Usuario intenta iniciar sesión en AdminServiser, permiso denegado.');
         }
 
         $model->password = '';

@@ -8,6 +8,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-sennovalab',
+    'timeZone' => 'America/Bogota',
     'name' => 'SennovaLab',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],

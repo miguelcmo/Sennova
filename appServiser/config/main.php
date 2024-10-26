@@ -7,7 +7,7 @@ $params = array_merge(
 );
 
 return [
-    'id' => 'app-serviser',
+    'id' => 'appServiser',
     'name' => 'Serviser',
     'timeZone' => 'America/Bogota',
     // set source language to be English
@@ -61,6 +61,9 @@ return [
                 'port' => '587', // El puerto del servidor SMTP
                 'encryption' => 'tls', // Utiliza 'tls' o 'ssl'
             ],
+        ],
+        'activityLogger' => [
+            'class' => 'common\components\ActivityLogger',
         ],
     ],
     'params' => $params,

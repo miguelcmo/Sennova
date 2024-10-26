@@ -40,9 +40,12 @@ AppAsset::register($this);
 <!-- Content Section -->
 <main role="main" class="flex-shrink-0">
     <div class="container-fluid px-0">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
+        <div class="container mt-1">
+            <?= Breadcrumbs::widget([
+                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                'options' => ['class' => 'bg-transparent'],
+            ]) ?>
+        </div>
         <div class="container flash-message"><?= Alert::widget(['options' => ['class' => 'alert m-0 my-2']]) ?></div>
         <?= $content ?>
     </div>

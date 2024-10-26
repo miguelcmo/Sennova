@@ -40,7 +40,7 @@ use yii\helpers\Html;
                     <!-- Boton Menu de usuario solo se muestra si el usuario esta logueado -->
                     <li class="nav-item mx-lg-1">
                         <?php if (!Yii::$app->user->isGuest) {
-                            echo Html::a('Menu usuario', ['#'], ['class' => 'btn btn-secondary w-100 my-1']);
+                            echo Html::a('Menu usuario', ['member/index'], ['class' => 'btn btn-secondary w-100 my-1']);
                         } ?>
                     </li>
                     <!-- Boton Iniciar sesion / Cerrar sesion cambia de acuerdo al si el usuario esta logueado o no -->

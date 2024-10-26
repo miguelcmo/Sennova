@@ -100,6 +100,7 @@ use yii\helpers\Html;
                         //'visible' => Yii::$app->user->isGuest,
                         //'iconClassAdded' => 'text-info',
                     ],
+                    // Módulos
                     [
                         'label' => 'Módulos',
                         'icon' => 'book',
@@ -114,13 +115,9 @@ use yii\helpers\Html;
                                 'iconStyle' => 'far',
                                 'url' => ['/lesson'],
                             ],
-                            // [
-                            //     'label' => 'Evaluaciones',
-                            //     'iconStyle' => 'far',
-                            //     //'url' => ['/gii'],
-                            // ],
                         ],
                     ],
+                    // Encuestas
                     [
                         'label' => 'Encuestas',
                         'icon' => 'poll',
@@ -137,6 +134,30 @@ use yii\helpers\Html;
                             ],
                         ],
                     ],
+                    // Inscripción
+                    [
+                        'label' => 'Inscripción',
+                        'icon' => 'check',
+                        'items' => [
+                            [
+                                'label' => Yii::t('app', 'Enrollments'),
+                                'iconStyle' => 'far',
+                                'icon' => 'star',
+                                'url' => ['/enrollment/index'],
+                            ],
+                            [
+                                'label' => Yii::t('app', 'Enroll'),
+                                'iconStyle' => 'far',
+                                'url' => ['/enrollment/enroll'],
+                            ],
+                            [
+                                'label' => Yii::t('app', 'Unenroll'),
+                                'iconStyle' => 'far',
+                                'url' => ['/enrollment/unenroll'],
+                            ],
+                        ],
+                    ],
+                    // Usuarios
                     [
                         'label' => 'Usuarios',
                         'icon' => 'users',
@@ -144,12 +165,25 @@ use yii\helpers\Html;
                             [
                                 'label' => 'Gestión de Usuarios',
                                 'iconStyle' => 'far',
-                                'url' => ['/user-profile'],
+                                'url' => ['/user'],
                             ],
                             [
                                 'label' => 'Roles y Permisos',
                                 'iconStyle' => 'far',
-                                //'url' => ['/gii'],
+                                'items' => [
+                                    [
+                                        'label' => 'Roles',
+                                        'iconStyle' => 'far',
+                                        'icon' => 'dot-circle',
+                                        'url' => ['/auth-item'],
+                                    ],
+                                    [
+                                        'label' => 'Asignación',
+                                        'iconStyle' => 'far',
+                                        'icon' => 'dot-circle',
+                                        'url' => ['/auth-assignment'],
+                                    ],
+                                ],
                             ],
                         ],
                     ],

@@ -59,6 +59,24 @@ class User extends ActiveRecord implements IdentityInterface
         ];
     }
 
+        /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('app', 'ID'), 
+            'username' => Yii::t('app', 'Username'),
+            'email' => Yii::t('app', 'Email'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
+            'status' => Yii::t('app', 'Status'),
+            'auth_key' => Yii::t('app', 'Auth Key'),
+            'password_reset_token' => Yii::t('app', 'Password Reset Token'),
+            'verification_token' => Yii::t('app', 'Verification Token'),
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -126,6 +144,22 @@ class User extends ActiveRecord implements IdentityInterface
             'verification_token' => $token,
             'status' => self::STATUS_INACTIVE
         ]);
+    }
+
+    /**
+     * Gets the human-readable status label for the user.
+     *
+     * @return string The status label (Active, Inactive, or Deleted).
+     */
+    public function getStatusLabel()
+    {
+        $statuses = [
+            self::STATUS_DELETED => Yii::t('app', 'Deleted'),
+            self::STATUS_INACTIVE => Yii::t('app', 'Innactive'),
+            self::STATUS_ACTIVE => Yii::t('app', 'Active'),
+        ];
+
+        return $statuses[$this->status] ?? Yii::t('app', 'Unknown');
     }
 
     /**

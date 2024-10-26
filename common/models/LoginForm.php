@@ -76,6 +76,36 @@ class LoginForm extends Model
     }
 
     /**
+     * Logs in a user using the provided username and password in the Admin app.
+     *
+     * @return bool whether the user is logged in successfully
+     */
+    public function adminlogin()
+    {
+        if ($this->validate()) {
+            $user = $this->getUser();
+    
+            // Obtener la instancia de authManager
+            $authManager = Yii::$app->authManager;
+    
+            // Obtener los roles del usuario
+            $roles = $authManager->getRolesByUser($user->id);
+    
+            // Verificar si el usuario tiene un rol bloqueado
+            foreach ($roles as $role) {
+                if ($role->name === 'subscriber') {
+                    Yii::$app->session->setFlash('error', 'Acceso denegado: Su cuenta no tiene permitido ingresar a esta aplicación.');
+                    return false; // Bloquear el inicio de sesión
+                }
+            }
+    
+            return Yii::$app->user->login($user, $this->rememberMe ? 3600 * 24 * 30 : 0);
+        }
+    
+        return false;
+    }
+
+    /**
      * Finds user by [[username]]
      *
      * @return User|null

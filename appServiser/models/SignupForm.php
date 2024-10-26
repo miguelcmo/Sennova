@@ -56,7 +56,7 @@ class SignupForm extends Model
         $user->generateAuthKey();
         $user->generateEmailVerificationToken();
 
-        return $user->save() && $this->sendEmail($user);
+        return $user->save() && $this->sendEmail($user) && $this->assignRole($user);
     }
 
     /**
@@ -69,6 +69,24 @@ class SignupForm extends Model
             'email' => Yii::t('app', 'Correo Electrónico'),
             'password' => Yii::t('app', 'Contraseña'),
         ];
+    }
+
+    /**
+     * Asign new created user to the Subscriber role by default
+     * @param User $user user model to with role should be assigned
+     * @return bool wheter the role is assigned
+     */
+    protected function assignRole($user) 
+    {
+        $auth = Yii::$app->authManager;
+
+        $subscriber = $auth->getRole('subscriber');
+
+        if($auth->assign($subscriber, $user->id)) {
+            return true;
+        }
+
+        return false;
     }
 
     /**

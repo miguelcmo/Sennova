@@ -91,6 +91,7 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            Yii::$app->activityLogger->log('login', 'Usuario inició sesión');
             return $this->goBack();
         }
 

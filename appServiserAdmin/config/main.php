@@ -7,7 +7,7 @@ $params = array_merge(
 );
 
 return [
-    'id' => 'app-serviserBackend',
+    'id' => 'appServiserAdmin',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'appServiserAdmin\controllers',
     'timeZone' => 'America/Bogota',
@@ -77,6 +77,13 @@ return [
                     ],
                 ],
             ],
+        ],
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'defaultTimeZone' => 'America/Bogota', // Cambia esto a tu zona horaria
+        ],
+        'activityLogger' => [
+            'class' => 'common\components\ActivityLogger',
         ],
     ],
     'params' => $params,
