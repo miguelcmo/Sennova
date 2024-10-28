@@ -58,20 +58,7 @@ class ProfileController extends Controller
      */
     public function actionView($userId)
     {
-        // Verify if exist a model with the $userId
-        $model = $this->verifyProfileExist($userId);
-
-        // If model does not exist, create new models Profile and ProfileInfo and assign the userId of the looged user
-        if (!$model) {
-            $model = New Profile();
-            $model->user_id = Yii::$app->user->id;
-            $model->save();
-
-            $piModel = New ProfileInfo();
-            $piModel->profile_id = $model->id;
-            $piModel->save();
-        }
-
+        $model = Profile::find()->where(['user_id' => Yii::$app->user->id])->one(); // Profile model
         $bioModel = ProfileInfo::find()->where(['profile_id' => $model->id])->one(); 
 
         if ($this->request->isPost) {

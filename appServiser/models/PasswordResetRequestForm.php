@@ -26,7 +26,7 @@ class PasswordResetRequestForm extends Model
             ['email', 'exist',
                 'targetClass' => '\common\models\User',
                 'filter' => ['status' => User::STATUS_ACTIVE],
-                'message' => 'There is no user with this email address.'
+                'message' => Yii::t('app', 'There is no user with this email address.')
             ],
         ];
     }
@@ -65,15 +65,27 @@ class PasswordResetRequestForm extends Model
             }
         }
 
-        return Yii::$app
-            ->mailer
-            ->compose(
-                ['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'],
-                ['user' => $user]
-            )
-            ->setFrom([Yii::$app->params['serviserEmail'] => Yii::$app->name . ' robot'])
-            ->setTo($this->email)
-            ->setSubject('Password reset for ' . Yii::$app->name)
-            ->send();
+        try {
+            $sent = Yii::$app
+                ->mailer
+                ->compose(
+                    ['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'],
+                    ['user' => $user]
+                )
+                ->setFrom([Yii::$app->params['serviserEmail'] => Yii::$app->name . ' robot'])
+                ->setTo($this->email)
+                ->setSubject('Password reset for ' . Yii::$app->name)
+                ->send();
+            if ($sent) {
+                Yii::$app->session->setFlash('success', 'El correo de restablecimiento de contraseña ha sido enviado correctamente, revisa tu bandeja de entrada.');
+                return true;
+            } else {
+                Yii::$app->session->setFlash('error', 'No se pudo enviar el correo de restablecimiento de contraseña.');
+                return false;
+            }
+        } catch (\Exception $e) {
+            Yii::$app->session->setFlash('error', 'Ha ocurrido un error al enviar el correo: ' . $e->getMessage());
+            return false;
+        }
     }
 }

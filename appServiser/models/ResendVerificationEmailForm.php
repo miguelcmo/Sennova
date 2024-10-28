@@ -57,15 +57,27 @@ class ResendVerificationEmailForm extends Model
             return false;
         }
 
-        return Yii::$app
-            ->mailer
-            ->compose(
-                ['html' => 'emailVerify-html', 'text' => 'emailVerify-text'],
-                ['user' => $user]
-            )
-            ->setFrom([Yii::$app->params['serviserEmail'] => Yii::$app->name . ' robot'])
-            ->setTo($this->email)
-            ->setSubject('Account registration at ' . Yii::$app->name)
-            ->send();
+        try {
+            $sent = Yii::$app
+                ->mailer
+                ->compose(
+                    ['html' => 'emailVerify-html', 'text' => 'emailVerify-text'],
+                    ['user' => $user]
+                )
+                ->setFrom([Yii::$app->params['serviserEmail'] => Yii::$app->name . ' robot'])
+                ->setTo($this->email)
+                ->setSubject('Account registration at ' . Yii::$app->name)
+                ->send();
+            if ($sent) {
+                Yii::$app->session->setFlash('success', 'El correo de verificación ha sido enviado correctamente, revisa tu bandeja de entrada.');
+                return true;
+            } else {
+                Yii::$app->session->setFlash('error', 'No se pudo enviar el correo de verificación.');
+                return false;
+            }
+        } catch (\Exception $e) {
+            Yii::$app->session->setFlash('error', 'Ha ocurrido un error al enviar el correo: ' . $e->getMessage());
+            return false;
+        }
     }
 }

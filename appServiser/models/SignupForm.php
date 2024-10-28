@@ -96,15 +96,27 @@ class SignupForm extends Model
      */
     protected function sendEmail($user)
     {
-        return Yii::$app
-            ->mailer
-            ->compose(
-                ['html' => 'emailVerify-html', 'text' => 'emailVerify-text'],
-                ['user' => $user]
-            )
-            ->setFrom([Yii::$app->params['serviserEmail'] => 'Administrador ' . Yii::$app->name]) // this is the sender email configured in params file as serviserEmail
-            ->setTo($user->email)
-            ->setSubject('Cuenta registrada en ' . Yii::$app->name)
-            ->send();
+        try {
+            $sent = Yii::$app
+                ->mailer
+                ->compose(
+                    ['html' => 'emailVerify-html', 'text' => 'emailVerify-text'],
+                    ['user' => $user]
+                )
+                ->setFrom([Yii::$app->params['serviserEmail'] => 'Administrador ' . Yii::$app->name]) // this is the sender email configured in params file as serviserEmail
+                ->setTo($user->email)
+                ->setSubject('Cuenta registrada en ' . Yii::$app->name)
+                ->send();
+            if ($sent) {
+                //Yii::$app->session->setFlash('success', 'El correo de restablecimiento de contraseña ha sido enviado correctamente, revisa tu bandeja de entrada.');
+                return true;
+            } else {
+                Yii::$app->session->setFlash('error', 'No se pudo enviar el correo de confirmación de registro exitoso.');
+                return false;
+            }
+        } catch (\Exception $e) {
+            Yii::$app->session->setFlash('error', 'Ha ocurrido un error al enviar el correo: ' . $e->getMessage());
+            return false;
+        }
     }
 }
