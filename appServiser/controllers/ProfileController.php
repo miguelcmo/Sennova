@@ -5,6 +5,8 @@ namespace appServiser\controllers;
 use Yii;
 use common\models\Profile;
 use common\models\ProfileSearch;
+use common\models\ProfileInfo;
+use common\models\ProfileInfoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -56,17 +58,33 @@ class ProfileController extends Controller
      */
     public function actionView($userId)
     {
+        // Verify if exist a model with the $userId
         $model = $this->verifyProfileExist($userId);
 
+        // If model does not exist, create new models Profile and ProfileInfo and assign the userId of the looged user
         if (!$model) {
             $model = New Profile();
             $model->user_id = Yii::$app->user->id;
             $model->save();
+
+            $piModel = New ProfileInfo();
+            $piModel->profile_id = $model->id;
+            $piModel->save();
         }
 
+        $bioModel = ProfileInfo::find()->where(['profile_id' => $model->id])->one(); 
+
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['profile/view', 'userId' => $model->user_id]);
+            $formName = $this->request->post('form-name');
+
+            if ($formName == "profileUpdate") {
+                if ($model->load($this->request->post()) && $model->save()) {
+                    return $this->redirect(['profile/view', 'userId' => $model->user_id]);
+                }
+            } else if ($formName == "profileInfoUpdate") {
+                if ($bioModel->load($this->request->post()) && $bioModel->save()) {
+                    return $this->redirect(['profile/view', 'userId' => $model->user_id]);
+                }
             }
         } else {
             $model->loadDefaultValues();
@@ -74,6 +92,7 @@ class ProfileController extends Controller
 
         return $this->render('view', [
             'model' => $model,
+            'bioModel' => $bioModel,
         ]);
     }
 

@@ -117,7 +117,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php $form = ActiveForm::begin(); ?>
             <div class="modal-body">
                 <?= Html::hiddenInput('form-name', 'courseModuleCreate') ?>
-                <?= $form->field($courseModuleModel, 'title')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($courseModuleModel, 'title')->textInput(['maxlength' => true, 'autofocus' => true]) ?>
                 <?= $form->field($courseModuleModel, 'description')->textarea(['rows' => 6]) ?>
             </div>
             <div class="modal-footer">

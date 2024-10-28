@@ -108,12 +108,13 @@ use yii\helpers\Html;
                             [
                                 'label' => 'Gestión de Módulos',
                                 'iconStyle' => 'far',
-                                'url' => ['/course'],
+                                'icon' => 'star',
+                                'url' => ['/course/index'],
                             ],
                             [
-                                'label' => 'Temas',
+                                'label' => Yii::t('app', 'Lesson'),
                                 'iconStyle' => 'far',
-                                'url' => ['/lesson'],
+                                'url' => ['/lesson/index'],
                             ],
                         ],
                     ],
@@ -165,7 +166,7 @@ use yii\helpers\Html;
                             [
                                 'label' => 'Gestión de Usuarios',
                                 'iconStyle' => 'far',
-                                'url' => ['/user'],
+                                'url' => ['/user/index'],
                             ],
                             [
                                 'label' => 'Roles y Permisos',
@@ -175,13 +176,13 @@ use yii\helpers\Html;
                                         'label' => 'Roles',
                                         'iconStyle' => 'far',
                                         'icon' => 'dot-circle',
-                                        'url' => ['/auth-item'],
+                                        'url' => ['/auth-item/index'],
                                     ],
                                     [
                                         'label' => 'Asignación',
                                         'iconStyle' => 'far',
                                         'icon' => 'dot-circle',
-                                        'url' => ['/auth-assignment'],
+                                        'url' => ['/auth-assignment/index'],
                                     ],
                                 ],
                             ],

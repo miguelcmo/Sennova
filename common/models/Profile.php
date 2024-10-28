@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use common\components\TimestampBehavior;
 
 /**
  * This is the model class for table "profile".

@@ -29,7 +29,7 @@ use yii\web\View;
 
     <?php // $form->field($model, 'course_module_id')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'autofocus' => true]) ?>
 
     <?= $form->field($model, 'content')->textArea(['id' => 'editor', 'placeholder' => 'Loading Editor...']) ?>
 

@@ -75,6 +75,7 @@ class CourseController extends Controller
     {
         $model = $this->findModel($id);
         $courseModuleModel = new CourseModule();
+
         $searchModel = new CourseModuleSearch(['course_id' => $id]);
         $dataProvider = $searchModel->search($this->request->queryParams);
 
@@ -83,23 +84,13 @@ class CourseController extends Controller
 
             if ($formName === 'courseUpdate') {
                 if ($model->load($this->request->post()) && $model->save()) {
-                    return $this->render('view', [
-                        'model' => $model,
-                        'courseModuleModel' => $courseModuleModel,
-                        'searchModel' => $searchModel,
-                        'dataProvider' => $dataProvider,
-                    ]);
+                    return $this->redirect(['view', 'id' => $id]);
                 }
             } elseif ($formName === 'courseModuleCreate') {
                 if ($courseModuleModel->load($this->request->post())) {
                     $courseModuleModel->course_id = $id;
                     if ($courseModuleModel->save()) {
-                        return $this->render('view', [
-                            'model' => $model,
-                            'courseModuleModel' => $courseModuleModel,
-                            'searchModel' => $searchModel,
-                            'dataProvider' => $dataProvider,
-                        ]);
+                        return $this->redirect(['view', 'id' => $id]);
                     }
                 }
             }
