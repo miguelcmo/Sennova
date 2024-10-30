@@ -6,6 +6,7 @@ use common\models\ProfileInfo;
 use common\models\ProfileInfoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 
 /**
@@ -21,6 +22,16 @@ class ProfileInfoController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'only' => ['*'],
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'roles' => ['@'],
+                        ],
+                    ],
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [

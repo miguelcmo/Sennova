@@ -6,6 +6,7 @@ use common\models\Address;
 use common\models\AddressSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 
 /**
@@ -21,6 +22,16 @@ class AddressController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'only' => ['*'],
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'roles' => ['@'],
+                        ],
+                    ],
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [

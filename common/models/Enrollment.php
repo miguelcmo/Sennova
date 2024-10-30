@@ -103,6 +103,26 @@ class Enrollment extends \yii\db\ActiveRecord
     }
 
     /**
+     * Gets query for [[Profile]].
+     *
+     * @return \yii\db\ActiveQuery|yii\db\ActiveQuery
+     */
+    public function getProfile()
+    {
+        return $this->hasOne(Profile::class, ['user_id' => 'user_id']);
+    }
+
+    /**
+     * Gets query for [[Mentorship]].
+     *
+     * @return \yii\db\ActiveQuery|yii\db\ActiveQuery
+     */
+    public function getMentorships()
+    {
+        return $this->hasMany(Mentorship::class, ['enrollment_id' => 'id']);
+    }
+
+    /**
      * {@inheritdoc}
      * @return EnrollmentQuery the active query used by this AR class.
      */

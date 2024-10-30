@@ -18,7 +18,7 @@ class ProfileSearch extends Profile
     {
         return [
             [['id', 'user_id', 'gov_id_type', 'visibility', 'created_by', 'updated_by'], 'integer'],
-            [['first_name', 'last_name', 'gov_id', 'gender', 'phone_number', 'birth_date', 'created_at', 'updated_at'], 'safe'],
+            [['first_name', 'last_name', 'full_name', 'gov_id', 'gender', 'phone_number', 'birth_date', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -71,6 +71,7 @@ class ProfileSearch extends Profile
 
         $query->andFilterWhere(['like', 'first_name', $this->first_name])
             ->andFilterWhere(['like', 'last_name', $this->last_name])
+            ->andFilterWhere(['like', 'full_name', $this->full_name])
             ->andFilterWhere(['like', 'gov_id', $this->gov_id])
             ->andFilterWhere(['like', 'gender', $this->gender])
             ->andFilterWhere(['like', 'phone_number', $this->phone_number]);

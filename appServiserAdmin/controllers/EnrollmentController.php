@@ -4,8 +4,11 @@ namespace appServiserAdmin\controllers;
 
 use Yii;
 use common\models\Course;
+use common\models\CourseSearch;
 use common\models\Enrollment;
 use common\models\EnrollmentSearch;
+use common\models\Mentorship;
+use common\models\MentorshipSearch;
 use common\models\User;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -62,8 +65,34 @@ class EnrollmentController extends \yii\web\Controller
      */
     public function actionView($id)
     {
+        $mentorshipModel = new Mentorship();
+        $searchModel = new MentorshipSearch(['enrollment_id' => $id]);
+        $dataProvider = $searchModel->search($this->request->queryParams);
+
+        $usersList = User::find()
+            ->select(["CONCAT(username, '(', email, ')') AS usernameEmail"])
+            ->where(['!=', 'id', 1])
+            ->indexBy('id')
+            ->orderBy('id')
+            ->column();
+
+        if ($this->request->isPost) {
+            if ($mentorshipModel->load($this->request->post())) {
+                $mentorshipModel->enrollment_id = $id;
+                if ($mentorshipModel->save()) {
+                    return $this->redirect(['enrollment/view', 'id' => $id]);
+                }
+            }
+        } else {
+            $mentorshipModel->loadDefaultValues();
+        }
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'mentorshipModel' => $mentorshipModel,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'usersList' => $usersList,
         ]);
     }
 

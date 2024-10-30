@@ -26,7 +26,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'last_name') ?>
 
-    <?= $form->field($model, 'gov_id_type') ?>
+    <?= $form->field($model, 'full_name') ?>
+
+    <?php // echo $form->field($model, 'gov_id_type') ?>
 
     <?php // echo $form->field($model, 'gov_id') ?>
 

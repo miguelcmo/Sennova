@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h3><?php echo Yii::t('app', 'Course Details: '); echo Html::encode($this->title) ?></h3>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary', 'data-bs-toggle' => 'modal', 'data-bs-target' => '#courseUpdate']) ?>
+        <?= Html::a(Yii::t('app', 'Update'), ['#'], ['class' => 'btn btn-primary', 'data-bs-toggle' => 'modal', 'data-bs-target' => '#courseUpdate']) ?>
         <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [

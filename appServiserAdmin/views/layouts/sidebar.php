@@ -5,10 +5,18 @@ use yii\helpers\Html;
 ?>
 <aside class="main-sidebar sidebar-light-primary elevation-1 text-sm">
     <!-- Brand Logo -->
-    <a href="#" class="brand-link">
-        <!-- <img src="<?php //$assetDir ?>/img/logo.png" alt="ServiSer Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
-        <img src="./images/logo(257x43).png" alt="Logo LabServiser" height="28px" />
-    </a>
+    <nav>
+        <!-- Brand Logo -->
+        <?= Html::a(
+            '<img src="images/logo-only.png" alt="Logo Serviser" class="brand-image">' .
+            '<span class="brand-text fw-bold">SERVISER</span>',
+            ['site/index'],
+            [
+                'class' => 'brand-link',
+                'style' => 'text-decoration:none; color: #74B848;'    
+            ]
+        ) ?>
+    </nav>
 
     <!-- Sidebar -->
     <div class="sidebar">
@@ -19,7 +27,10 @@ use yii\helpers\Html;
             </div>
             <div class="info">
                 <!-- <a href="#" class="d-block">Miguel Angel Carrillo</a> -->
-                <?= Html::a('Miguel Angel Carrillo', ['profile/index']) ?>
+                <?= Html::a(
+                    Yii::$app->user->identity->profile->full_name != null ? Yii::$app->user->identity->profile->full_name : Yii::$app->user->identity->username, 
+                    ['profile/view', 'id' => Yii::$app->user->id]) 
+                ?>
             </div>
         </div>
 
@@ -86,7 +97,7 @@ use yii\helpers\Html;
             echo \hail812\adminlte\widgets\Menu::widget([
                 'items' => [
                     [   
-                        'label' => 'Dashboard',
+                        'label' => Yii::t('app', 'Dashboard'),
                         'icon' => 'tachometer-alt',
                         'url' => ['site/index'],
                         //'icon' => 'bug',
@@ -132,6 +143,18 @@ use yii\helpers\Html;
                                 'label' => 'Preguntas',
                                 'iconStyle' => 'far',
                                 'url' => ['/question'],
+                            ],
+                        ],
+                    ],
+                    // Mentorship
+                    [
+                        'label' => Yii::t('app', 'Mentorships'),
+                        'icon' => 'id-badge',
+                        'items' => [
+                            [
+                                'label' => Yii::t('app', 'My Mentorships'),
+                                'iconStyle' => 'far',
+                                'url' => ['/mentorship/index'],
                             ],
                         ],
                     ],
@@ -346,9 +369,11 @@ use yii\helpers\Html;
                         ],
                     ],
                     */
+
+                    // When production ready comment the following three lines
                     ['label' => 'DevEnvTools', 'header' => true],
                     ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
-                    ['label' => 'Debug', 'icon' => 'bug', 'url' => ['/debug'], 'target' => '_blank'],
+                    ['label' => 'Debug', 'icon' => 'bug', 'url' => ['/debug'], 'target' => '_blank'], 
                 ]
             ]);
             

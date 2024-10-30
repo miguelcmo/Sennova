@@ -67,6 +67,24 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $model->getStatusLabel();
                 },
             ],
+            [
+                'attribute' => 'mentors',
+                'label' => Yii::t('app', 'Mentors'),
+                'value' => function ($model) {
+                    $mentorships = $model->mentorships;
+
+                    if (empty($mentorships)) {
+                        return Html::tag('i', "This enrollment has no mentors yet!", ['style' => 'font-style: italic; color: gray; font-size: 0.9em;']);
+                    }
+
+                    $mentorNames = array_map(function($mentorship) {
+                        return isset($mentorship->user->profile) && $mentorship->user->profile->full_name != null ? $mentorship->user->profile->full_name : $mentorship->user->username;
+                    }, $mentorships);
+
+                    return implode(', ', $mentorNames);
+                },
+                'format' => 'html',
+            ],
             //'role',
             [
                 'class' => ActionColumn::className(),

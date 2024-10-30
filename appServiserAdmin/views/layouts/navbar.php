@@ -11,7 +11,7 @@ use yii\helpers\Html;
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="<?=\yii\helpers\Url::home()?>" class="nav-link">Dashboard</a>
+            <a href="<?=\yii\helpers\Url::home()?>" class="nav-link"><?= Yii::t('app', 'Dashboard') ?></a>
         </li>
         <?php /*
         <li class="nav-item d-none d-sm-inline-block">
@@ -185,10 +185,10 @@ use yii\helpers\Html;
         */ ?> 
         
         <li class="nav-item">
-            <?= Html::a('<i class="fas fa-sign-out-alt"></i>', ['/site/logout'], ['data-method' => 'post', 'class' => 'nav-link']) ?>
+            <?= Html::a(Yii::t('app', 'Logout') . ' <i class="fas fa-sign-out-alt"></i>', ['/site/logout'], ['data-method' => 'post', 'class' => 'nav-link']) ?>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+            <a class="nav-link" data-widget="fullscreen" href="#" role="button" title="<?= Yii::t('app', 'Fullscreen') ?>">
                 <i class="fas fa-expand-arrows-alt"></i>
             </a>
         </li>

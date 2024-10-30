@@ -4,9 +4,38 @@ namespace appServiser\controllers;
 
 use common\models\Lesson;
 use common\models\LessonSearch;
+use yii\filters\AccessControl;
 
 class TestController extends \yii\web\Controller
 {
+    /**
+     * @inheritDoc
+     */
+    public function behaviors()
+    {
+        return array_merge(
+            parent::behaviors(),
+            [
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'only' => ['*'],
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'roles' => ['@'],
+                        ],
+                    ],
+                ],
+                'verbs' => [
+                    'class' => VerbFilter::className(),
+                    'actions' => [
+                        'delete' => ['POST'],
+                    ],
+                ],
+            ]
+        );
+    }
+
     public function actionCourse($id = null)
     {
         $model = $this->findModel(15);

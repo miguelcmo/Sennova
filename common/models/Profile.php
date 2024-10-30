@@ -12,6 +12,7 @@ use common\components\TimestampBehavior;
  * @property int $user_id
  * @property string|null $first_name
  * @property string|null $last_name
+ * @property string|null $full_name
  * @property int|null $gov_id_type
  * @property string|null $gov_id
  * @property string|null $gender
@@ -46,7 +47,7 @@ class Profile extends \yii\db\ActiveRecord
             [['user_id'], 'required'],
             [['user_id', 'gov_id_type', 'visibility', 'created_by', 'updated_by'], 'integer'],
             [['birth_date', 'created_at', 'updated_at'], 'safe'],
-            [['first_name', 'last_name', 'gov_id', 'gender', 'phone_number'], 'string', 'max' => 255],
+            [['first_name', 'last_name', 'full_name', 'gov_id', 'gender', 'phone_number'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
@@ -61,6 +62,7 @@ class Profile extends \yii\db\ActiveRecord
             'user_id' => Yii::t('app', 'User ID'),
             'first_name' => Yii::t('app', 'First Name'),
             'last_name' => Yii::t('app', 'Last Name'),
+            'full_name' => Yii::t('app', 'Full Name'),
             'gov_id_type' => Yii::t('app', 'Gov Id Type'),
             'gov_id' => Yii::t('app', 'Gov ID'),
             'gender' => Yii::t('app', 'Gender'),
