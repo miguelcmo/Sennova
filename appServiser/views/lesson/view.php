@@ -10,7 +10,7 @@ use yii\widgets\ActiveForm;
 
 $this->title = Yii::t('app', 'Lesson: {title}', ['title' => $lesson->title]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Member'), 'url' => ['member/index']];
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Course'), 'url' => ['course/view', 'id' => $lesson->course_id]];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Module'), 'url' => ['course/view', 'id' => $lesson->course_id]];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 

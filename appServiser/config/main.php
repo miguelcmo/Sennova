@@ -62,6 +62,24 @@ return [
                 'encryption' => 'tls', // Utiliza 'tls' o 'ssl'
             ],
         ],
+        // Internationalization
+        'i18n' => [
+            'translations' => [
+                'app*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/messages',
+                    'sourceLanguage' => 'en-US',
+                    'fileMap' => [
+                        'app' => 'app.php',
+                        'app/error' => 'error.php',
+                    ],
+                ],
+            ],
+        ],
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'defaultTimeZone' => 'America/Bogota', // Cambia esto a tu zona horaria
+        ],
         'activityLogger' => [
             'class' => 'common\components\ActivityLogger',
         ],

@@ -1,10 +1,14 @@
 <?php
 
+use common\models\EnrollmentMessage;
 use yii\helpers\Html;
-use yii\widgets\DetailView;
-
+use yii\helpers\Url;
+use yii\grid\ActionColumn;
+use yii\grid\GridView;
+use yii\widgets\Pjax;
 /** @var yii\web\View $this */
-/** @var common\models\Mentorship $model */
+/** @var common\models\EnrollmentMessageSearch $searchModel */
+/** @var yii\data\ActiveDataProvider $dataProvider */
 
 use yii\widgets\ActiveForm;
 
@@ -12,44 +16,14 @@ use yii\widgets\ActiveForm;
 /** @var common\models\EnrollmentMessage $model */
 /** @var yii\widgets\ActiveForm $form */
 
-$this->title = Yii::t('app', 'Mentorship Panel');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Mentorships'), 'url' => ['index']];
+$this->title = Yii::t('app', 'Messages');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Member'), 'url' => ['member/index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Module'), 'url' => ['course/view', 'id' => $enrollment->course_id]];
 $this->params['breadcrumbs'][] = $this->title;
-\yii\web\YiiAsset::register($this);
 ?>
-<div class="mentorship-view">
+<div class="container enrollment-message-index">
 
     <h3><?= Html::encode($this->title) ?></h3>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            [
-                'attribute' => 'user_username',
-                'label' => Yii::t('app', 'Subscriber Name'),
-                'value' => function ($model) {
-                    return isset($model->enrollment->user->profile) && $model->enrollment->user->profile->full_name != null ? $model->enrollment->user->profile->full_name : $model->enrollment->user->username;
-                },
-            ],
-            [
-                'attribute' => 'user_email',
-                'label' => Yii::t('app', 'Subscriber Email'),
-                'value' => function ($model) {
-                    return $model->enrollment->user->email;
-                },
-            ],
-            [
-                'attribute' => 'course_title',
-                'label' => Yii::t('app', 'Module Name'),
-                'value' => function ($model) {
-                    return $model->enrollment->course->title;
-                },
-            ],
-            'created_at:datetime',
-        ],
-    ]) ?>
-
-    <h4><?= Yii::t('app', 'Message Center') ?></h4>
 
     <p>
         <?= Html::a(Yii::t('app', 'New Message'), ['#'], ['class' => 'btn btn-success', 'data-bs-toggle' => 'modal', 'data-bs-target' => '#messageCreate']) ?>
@@ -79,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     </div>
 
-    <div class="card" style="border-radius: 0;">
+    <div class="card mb-5" style="border-radius: 0;">
         <div class="card-body">
             <?php foreach ($messages as $message): ?>
             <div>

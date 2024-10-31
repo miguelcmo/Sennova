@@ -12,7 +12,8 @@ use yii\widgets\ActiveForm;
 /** @var common\models\Profile $model */
 /** @var yii\widgets\ActiveForm $form */
 
-$this->title = Yii::t('app', 'Module: {title}', ['title' => $course->title]);
+//$this->title = Yii::t('app', 'Module: {title}', ['title' => $course->title]);
+$this->title = $course->title;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Member'), 'url' => ['member/index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -21,10 +22,13 @@ $this->params['breadcrumbs'][] = $this->title;
 <!-- ########## Personal Info view ##########  -->
 <div class="container course-view mb-5">
 
+    <div class="d-flex justify-content-end">
+        <?= Html::a('<span class="d-flex align-items-center"><i class="bi bi-envelope-check-fill" style="font-size: 2em;"></i>&nbsp;' . Yii::t('app', 'Messages') . '</span>', ['enrollment-message/index', 'enrollmentId' => $enrollment->id], ['class' => 'btn btn-warning text-center']) ?>
+    </div>
     <!-- Header section course presentation  -->
-    <div class="container col-xxl-12 px-4 py-5">
-        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-            <div class="col-10 col-sm-8 col-lg-6">
+    <div class="px-4 py-4">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-4">
+            <div class="col-lg-6">
             <img src=<?= "https://placehold.co/600x400?text=" . $course->title ?> class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
             </div>
             <div class="col-lg-6">

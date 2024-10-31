@@ -9,6 +9,8 @@ use common\models\CourseModule;
 use common\models\CourseModuleSearch;
 use common\models\Lesson;
 use common\models\LessonSearch;
+use common\models\Enrollment;
+use common\models\EnrollmentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
@@ -58,10 +60,13 @@ class CourseController extends Controller
         $courseModules = CourseModule::find()->where(['course_id' => $id])->all();
         $lessons = Lesson::find()->where(['course_id' => $id])->all();
 
+        $enrollment = Enrollment::find()->where(['course_id' => $course->id, 'user_id' => Yii::$app->user->id, 'status' => 10])->one();
+
         return $this->render('view', [
             'course' => $course,
             'courseModules' => $courseModules,
             'lessons' => $lessons,
+            'enrollment' => $enrollment,
         ]);
     }
 

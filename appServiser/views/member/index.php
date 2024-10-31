@@ -31,7 +31,7 @@ $userWebsite = convertUrlsToLinks($userProfileInfo->website);
 <div class="container member-index mb-3">
     <div class="row">
         
-        <div class="col-3">
+        <div class="col-md-3 mb-3">
             <!-- Profile card  -->
             <div class="card card-primary card-outline">
                 <div class="card-body box-profile">
@@ -78,7 +78,7 @@ $userWebsite = convertUrlsToLinks($userProfileInfo->website);
             <!-- /.card -->
         </div>
 
-        <div class="col-9">
+        <div class="col-md-9 mb-3">
             <!-- Task List Card  -->
             <div class="card mb-3">
                 <div class="card-header">

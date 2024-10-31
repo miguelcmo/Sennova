@@ -28,7 +28,7 @@ use yii\helpers\Html;
             <div class="info">
                 <!-- <a href="#" class="d-block">Miguel Angel Carrillo</a> -->
                 <?= Html::a(
-                    Yii::$app->user->identity->profile->full_name != null ? Yii::$app->user->identity->profile->full_name : Yii::$app->user->identity->username, 
+                    isset(Yii::$app->user->identity->profile) && Yii::$app->user->identity->profile->full_name != null ? Yii::$app->user->identity->profile->full_name : Yii::$app->user->identity->username, 
                     ['profile/view', 'id' => Yii::$app->user->id]) 
                 ?>
             </div>
