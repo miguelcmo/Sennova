@@ -5,6 +5,8 @@ namespace appServiser\models;
 use Yii;
 use yii\base\Model;
 use common\models\User;
+use common\models\Profile;
+use common\models\ProfileInfo;
 
 /**
  * Signup form
@@ -50,13 +52,15 @@ class SignupForm extends Model
         }
         
         $user = new User();
-        $user->username = $this->username;
-        $user->email = $this->email;
+        $user->username = strtolower($this->username);
+        $user->email = strtolower($this->email);
         $user->setPassword($this->password);
         $user->generateAuthKey();
         $user->generateEmailVerificationToken();
 
-        return $user->save() && $this->sendEmail($user) && $this->assignRole($user);
+        if ($user->save() && $this->assignRole($user) && $this->createProfile($user)) {
+            return $this->sendEmail($user);
+        }
     }
 
     /**
@@ -90,6 +94,45 @@ class SignupForm extends Model
     }
 
     /**
+     * Create the Profile and ProfileInfo models from the created $user
+     * @param User $user user model to with role should be assigned
+     * @return bool wheter the models are created
+     */
+    protected function createProfile($user) 
+    {
+        $profile = Profile::find()->where(['user_id' => $user->id])->one();
+
+        $profileModel = New Profile();
+        $profileModel->user_id = $user->id;
+
+        if (!$profile) {
+            $profileModel->save();
+
+            $profileInfo = ProfileInfo::find()->where(['profile_id' => $profileModel->id])->one();
+
+            $profileInfoModel = New ProfileInfo();
+            $profileInfoModel->profile_id = $profileModel->id;
+
+            if (!$profileInfo) {
+                return $profileInfoModel->save();
+            }
+        } else {
+            $profileInfo = ProfileInfo::find()->where(['profile_id' => $profile->id])->one();
+
+            $profileInfoModel = New ProfileInfo();
+            $profileInfoModel->profile_id = $profileModel->id;
+
+            if (!$profileInfo) {
+                return $profileInfoModel->save();
+            } else {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
+    /**
      * Sends confirmation email to user
      * @param User $user user model to with email should be send
      * @return bool whether the email was sent
@@ -111,11 +154,12 @@ class SignupForm extends Model
                 //Yii::$app->session->setFlash('success', 'El correo de restablecimiento de contraseña ha sido enviado correctamente, revisa tu bandeja de entrada.');
                 return true;
             } else {
-                Yii::$app->session->setFlash('error', 'No se pudo enviar el correo de confirmación de registro exitoso.');
+                Yii::$app->session->setFlash('error', 'No fue posible enviar el correo de verificación.');
                 return false;
             }
         } catch (\Exception $e) {
-            Yii::$app->session->setFlash('error', 'Ha ocurrido un error al enviar el correo: ' . $e->getMessage());
+            //Yii::$app->session->setFlash('error', 'Ha ocurrido un error al enviar el correo: ' . $e->getMessage());
+            Yii::$app->session->setFlash('error', 'No fue posible enviar el correo de verificación.');
             return false;
         }
     }

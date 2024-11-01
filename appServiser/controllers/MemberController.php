@@ -54,19 +54,19 @@ class MemberController extends Controller
      */
     public function actionIndex()
     {
-        // Verify if Profile model exist with the $userId
-        $model = $this->verifyProfileExist(Yii::$app->user->id);
+        // // Verify if Profile model exist with the $userId
+        // $model = $this->verifyProfileExist(Yii::$app->user->id);
 
-        // If model does not exist, create new models Profile and ProfileInfo and assign the userId of the looged user
-        if (!$model) {
-            $model = New Profile();
-            $model->user_id = Yii::$app->user->id;
-            $model->save();
+        // // If model does not exist, create new models Profile and ProfileInfo and assign the userId of the looged user
+        // if (!$model) {
+        //     $model = New Profile();
+        //     $model->user_id = Yii::$app->user->id;
+        //     $model->save();
 
-            $piModel = New ProfileInfo();
-            $piModel->profile_id = $model->id;
-            $piModel->save();
-        }
+        //     $piModel = New ProfileInfo();
+        //     $piModel->profile_id = $model->id;
+        //     $piModel->save();
+        // }
 
         // Find the models Profile, ProfileInfo and Enrollment based on $userId
         $userProfile = Profile::find()->where(['user_id' => Yii::$app->user->id])->one();

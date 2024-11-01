@@ -2,10 +2,14 @@
 
 namespace appServiserAdmin\controllers;
 
+use Yii;
 use common\models\LoginForm;
 use common\models\Course;
 use common\models\Lesson;
-use Yii;
+use common\models\User;
+use common\models\AuthAssignment;
+use common\models\Profile;
+use yii\helpers\Html;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -67,9 +71,36 @@ class SiteController extends Controller
         $courses = Course::find()->count();
         $lessons = Lesson::find()->count();
 
+        // $auth = Yii::$app->authManager;
+        // $roleName = 'subscriber';
+        // $usersWithRole = [];
+        // foreach ($auth->getUserIdsbyRole($roleName) as $userId) {
+        //     $user = User::findOne($userId);
+        //     if ($user !== null) {
+        //         $usersWithRole[] = $user;
+        //     }
+        // }
+        $subscribers = AuthAssignment::find()->where(['item_name' => 'subscriber'])->count();
+
+        $profile = Profile::find()->where(['user_id' => Yii::$app->user->id])->one();
+        if (!$profile) {
+            Yii::$app->session->setFlash(
+                'warning', 
+                Yii::t('app', "You haven't completed your profile yet. Please complete your profile here!") . ' ' . 
+                Html::a(Yii::t('app', 'Profile Update'), ['profile/view', 'id' => Yii::$app->user->id], ['class' => 'btn btn-warning'])
+            );
+        } else if ($profile && ($profile->full_name === null || trim($profile->full_name) === '')) {
+            Yii::$app->session->setFlash(
+                'warning', 
+                Yii::t('app', "You haven't completed your profile yet. Please complete your profile here!") . ' ' . 
+                Html::a(Yii::t('app', 'Profile Update'), ['profile/view', 'id' => Yii::$app->user->id], ['class' => 'btn btn-warning'])
+            );
+        }
+
         return $this->render('index', [
             'courses' => $courses,
             'lessons' => $lessons,
+            'subscribers' => $subscribers,
         ]);
     }
 

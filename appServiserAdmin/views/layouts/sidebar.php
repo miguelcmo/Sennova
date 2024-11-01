@@ -23,12 +23,12 @@ use yii\helpers\Html;
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="<?=$assetDir?>/img/user.jpg" class="img-circle elevation-2" alt="User Image">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#profilePictureUpdate"><img src="<?= Yii::$app->params['avatars'][1] ?>" class="img-circle elevation-2" alt="User Image"></a>
             </div>
             <div class="info">
                 <!-- <a href="#" class="d-block">Miguel Angel Carrillo</a> -->
                 <?= Html::a(
-                    isset(Yii::$app->user->identity->profile) && Yii::$app->user->identity->profile->full_name != null ? Yii::$app->user->identity->profile->full_name : Yii::$app->user->identity->username, 
+                    Yii::$app->user->identity->profile && (Yii::$app->user->identity->profile->full_name === null || trim(Yii::$app->user->identity->profile->full_name) === '') ? Yii::$app->user->identity->username : Yii::$app->user->identity->profile->full_name, 
                     ['profile/view', 'id' => Yii::$app->user->id]) 
                 ?>
             </div>
