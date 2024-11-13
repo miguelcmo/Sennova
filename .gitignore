@@ -7,3 +7,8 @@ themes/classic/views/
 /appSennovalab/web/assets
 /appServiser/web/assets
 /appServiserAdmin/web/assets
+vagrant/
+environments/
+Vagrantfile
+yii_test
+yii_test.bat
