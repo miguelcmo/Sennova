@@ -5,8 +5,8 @@ namespace appServiserAdmin\controllers;
 use Yii;
 use common\models\CourseModule;
 use common\models\CourseModuleSearch;
-use common\models\Lesson;
-use common\models\LessonSearch;
+use common\models\CourseLesson;
+use common\models\CourseLessonSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -59,7 +59,7 @@ class CourseModuleController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id); // se busca a si mismo para actualizar la instancia
-        $searchModel = new LessonSearch(['course_module_id' => $id]);
+        $searchModel = new CourseLessonSearch(['course_module_id' => $id]);
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         if ($this->request->isPost) {

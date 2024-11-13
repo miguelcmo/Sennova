@@ -23,13 +23,22 @@ use yii\helpers\Html;
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <a href="#" data-bs-toggle="modal" data-bs-target="#profilePictureUpdate"><img src="<?= Yii::$app->params['avatars'][1] ?>" class="img-circle elevation-2" alt="User Image"></a>
+                <!-- <a href="#" data-bs-toggle="modal" data-bs-target="#profilePictureUpdate"><img src="<?php // Yii::$app->params['avatars'][1] ?>" class="img-circle elevation-2" alt="User Image"></a> -->
+                <?= 
+                    Html::a(
+                        Yii::$app->user->identity->profile->profileInfo && (Yii::$app->user->identity->profile->profileInfo->profile_picture === null || trim(Yii::$app->user->identity->profile->profileInfo->profile_picture) === '') ? '<img src="images/avatars/000.png" alt="Profile Avatar" />' : '<img src="' . Yii::$app->params['avatars'][Yii::$app->user->identity->profile->profileInfo->profile_picture] . '" alt="Profile Avatar" />',
+                        ['#'],
+                        ['data-bs-toggle' => 'modal', 'data-bs-target' => '#profilePictureUpdate']
+                    )
+                ?>
             </div>
             <div class="info">
                 <!-- <a href="#" class="d-block">Miguel Angel Carrillo</a> -->
-                <?= Html::a(
-                    Yii::$app->user->identity->profile && (Yii::$app->user->identity->profile->full_name === null || trim(Yii::$app->user->identity->profile->full_name) === '') ? Yii::$app->user->identity->username : Yii::$app->user->identity->profile->full_name, 
-                    ['profile/view', 'id' => Yii::$app->user->id]) 
+                <?=     
+                    Html::a(
+                        Yii::$app->user->identity->profile && (Yii::$app->user->identity->profile->full_name === null || trim(Yii::$app->user->identity->profile->full_name) === '') ? Yii::$app->user->identity->username : Yii::$app->user->identity->profile->full_name, 
+                        ['profile/view', 'id' => Yii::$app->user->id]
+                    ) 
                 ?>
             </div>
         </div>
@@ -125,7 +134,7 @@ use yii\helpers\Html;
                             [
                                 'label' => Yii::t('app', 'Lesson'),
                                 'iconStyle' => 'far',
-                                'url' => ['/lesson/index'],
+                                'url' => ['/course-lesson/index'],
                             ],
                         ],
                     ],
@@ -135,9 +144,10 @@ use yii\helpers\Html;
                         'icon' => 'poll',
                         'items' => [
                             [
-                                'label' => 'Encuestas',
+                                'label' => 'Gestión de Encuestas',
                                 'iconStyle' => 'far',
-                                'url' => ['/survey'],
+                                'icon' => 'star',
+                                'url' => ['/survey/index'],
                             ],
                             [
                                 'label' => 'Preguntas',

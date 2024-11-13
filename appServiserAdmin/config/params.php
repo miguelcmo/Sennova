@@ -17,6 +17,7 @@ return [
     ],
     'bsVersion' => '4.x',
     'avatars' => [
+        0  => 'images/avatars/000.png',
         1  => 'images/avatars/001.png',
         2  => 'images/avatars/002.png',
         3  => 'images/avatars/003.png',

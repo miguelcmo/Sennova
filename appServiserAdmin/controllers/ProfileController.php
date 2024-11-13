@@ -58,26 +58,28 @@ class ProfileController extends Controller
      */
     public function actionView($id)
     {
-        // Verify if Profile model exist with the $userId
-        $model = $this->verifyProfileExist(Yii::$app->user->id);
+        // // Verify if Profile model exist with the $userId
+        // $model = $this->verifyProfileExist(Yii::$app->user->id);
 
-        // If model does not exist, create new models Profile and ProfileInfo and assign the userId of the looged user
-        if (!$model) {
-            $model = New Profile();
-            $model->user_id = Yii::$app->user->id;
-            $model->save();
-        }
+        // // If model does not exist, create new models Profile and ProfileInfo and assign the userId of the looged user
+        // if (!$model) {
+        //     $model = New Profile();
+        //     $model->user_id = Yii::$app->user->id;
+        //     $model->save();
+        // }
 
-        $piModel = $this->verifyProfileInfoExist($model->id);
+        // $piModel = $this->verifyProfileInfoExist($model->id);
         
-        if (!$piModel) {
-            $piModel = New ProfileInfo();
-            $piModel->profile_id = $model->id;
-            $piModel->save();
-        }
+        // if (!$piModel) {
+        //     $piModel = New ProfileInfo();
+        //     $piModel->profile_id = $model->id;
+        //     $piModel->save();
+        // }
+
+        $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $id]);
         }
 
         return $this->render('view', [

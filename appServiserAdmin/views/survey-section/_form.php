@@ -4,23 +4,21 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
-/** @var common\models\Survey $model */
+/** @var common\models\SurveySection $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
-<div class="survey-form">
+<div class="survey-section-form">
 
     <?php $form = ActiveForm::begin(); ?>
+
+    <?= $form->field($model, 'survey_id')->textInput() ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'total_points')->textInput() ?>
-
-    <?= $form->field($model, 'status')->dropDownList([ 'draft' => 'Draft', 'published' => 'Published', 'archived' => 'Archived', ], ['prompt' => '']) ?>
-
-    <?= $form->field($model, 'url')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'order')->textInput() ?>
 
     <?= $form->field($model, 'created_by')->textInput() ?>
 

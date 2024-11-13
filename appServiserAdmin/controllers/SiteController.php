@@ -5,10 +5,11 @@ namespace appServiserAdmin\controllers;
 use Yii;
 use common\models\LoginForm;
 use common\models\Course;
-use common\models\Lesson;
+use common\models\CourseLesson;
 use common\models\User;
 use common\models\AuthAssignment;
 use common\models\Profile;
+use common\models\ProfileInfo;
 use yii\helpers\Html;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -69,17 +70,7 @@ class SiteController extends Controller
     public function actionIndex()
     {   
         $courses = Course::find()->count();
-        $lessons = Lesson::find()->count();
-
-        // $auth = Yii::$app->authManager;
-        // $roleName = 'subscriber';
-        // $usersWithRole = [];
-        // foreach ($auth->getUserIdsbyRole($roleName) as $userId) {
-        //     $user = User::findOne($userId);
-        //     if ($user !== null) {
-        //         $usersWithRole[] = $user;
-        //     }
-        // }
+        $lessons = CourseLesson::find()->count();
         $subscribers = AuthAssignment::find()->where(['item_name' => 'subscriber'])->count();
 
         $profile = Profile::find()->where(['user_id' => Yii::$app->user->id])->one();
@@ -96,11 +87,19 @@ class SiteController extends Controller
                 Html::a(Yii::t('app', 'Profile Update'), ['profile/view', 'id' => Yii::$app->user->id], ['class' => 'btn btn-warning'])
             );
         }
+        $profileInfoModel = ProfileInfo::find()->where(['profile_id' => $profile->id])->one();
+
+        if ($this->request->isPost && $profileInfoModel->load($this->request->post()) && $profileInfoModel->save()) {
+            return $this->redirect(['index']);
+        } else {
+            $profileInfoModel->loadDefaultValues();
+        }
 
         return $this->render('index', [
             'courses' => $courses,
             'lessons' => $lessons,
             'subscribers' => $subscribers,
+            'profileInfoModel' => $profileInfoModel,
         ]);
     }
 

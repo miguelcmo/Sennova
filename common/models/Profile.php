@@ -97,13 +97,13 @@ class Profile extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[ProfileInfos]].
+     * Gets query for [[ProfileInfo]].
      *
      * @return \yii\db\ActiveQuery|ProfileInfoQuery
      */
-    public function getProfileInfos()
+    public function getProfileInfo()
     {
-        return $this->hasMany(ProfileInfo::class, ['profile_id' => 'id']);
+        return $this->hasOne(ProfileInfo::class, ['profile_id' => 'id']);
     }
 
     /**

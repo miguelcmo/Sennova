@@ -4,12 +4,12 @@ namespace common\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\AuthItem;
+use common\models\Lesson;
 
 /**
- * AuthItemSearch represents the model behind the search form of `common\models\AuthItem`.
+ * LessonSearch represents the model behind the search form of `common\models\Lesson`.
  */
-class AuthItemSearch extends AuthItem
+class CourseLessonSearch extends CourseLesson
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class AuthItemSearch extends AuthItem
     public function rules()
     {
         return [
-            [['name', 'description', 'rule_name', 'data'], 'safe'],
-            [['type', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'course_id', 'course_module_id', 'order', 'created_by', 'updated_by'], 'integer'],
+            [['title', 'content', 'video_url', 'attachment', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -40,17 +40,12 @@ class AuthItemSearch extends AuthItem
      */
     public function search($params)
     {
-        $query = AuthItem::find();
+        $query = CourseLesson::find();
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort' => [
-                'defaultOrder' => [
-                    'created_at' => SORT_ASC,
-                ],
-            ],
         ]);
 
         $this->load($params);
@@ -63,15 +58,20 @@ class AuthItemSearch extends AuthItem
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'type' => $this->type,
+            'id' => $this->id,
+            'course_id' => $this->course_id,
+            'course_module_id' => $this->course_module_id,
+            'order' => $this->order,
+            'created_by' => $this->created_by,
+            'updated_by' => $this->updated_by,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'rule_name', $this->rule_name])
-            ->andFilterWhere(['like', 'data', $this->data]);
+        $query->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'content', $this->content])
+            ->andFilterWhere(['like', 'video_url', $this->video_url])
+            ->andFilterWhere(['like', 'attachment', $this->attachment]);
 
         return $dataProvider;
     }

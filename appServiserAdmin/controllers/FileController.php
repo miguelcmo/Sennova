@@ -2,14 +2,18 @@
 
 namespace appServiserAdmin\controllers;
 
-use common\models\File;
-use common\models\FileSearch;
+use Yii;
+use appServiserAdmin\models\FileUpload;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
+use yii\web\UploadedFile;
+//use yii\filters\CsrfFilter;
 use yii\filters\VerbFilter;
 
+
 /**
- * FileController implements the CRUD actions for File model.
+ * FileController implements the actions for manage files in the server.
  */
 class FileController extends Controller
 {
@@ -24,7 +28,7 @@ class FileController extends Controller
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
-                        'delete' => ['POST'],
+                        'uploadWithCkEditor' => ['POST'],
                     ],
                 ],
             ]
@@ -32,103 +36,98 @@ class FileController extends Controller
     }
 
     /**
-     * Lists all File models.
+     * Manage the file upload action.
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionUpload()
     {
-        $searchModel = new FileSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
+        $model = new FileUpload();
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        if (Yii::$app->request->isPost) {
+            $model->file = UploadedFile::getInstance($model, 'file');
+            if ($model->validate()) {
+                $filePath = 'images/uploads/' . $model->file->baseName . '.' . $model->file->extension;
+                if ($model->file->saveAs($filePath)) {
+                    return $this->redirect(['success']);
+                }
+            }
+        }
+
+        return $this->render('upload', ['model' => $model]);
     }
 
     /**
-     * Displays a single File model.
-     * @param int $id ID
+     * Manage the file upload action for the CKEditor simpleUpload function.
+     *
      * @return string
-     * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionUploadWithCkEditor()
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
+        Yii::$app->response->format = Response::FORMAT_JSON;
 
-    /**
-     * Creates a new File model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
-     */
-    public function actionCreate()
-    {
-        $model = new File();
+        // Verificar que el archivo fue cargado
+        $file = UploadedFile::getInstanceByName('upload');
+        if ($file && $file->error == UPLOAD_ERR_OK) {
+            // Definir ruta y nombre de archivo
+            $uploadDir = Yii::getAlias('@webroot/images/uploads/');
+            $fileName = uniqid() . '.' . $file->extension;
+            $filePath = $uploadDir . $fileName;
 
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            // Verificar si la carpeta existe; si no, crearla
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0755, true);
+            }
+
+            // Guardar archivo en el servidor
+            if ($file->saveAs($filePath)) {
+                // Retornar URL pública del archivo
+                $fileUrl = Yii::$app->request->hostInfo . Yii::getAlias('@web/images/uploads/') . $fileName;
+                return [
+                    //'uploaded' => true,
+                    'url' => $fileUrl,
+                ];
+            } else {
+                return [
+                    //'uploaded' => false,
+                    'error' => ['message' => 'No se pudo guardar el archivo.']
+                ];
             }
         } else {
-            $model->loadDefaultValues();
+            return [
+                //'uploaded' => false,
+                'error' => ['message' => 'Error al subir el archivo.']
+            ];
         }
+    }
 
-        return $this->render('create', [
-            'model' => $model,
+    /**
+     * Action List all files in a specific needed.
+     *
+     * @return string
+     */
+    public function actionList()
+    {
+        $files = "";
+
+        return $this->render('list', [
+            'files' => $files,
         ]);
     }
 
     /**
-     * Updates an existing File model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id ID
-     * @return string|\yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
+     * Download action for a specific file.
+     *
+     * @return string
      */
-    public function actionUpdate($id)
+    public function actionDownload($filename)
     {
-        $model = $this->findModel($id);
+        $filePath = 'images/uploads/' . $filename;
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if (file_exists($filePath)) {
+            return Yii::$app->response->sendFile($filePath);
+        } else {
+            throw new \yii\web\NotFoundHttpException("Archivo no encontrado.");
         }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Deletes an existing File model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id ID
-     * @return \yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
-    }
-
-    /**
-     * Finds the File model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $id ID
-     * @return File the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = File::findOne(['id' => $id])) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
 }

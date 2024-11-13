@@ -7,14 +7,14 @@ use yii\widgets\ActiveForm;
 /** @var yii\web\View $this */
 /** @var common\models\CourseModule $model */
 
-use common\models\Lesson;
+use common\models\CourseLesson;
 //use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 ///** @var yii\web\View $this */
-/** @var common\models\LessonSearch $searchModel */
+/** @var common\models\CourseLessonSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
 $this->registerJsFile('https://cdn.embedly.com/widgets/platform.js', [
@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h3><?php echo Yii::t('app', 'Course Module Details: '); echo Html::encode($this->title) ?></h3>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary', 'data-bs-toggle' => 'modal', 'data-bs-target' => '#courseModuleUpdate']) ?>
+        <?= Html::a(Yii::t('app', 'Update'), ['#'], ['class' => 'btn btn-primary', 'data-bs-toggle' => 'modal', 'data-bs-target' => '#courseModuleUpdate']) ?>
         <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -112,7 +112,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h4><?= Yii::t('app', 'Lessons') ?></h4>
 
     <p>
-        <?= Html::a(Yii::t('app', 'New Lesson'), ['lesson/create', 'courseModuleId' => $model->id], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'New Lesson'), ['course-lesson/create', 'courseModuleId' => $model->id], ['class' => 'btn btn-success']) ?>
     </p>
 
     <!-- Lesson View Modal -->
@@ -169,8 +169,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         ]);
                     }
                 ],
-                'urlCreator' => function ($action, Lesson $model, $key, $index, $column) {
-                    return Url::toRoute(['lesson/'.$action, 'id' => $model->id]);
+                'urlCreator' => function ($action, CourseLesson $model, $key, $index, $column) {
+                    return Url::toRoute(['course-lesson/'.$action, 'id' => $model->id]);
                  }
             ],
         ],
@@ -202,7 +202,7 @@ $(document).on('click', '.custom-view-button', function() {
     
     // Cargar el contenido del formulario en el modal usando AJAX
     $.ajax({
-        url: 'index.php?r=lesson/preview&id=' + id, // Asegúrate de que esta URL sea correcta
+        url: 'index.php?r=course-lesson/preview&id=' + id, // Asegúrate de que esta URL sea correcta
         type: 'GET',
         success: function(data) {
             $('#updateContent').html(data); // Inserta el formulario en el modal

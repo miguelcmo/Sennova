@@ -1,6 +1,7 @@
 import {
 	ClassicEditor,
 	AccessibilityHelp,
+	Alignment,
 	Autoformat,
 	AutoImage,
 	Autosave,
@@ -8,17 +9,18 @@ import {
 	Bold,
 	CloudServices,
 	Essentials,
-	EasyImage,
+	FontBackgroundColor,
+	FontColor,
+	FontFamily,
+	FontSize,
+	GeneralHtmlSupport,
 	Heading,
-	Image,
 	ImageBlock,
 	ImageCaption,
 	ImageInline,
 	ImageInsert,
 	ImageInsertViaUrl,
 	ImageResize,
-	ImageResizeEditing,
-	ImageResizeHandles,
 	ImageStyle,
 	ImageTextAlternative,
 	ImageToolbar,
@@ -35,6 +37,7 @@ import {
 	PasteFromOffice,
 	SelectAll,
 	SimpleUploadAdapter,
+	SourceEditing,
 	Table,
 	TableCaption,
 	TableCellProperties,
@@ -47,15 +50,22 @@ import {
 	Undo
 } from 'ckeditor5';
 
+import translations from 'ckeditor5/translations/es.js';
+
 const editorConfig = {
 	toolbar: {
 		items: [
 			'undo',
 			'redo',
 			'|',
-			'selectAll',
+			'sourceEditing',
 			'|',
 			'heading',
+			'|',
+			'fontSize',
+			'fontFamily',
+			'fontColor',
+			'fontBackgroundColor',
 			'|',
 			'bold',
 			'italic',
@@ -63,22 +73,24 @@ const editorConfig = {
 			'|',
 			'link',
 			'insertImage',
+			//'insertImageViaUrl',
 			'mediaEmbed',
 			'insertTable',
 			'blockQuote',
+			'|',
+			'alignment',
 			'|',
 			'bulletedList',
 			'numberedList',
 			'todoList',
 			'outdent',
-			'indent',
-			'|',
-			'accessibilityHelp'
+			'indent'
 		],
 		shouldNotGroupWhenFull: false
 	},
 	plugins: [
 		AccessibilityHelp,
+		Alignment,
 		Autoformat,
 		AutoImage,
 		Autosave,
@@ -86,17 +98,18 @@ const editorConfig = {
 		Bold,
 		CloudServices,
 		Essentials,
-		EasyImage,
+		FontBackgroundColor,
+		FontColor,
+		FontFamily,
+		FontSize,
+		GeneralHtmlSupport,
 		Heading,
-		Image,
 		ImageBlock,
 		ImageCaption,
 		ImageInline,
 		ImageInsert,
 		ImageInsertViaUrl,
 		ImageResize,
-		ImageResizeEditing,
-		ImageResizeHandles,
 		ImageStyle,
 		ImageTextAlternative,
 		ImageToolbar,
@@ -113,6 +126,7 @@ const editorConfig = {
 		PasteFromOffice,
 		SelectAll,
 		SimpleUploadAdapter,
+		SourceEditing,
 		Table,
 		TableCaption,
 		TableCellProperties,
@@ -124,6 +138,13 @@ const editorConfig = {
 		Underline,
 		Undo
 	],
+	fontFamily: {
+		supportAllValues: true
+	},
+	fontSize: {
+		options: [10, 12, 14, 'default', 18, 20, 22],
+		supportAllValues: true
+	},
 	heading: {
 		options: [
 			{
@@ -169,6 +190,16 @@ const editorConfig = {
 			}
 		]
 	},
+	htmlSupport: {
+		allow: [
+			{
+				name: /^.*$/,
+				styles: true,
+				attributes: true,
+				classes: true
+			}
+		]
+	},
 	image: {
 		toolbar: [
 			'toggleImageCaption',
@@ -179,8 +210,9 @@ const editorConfig = {
 			'imageStyle:breakText',
 			'|',
 			'resizeImage'
-		],
+		]
 	},
+	language: 'es',
 	link: {
 		addTargetToExternalLinks: true,
 		defaultProtocol: 'https://',
@@ -201,13 +233,17 @@ const editorConfig = {
 			reversed: true
 		}
 	},
+	menuBar: {
+		isVisible: true
+	},
 	placeholder: 'Type or paste your content here!',
 	table: {
 		contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells', 'tableProperties', 'tableCellProperties']
 	},
-    simpleUpload: {
+	simpleUpload: {
         // The URL that the images are uploaded to.
         uploadUrl: 'http://localhost/sennova/appServiserAdmin/web/ckeditor/upload.php',
+		//uploadUrl: 'http://localhost/sennova/appServiserAdmin/web/index.php?r=file/upload-with-ck-editor',
 
         // Enable the XMLHttpRequest.withCredentials property.
         withCredentials: true,
@@ -215,12 +251,11 @@ const editorConfig = {
         // Headers sent along with the XMLHttpRequest to the upload server.
         headers: {
             'X-CSRF-TOKEN': '<?= Yii::$app->request->getCsrfToken() ?>',
-            Authorization: 'Bearer <JSON Web Token>'
+            //Authorization: 'Bearer <JSON Web Token>'
+			Authorization: 'Bearer ' + localStorage.getItem('jwtToken'),
         }
     },
-	// mediaEmbed: {
-	// 	previewsInData: true,
-	// }
+	translations: [translations]
 };
 
 ClassicEditor.create(document.querySelector('#editor'), editorConfig);

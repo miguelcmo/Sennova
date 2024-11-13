@@ -47,8 +47,17 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
             </div>
             <?php $form = ActiveForm::begin(); ?>
             <div class="modal-body">
-                <?= Html::hiddenInput('form-name', 'courseUpdate') ?>
-                
+                <?= Html::hiddenInput('form-name', 'profilePictureUpdate') ?>
+                <?= $form->field($profileInfoModel, 'profile_picture')->radioList(
+                    Yii::$app->params['avatars'],
+                    [
+                        'item' => function($index, $label, $name, $checked, $value) {
+                            return '<label style="display: inline-block; margin: 10px; text-align: center;">' .
+                                Html::radio($name, $checked, ['value' => $value]) .
+                                Html::img($label, ['style' => 'width: 50px; height: 50px; border-radius: 50%;']) .
+                                '</label>';
+                        }
+                    ])->label(Yii::t('app', 'Profile Avatar')) ?>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?= Yii::t('app', 'Close') ?></button>

@@ -12,16 +12,17 @@ use common\components\TimestampBehavior;
  * @property string $title
  * @property string|null $description
  * @property int|null $total_points
- * @property int $created_by
- * @property string $status
+ * @property string|null $status
  * @property string|null $url
+ * @property int|null $created_by
+ * @property int|null $updated_by
  * @property string|null $created_at
  * @property string|null $updated_at
  *
- * @property User $createdBy
  * @property Responses[] $responses
- * @property Sections[] $sections
+ * @property SurveyQuestion[] $surveyQuestions
  * @property SurveyResults[] $surveyResults
+ * @property SurveySection[] $surveySections
  */
 class Survey extends \yii\db\ActiveRecord
 {
@@ -42,9 +43,8 @@ class Survey extends \yii\db\ActiveRecord
             [['title'], 'required'],
             [['description', 'status'], 'string'],
             [['total_points', 'created_by', 'updated_by'], 'integer'],
-            //[['created_at', 'updated_at'], 'safe'],
+            [['created_at', 'updated_at'], 'safe'],
             [['title', 'url'], 'string', 'max' => 255],
-            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['created_by' => 'id']],
         ];
     }
 
@@ -78,16 +78,6 @@ class Survey extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[CreatedBy]].
-     *
-     * @return \yii\db\ActiveQuery|yii\db\ActiveQuery
-     */
-    public function getCreatedBy()
-    {
-        return $this->hasOne(User::class, ['id' => 'created_by']);
-    }
-
-    /**
      * Gets query for [[Responses]].
      *
      * @return \yii\db\ActiveQuery|ResponsesQuery
@@ -98,13 +88,13 @@ class Survey extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Sections]].
+     * Gets query for [[SurveyQuestions]].
      *
-     * @return \yii\db\ActiveQuery|SectionsQuery
+     * @return \yii\db\ActiveQuery|SurveyQuestionQuery
      */
-    public function getSections()
+    public function getSurveyQuestions()
     {
-        return $this->hasMany(Sections::class, ['survey_id' => 'id']);
+        return $this->hasMany(SurveyQuestion::class, ['survey_id' => 'id']);
     }
 
     /**
@@ -115,6 +105,16 @@ class Survey extends \yii\db\ActiveRecord
     public function getSurveyResults()
     {
         return $this->hasMany(SurveyResults::class, ['survey_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[SurveySections]].
+     *
+     * @return \yii\db\ActiveQuery|SurveySectionQuery
+     */
+    public function getSurveySections()
+    {
+        return $this->hasMany(SurveySection::class, ['survey_id' => 'id']);
     }
 
     /**

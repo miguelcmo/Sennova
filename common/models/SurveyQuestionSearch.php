@@ -4,12 +4,12 @@ namespace common\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\AuthItem;
+use common\models\SurveyQuestion;
 
 /**
- * AuthItemSearch represents the model behind the search form of `common\models\AuthItem`.
+ * SurveyQuestionSearch represents the model behind the search form of `common\models\SurveyQuestion`.
  */
-class AuthItemSearch extends AuthItem
+class SurveyQuestionSearch extends SurveyQuestion
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class AuthItemSearch extends AuthItem
     public function rules()
     {
         return [
-            [['name', 'description', 'rule_name', 'data'], 'safe'],
-            [['type', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'survey_id', 'section_id', 'points', 'created_by', 'updated_by'], 'integer'],
+            [['question_text', 'question_type', 'hint', 'explanation', 'media_type', 'media_url', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -40,17 +40,12 @@ class AuthItemSearch extends AuthItem
      */
     public function search($params)
     {
-        $query = AuthItem::find();
+        $query = SurveyQuestion::find();
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort' => [
-                'defaultOrder' => [
-                    'created_at' => SORT_ASC,
-                ],
-            ],
         ]);
 
         $this->load($params);
@@ -63,15 +58,22 @@ class AuthItemSearch extends AuthItem
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'type' => $this->type,
+            'id' => $this->id,
+            'survey_id' => $this->survey_id,
+            'section_id' => $this->section_id,
+            'points' => $this->points,
+            'created_by' => $this->created_by,
+            'updated_by' => $this->updated_by,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'rule_name', $this->rule_name])
-            ->andFilterWhere(['like', 'data', $this->data]);
+        $query->andFilterWhere(['like', 'question_text', $this->question_text])
+            ->andFilterWhere(['like', 'question_type', $this->question_type])
+            ->andFilterWhere(['like', 'hint', $this->hint])
+            ->andFilterWhere(['like', 'explanation', $this->explanation])
+            ->andFilterWhere(['like', 'media_type', $this->media_type])
+            ->andFilterWhere(['like', 'media_url', $this->media_url]);
 
         return $dataProvider;
     }
