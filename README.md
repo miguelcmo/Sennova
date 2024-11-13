@@ -30,7 +30,6 @@ Este proyecto está desarrollado en Yii2 Advanced Template y consta de tres apli
 - **common/**: Archivos compartidos entre las aplicaciones.
 - **console/**: Comandos de consola.
 - **db/**: Archivos relacionados con la base de datos.
-- **environments/**: Configuraciones de diferentes entornos (producción, desarrollo, etc.).
 - **vendor/**: Dependencias instaladas a través de Composer.
 
 ## Estructura del Proyecto
@@ -72,17 +71,10 @@ project-root/
 │   ├── controllers/
 │   └── ...
 │
-├── environments/
-│   └── ...
-│
-├── vagrant/
-│   └── ...
-│
 ├── vendor/
 │   └── ...
 │
 ├── yii
-└── yii_test
 ```
 
 ## Requisitos del Sistema
@@ -131,7 +123,7 @@ Si deseas contribuir al proyecto, por favor sigue estos pasos:
 
 ## Licencia
 
-Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
+Este proyecto está licenciado bajo BSD 3-Clause "New" or "Revised" License. Consulta el archivo `LICENSE` para más detalles.
 
 ---
 
