@@ -7,6 +7,8 @@ use common\models\SurveySection;
 use common\models\SurveySectionSearch;
 use common\models\SurveyQuestion;
 use common\models\SurveyQuestionSearch;
+use common\models\SurveyOption;
+use common\models\SurveyOptionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -58,8 +60,37 @@ class SurveyQuestionController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $searchModel = new SurveyOptionSearch(['question_id' => $id]);
+        $dataProvider = $searchModel->search($this->request->queryParams);
+
+        // create new survey option 
+        $surveyOptionModel = new SurveyOption();
+
+        if ($this->request->isPost) {
+            $formName = $this->request->post('form-name');
+
+            if ($formName === 'surveyQuestionUpdate' ) {
+                if ($model->load($this->request->post()) && $model->save()) {
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
+            } elseif ($formName === 'surveyOptionCreate') {
+                if ($surveyOptionModel->load($this->request->post())) {
+                    $surveyOptionModel->question_id = $id;
+                    if ($surveyOptionModel->save()) {
+                        return $this->redirect(['view', 'id' => $id]);
+                    }
+                }
+            } 
+        } else {
+            $model->loadDefaultValues();
+        }
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'surveyOptionModel' => $surveyOptionModel,
         ]);
     }
 
@@ -68,28 +99,45 @@ class SurveyQuestionController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate($surveySectionId = null)
-    {
-        $model = new SurveyQuestion();
-        $surveySectionModel = SurveySection::findOne($surveySectionId);
+    // public function actionCreate($surveySectionId = null)
+    // {
+    //     $model = new SurveyQuestion();
+    //     $surveySectionModel = SurveySection::findOne($surveySectionId);
 
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post())) {
-                $model->survey_id = $surveySectionModel->survey_id;
-                $model->section_id = $surveySectionModel->id;
-                if ($model->save()) {
-                    return $this->redirect(['survey-section/view', 'id' => $surveySectionId]);
-                }
-            }
-        } else {
-            $model->loadDefaultValues();
-        }
+    //     if ($this->request->isPost) {
+    //         if ($model->load($this->request->post())) {
+    //             $model->survey_id = $surveySectionModel->survey_id;
+    //             $model->section_id = $surveySectionModel->id;
+    //             if ($model->save()) {
+    //                 if ($model->question_type == 'true_false') {
+    //                     $optionTrue = new SurveyOption();
+    //                     $optionTrue->question_id = $model->id;
+    //                     $optionTrue->option_text = 'True';
+    //                     $optionTrue->is_correct = 1;
+    //                     $optionTrue->weight = 100;
 
-        return $this->render('create', [
-            'model' => $model,
-            'surveySectionModel' => $surveySectionModel,
-        ]);
-    }
+    //                     $optionFalse = new SurveyOption();
+    //                     $optionFalse->question_id = $model->id;
+    //                     $optionFalse->option_text = 'False';
+    //                     $optionFalse->is_correct = 0;
+    //                     $optionFalse->weight = 0;
+
+    //                     if ($optionTrue->save() && $optionFalse->save()) {
+    //                         return $this->redirect(['survey-section/view', 'id' => $surveySectionId]);        
+    //                     }
+    //                 }
+    //                 return $this->redirect(['survey-section/view', 'id' => $surveySectionId]);
+    //             }
+    //         }
+    //     } else {
+    //         $model->loadDefaultValues();
+    //     }
+
+    //     return $this->render('create', [
+    //         'model' => $model,
+    //         'surveySectionModel' => $surveySectionModel,
+    //     ]);
+    // }
 
     /**
      * Updates an existing SurveyQuestion model.
@@ -109,6 +157,84 @@ class SurveyQuestionController extends Controller
         return $this->render('update', [
             'model' => $model,
         ]);
+    }
+
+    /**
+     * Updates an existing SurveyQuestion model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param int $id ID
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionFindforupdate($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            return $this->redirect(['survey-section/view', 'id' => $model->section_id]);
+        }
+
+        return $this->renderPartial('_formmini', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Updates an existing SurveyOption models based on the related questionId.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param int $id ID
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionUpdateIsCorrect($id, $questionId)
+    {
+        // Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        
+        // $model = $this->findModel($id);
+        // $model->is_correct = !$model->is_correct; // Alternar entre 1 y 0
+
+        // if ($model->save(false)) {
+        //     return ['success' => true, 'is_correct' => $model->is_correct];
+        // } else {
+        //     return ['success' => false];
+        // }
+        $options = SurveyOption::find()->where(['question_id' => $questionId])->all();
+
+        foreach ($options as $option) {
+            if ($option->id == $id) {
+                $option->is_correct = 1;
+                $option->weight = 100;
+                $option->save();
+            } else {
+                $option->is_correct = 0;
+                $option->weight = 0;
+                $option->save();
+            }
+        }
+
+        return $this->redirect(['view', 'id' => $questionId]);
+    }
+
+    /**
+     * Updates an existing SurveyOption models based on the related questionId.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param int $id ID
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionUpdateManyCorrect($id, $questionId)
+    {
+        $option = SurveyOption::find()->where(['id' => $id])->one();
+        
+        if ($option->is_correct == 1) {
+            $option->is_correct = 0;
+            $option->weight = 0;
+        } else {
+            $option->is_correct = 1;
+        }
+        $option->save();
+
+        return $this->redirect(['view', 'id' => $questionId]);
     }
 
     /**

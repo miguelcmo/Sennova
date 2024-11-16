@@ -20,6 +20,10 @@ return [
         'calendar' => [
             'class' => 'appServiserAdmin\modules\calendar\Module',
         ],
+        'gridview' => [
+            'class' => '\kartik\grid\Module',
+            // 'downloadAction' => 'gridview/export/download' // Opcional: habilita la exportación de datos si la necesitas
+        ],
     ],
     'components' => [
         'request' => [

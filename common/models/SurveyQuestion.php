@@ -46,8 +46,9 @@ class SurveyQuestion extends \yii\db\ActiveRecord
     {
         return [
             [['survey_id', 'section_id', 'question_text', 'question_type'], 'required'],
-            [['survey_id', 'section_id', 'points', 'created_by', 'updated_by'], 'integer'],
+            [['survey_id', 'section_id', 'created_by', 'updated_by'], 'integer'],
             [['question_text', 'question_type', 'hint', 'explanation', 'media_type'], 'string'],
+            ['points', 'integer', 'min' => 0, 'message' => Yii::t('app', 'Points cannot be less than zero.')],
             [['created_at', 'updated_at'], 'safe'],
             [['media_url'], 'string', 'max' => 255],
             [['section_id'], 'exist', 'skipOnError' => true, 'targetClass' => SurveySection::class, 'targetAttribute' => ['section_id' => 'id']],
@@ -145,5 +146,30 @@ class SurveyQuestion extends \yii\db\ActiveRecord
     public static function find()
     {
         return new SurveyQuestionQuery(get_called_class());
+    }
+
+    /**
+     * Devuelve la etiqueta traducida para el tipo de pregunta
+     * 
+     * @return string
+     */
+    public function getQuestionTypeLabel()
+    {
+        $labels = [
+            'short_text' => Yii::t('app', 'Short Text'),
+            'paragraph' => Yii::t('app', 'Paragraph'),
+            'multiple_choice' => Yii::t('app', 'Multiple Choice'),
+            'checkbox' => Yii::t('app', 'Checkbox'),
+            'drop_down_list' => Yii::t('app', 'Drop Down List'),
+            'true_false' => Yii::t('app', 'True/False'),
+            'date' => Yii::t('app', 'Date'),
+            'email' => Yii::t('app', 'Email'),
+            'number' => Yii::t('app', 'Number'),
+            'time' => Yii::t('app', 'Time'),
+            'url' => Yii::t('app', 'URL')
+        ];
+
+        // Retorna la etiqueta correspondiente al tipo de pregunta actual
+        return $labels[$this->question_type] ?? Yii::t('app', 'Unknown');
     }
 }

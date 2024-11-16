@@ -103,8 +103,51 @@ $this->params['breadcrumbs'][] = $this->title;
     <h4><?= Yii::t('app', 'Questions') ?></h4>
 
     <p>
-        <?= Html::a(Yii::t('app', 'New Question'), ['survey-question/create', 'surveySectionId' => $model->id], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'New Question'), ['#'], ['class' => 'btn btn-success', 'data-bs-toggle' => 'modal', 'data-bs-target' => '#surveyQuestionCreate']) ?>
     </p>
+
+    <!-- Create Survey Question Modal -->
+    <div class="modal fade" id="surveyQuestionCreate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="surveyQuestionCreateLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="surveyQuestionCreateLabel"><?= Yii::t('app', 'Create Survey Question') ?></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <?php $form = ActiveForm::begin(); ?>
+            <div class="modal-body">
+                <?= Html::hiddenInput('form-name', 'surveyQuestionCreate') ?>
+                <?= $form->field($surveyQuestionModel, 'question_text')->textarea(['rows' => 2]) ?>
+                <?= $form->field($surveyQuestionModel, 'question_type')->dropDownList(Yii::$app->params['question_types_es'], ['prompt' => '']) ?>
+                <?= $form->field($surveyQuestionModel, 'points')->textInput(['value' => 1]) ?>
+                <?= $form->field($surveyQuestionModel, 'hint')->textarea(['rows' => 3]) ?>
+                <?= $form->field($surveyQuestionModel, 'explanation')->textarea(['rows' => 3]) ?>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?= Yii::t('app', 'Close') ?></button>
+                <div class="form-group">
+                    <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+                </div>
+            </div>
+            <?php $form = ActiveForm::end(); ?>
+        </div>
+    </div>
+    </div>
+
+    <!-- Update Survey Question Modal -->
+    <div class="modal fade" id="surveyQuestionUpdate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="surveyQuestionUpdateLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="surveyQuestionUpdateLabel"><?= Yii::t('app', 'Update Survey Question') ?></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="updateContent">
+                <!-- Puedes cargar el formulario dinámicamente usando AJAX -->
+            </div>
+        </div>
+    </div>
+    </div>
 
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -119,7 +162,12 @@ $this->params['breadcrumbs'][] = $this->title;
             //'survey_id',
             //'section_id',
             'question_text:ntext',
-            'question_type',
+            [
+                'attribute' => 'question_type',
+                'value' => function ($model) {
+                    return $model->questionTypeLabel;
+                }
+            ],
             'points',
             //'hint:ntext',
             //'explanation:ntext',
@@ -131,6 +179,22 @@ $this->params['breadcrumbs'][] = $this->title;
             //'updated_at',
             [
                 'class' => ActionColumn::className(),
+                'template' => '{view} {update} {delete} ',
+                'header' => Yii::t('app', 'Actions'),
+                'contentOptions' => ['style' => 'width: 140px; text-align: center;'], // Aumenta el ancho de la columna
+                'buttons' => [
+                    'update' => function ($url, $model, $key) {
+                        return Html::a('<i class="fas fa-pencil-alt"></i>', ['#'], [
+                            'class' => 'custom-update-button', // Añade clases personalizadas
+                            'data-bs-toggle' => 'modal', 
+                            'data-bs-target' => '#surveyQuestionUpdate',
+                            'data-id' => $model->id, // Pasar ID del modelo
+                            'title' => 'Actualizar',
+                            'aria-label' => 'Actualizar',
+                            'data-pjax' => '0', // Evitar que PJAX se active
+                        ]);
+                    },
+                ],
                 'urlCreator' => function ($action, SurveyQuestion $model, $key, $index, $column) {
                     return Url::toRoute(['survey-question/' . $action, 'id' => $model->id]);
                  }
@@ -155,3 +219,26 @@ $this->params['breadcrumbs'][] = $this->title;
         });
     }, 5000); // 5000 ms = 5 segundos
 </script>
+
+<!-- AJAX call to get the model data for the update proccess  -->
+<?php
+$script = <<< JS
+$(document).on('click', '.custom-update-button', function() {
+    var id = $(this).data('id');
+    
+    // Cargar el contenido del formulario en el modal usando AJAX
+    $.ajax({
+        url: 'index.php?r=survey-question/findforupdate&id=' + id, // Asegúrate de que esta URL sea correcta
+        type: 'GET',
+        success: function(data) {
+            $('#updateContent').html(data); // Inserta el formulario en el modal
+            $('#surveyQuestionUpdate').modal('show'); // Muestra el modal
+        },
+        error: function() {
+            alert('Error al cargar el formulario de actualización.');
+        }
+    });
+});
+JS;
+$this->registerJs($script);
+?>

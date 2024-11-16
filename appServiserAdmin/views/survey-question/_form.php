@@ -18,7 +18,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'question_text')->textarea(['rows' => 3]) ?>
 
-    <?= $form->field($model, 'question_type')->dropDownList([ 'text' => 'Text', 'multiple_choice' => 'Multiple choice', 'checkbox' => 'Checkbox', 'true_false' => 'True false', 'open' => 'Open', ], ['prompt' => '']) ?>
+    <?php // $form->field($model, 'question_type')->dropDownList([ 'text' => 'Text', 'multiple_choice' => 'Multiple choice', 'checkbox' => 'Checkbox', 'true_false' => 'True false', 'open' => 'Open', ], ['prompt' => '']) ?>
+
+    <?= $form->field($model, 'question_type')->dropDownList(Yii::$app->params['question_types_es'], ['prompt' => '']) ?>
 
     <?= $form->field($model, 'points')->textInput() ?>
 

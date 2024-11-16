@@ -7,6 +7,8 @@ use common\models\SurveySection;
 use common\models\SurveySectionSearch;
 use common\models\SurveyQuestion;
 use common\models\SurveyQuestionSearch;
+use common\models\SurveyOption;
+use common\models\SurveyOptionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -62,9 +64,50 @@ class SurveySectionController extends Controller
         $searchModel = new SurveyQuestionSearch(['section_id' => $id]);
         $dataProvider = $searchModel->search($this->request->queryParams);
 
+        $surveyQuestionModel = new SurveyQuestion();
+
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $id]);
+            $formName = $this->request->post('form-name');
+
+            if ($formName === 'surveySectionUpdate') {
+                if ($model->load($this->request->post()) && $model->save()) {
+                    return $this->redirect(['view', 'id' => $id]);
+                }
+            } elseif ($formName === 'surveyQuestionCreate') {
+                if ($surveyQuestionModel->load($this->request->post())) {
+                    $surveyQuestionModel->survey_id = $model->survey_id;
+                    $surveyQuestionModel->section_id = $model->id;
+                    if ($surveyQuestionModel->save()) {
+                        if ($surveyQuestionModel->question_type == 'true_false') {
+                            $optionTrue = new SurveyOption();
+                            $optionTrue->question_id = $surveyQuestionModel->id;
+                            $optionTrue->option_text = 'True';
+                            $optionTrue->is_correct = 1;
+                            $optionTrue->weight = 100;
+    
+                            $optionFalse = new SurveyOption();
+                            $optionFalse->question_id = $surveyQuestionModel->id;
+                            $optionFalse->option_text = 'False';
+                            $optionFalse->is_correct = 0;
+                            $optionFalse->weight = 0;
+                            
+                            if ($optionTrue->save() && $optionFalse->save()) {
+                                $qType = $surveyQuestionModel->question_type; 
+                                if ($qType == 'multiple_choice' || $qType == 'checkbox' || $qType == 'drop_down_list' || $qType == 'true_false') {
+                                    return $this->redirect(['survey-question/view', 'id' => $surveyQuestionModel->id]);
+                                } else {
+                                    return $this->redirect(['view', 'id' => $id]);
+                                }
+                            }
+                        }
+                        $qType = $surveyQuestionModel->question_type; 
+                        if ($qType == 'multiple_choice' || $qType == 'checkbox' || $qType == 'drop_down_list' || $qType == 'true_false') {
+                            return $this->redirect(['survey-question/view', 'id' => $surveyQuestionModel->id]);
+                        } else {
+                            return $this->redirect(['view', 'id' => $id]);
+                        }
+                    }
+                }
             }
         } else {
             $model->loadDefaultValues();
@@ -74,6 +117,7 @@ class SurveySectionController extends Controller
             'model' => $model,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'surveyQuestionModel' => $surveyQuestionModel,
         ]);
     }
 
