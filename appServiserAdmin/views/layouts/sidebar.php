@@ -150,9 +150,10 @@ use yii\helpers\Html;
                                 'url' => ['/survey/index'],
                             ],
                             [
-                                'label' => 'Preguntas',
+                                'label' => 'Vista previa',
                                 'iconStyle' => 'far',
-                                'url' => ['/question'],
+                                'icon' => 'eye',
+                                'url' => ['/survey/list'],
                             ],
                         ],
                     ],

@@ -80,12 +80,16 @@ class SurveySectionController extends Controller
                     if ($surveyQuestionModel->save()) {
                         if ($surveyQuestionModel->question_type == 'true_false') {
                             $optionTrue = new SurveyOption();
+                            $optionTrue->survey_id = $surveyQuestionModel->survey_id;
+                            $optionTrue->section_id = $surveyQuestionModel->section_id;
                             $optionTrue->question_id = $surveyQuestionModel->id;
                             $optionTrue->option_text = 'True';
                             $optionTrue->is_correct = 1;
                             $optionTrue->weight = 100;
     
                             $optionFalse = new SurveyOption();
+                            $optionFalse->survey_id = $surveyQuestionModel->survey_id;
+                            $optionFalse->section_id = $surveyQuestionModel->section_id;
                             $optionFalse->question_id = $surveyQuestionModel->id;
                             $optionFalse->option_text = 'False';
                             $optionFalse->is_correct = 0;

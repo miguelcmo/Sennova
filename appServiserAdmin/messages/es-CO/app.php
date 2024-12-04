@@ -149,7 +149,7 @@ return [
     'Update Survey Section' => 'Actualizar Sección de Encuesta',
     'Update Survey Section: {name}' => 'Actualizar Sección de Encuesta: {name}',
     'Update User: {name}' => 'Actualizar Usuario: {name}',
-    'Yes' => 'Sí',
+    'Yes' => 'Si',
     'You haven\'t completed your profile yet. Please complete your profile here!' => '¡Aún no has completado tu perfil! Por favor, complétalo aquí.',
     '' => '',
     'About Me' => 'Acerca de Mí',

@@ -76,6 +76,8 @@ class SurveyQuestionController extends Controller
                 }
             } elseif ($formName === 'surveyOptionCreate') {
                 if ($surveyOptionModel->load($this->request->post())) {
+                    $surveyOptionModel->survey_id = $model->survey_id;
+                    $surveyOptionModel->section_id = $model->section_id;
                     $surveyOptionModel->question_id = $id;
                     if ($surveyOptionModel->save()) {
                         return $this->redirect(['view', 'id' => $id]);
