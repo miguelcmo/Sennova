@@ -222,6 +222,18 @@ use yii\helpers\Html;
                             ],
                         ],
                     ],
+                    // Herramientas
+                    [
+                        'label' => 'Herramientas',
+                        'icon' => 'tools',
+                        'items' => [
+                            [
+                                'label' => 'Log de Eventos',
+                                'iconStyle' => 'far',
+                                'url' => ['activity-log/index'],
+                            ],
+                        ],
+                    ],
                     /*
                     [
                         'label' => 'Grupos',

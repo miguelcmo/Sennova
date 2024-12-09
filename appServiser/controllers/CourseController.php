@@ -7,8 +7,8 @@ use common\models\Course;
 use common\models\CourseSearch;
 use common\models\CourseModule;
 use common\models\CourseModuleSearch;
-use common\models\Lesson;
-use common\models\LessonSearch;
+use common\models\CourseLesson;
+use common\models\CourseLessonSearch;
 use common\models\Enrollment;
 use common\models\EnrollmentSearch;
 use yii\web\Controller;
@@ -57,8 +57,13 @@ class CourseController extends Controller
     public function actionView($id)
     {
         $course = Course::find()->where(['id' => $id])->one();
-        $courseModules = CourseModule::find()->where(['course_id' => $id])->all();
-        $lessons = Lesson::find()->where(['course_id' => $id])->all();
+        if ($course != null) {
+            $courseModules = CourseModule::find()->where(['course_id' => $id])->all();
+            $lessons = CourseLesson::find()->where(['course_id' => $id])->all();
+        } else {
+            $courseModules = [];
+            $lessons = [];
+        }
 
         $enrollment = Enrollment::find()->where(['course_id' => $course->id, 'user_id' => Yii::$app->user->id, 'status' => 10])->one();
 

@@ -29,6 +29,7 @@ $userWebsite = convertUrlsToLinks($userProfileInfo->website);
 ?>
 
 <div class="container member-index mb-3">
+
     <div class="row">
         
         <div class="col-md-3 mb-3">
@@ -96,7 +97,7 @@ $userWebsite = convertUrlsToLinks($userProfileInfo->website);
                                 <h5 class="card-title">Registrar Unidad Productiva</h5>
                                 <p class="card-text">Completa el registro de tu unidad productiva. Los datos que proporciones son esenciales para mejorar nuestro servicio y adaptarlo a tus necesidades.</p>
                                 <!-- <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> -->
-                                <p><a href="#" class="btn btn-primary btn-block w-100">Registrar</a></p>
+                                <p><a href="#" class="btn btn-primary btn-block w-100 text-white">Registrar</a></p>
                             </div>
                             </div>
                         </div>
@@ -116,7 +117,8 @@ $userWebsite = convertUrlsToLinks($userProfileInfo->website);
                                 <h5 class="card-title">Realizar Diagnostico Empresarial</h5>
                                 <p class="card-text">Completa el diagnóstico empresarial para determinar la ruta de atención más efectiva en nuestros módulos de servitización. Tu participación es clave para ofrecerte soluciones personalizadas y eficientes.</p>
                                 <!-- <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> -->
-                                <p><a href="#" class="btn btn-primary btn-block w-100">Diagnostico</a></p>
+                                <!-- <p><a href="#" class="btn btn-primary btn-block w-100">Diagnostico</a></p> -->
+                                <?= Html::a('Diagnostico', ['survey/view', 'id' => 9], ['class' => 'btn btn-primary btn-block w-100 text-white']) ?>
                             </div>
                             </div>
                         </div>
@@ -144,7 +146,7 @@ $userWebsite = convertUrlsToLinks($userProfileInfo->website);
                                 <p class="card-text"><?= $enrollment->course->description ?></p>
                                 <!-- <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> -->
                                 <!-- <p><a href="#" class="btn btn-primary btn-block w-100">Ingresar al módulo</a></p> -->
-                                <p><?= Html::a(Yii::t('app', 'Access Module'), ['course/view', 'id' => $enrollment->course_id], ['class' => 'btn btn-primary w-100']) ?></p>
+                                <p><?= Html::a(Yii::t('app', 'Access Module'), ['course/view', 'id' => $enrollment->course_id], ['class' => 'btn btn-primary w-100 text-white']) ?></p>
                             </div>
                             </div>
                         </div>

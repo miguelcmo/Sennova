@@ -3,8 +3,8 @@
 namespace appServiser\controllers;
 
 use Yii;
-use common\models\Lesson;
-use common\models\LessonSearch;
+use common\models\CourseLesson;
+use common\models\CourseLessonSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
@@ -50,7 +50,7 @@ class LessonController extends Controller
      */
     public function actionView($id)
     {
-        $lesson = Lesson::find()->where(['id' => $id])->one();
+        $lesson = CourseLesson::find()->where(['id' => $id])->one();
 
         return $this->render('view', [
             'lesson' => $lesson,
